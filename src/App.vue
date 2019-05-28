@@ -1,23 +1,28 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <NavTop/>
+    <Content/>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+  import NavTop from "./components/nav/NavTop.vue"
+  import Content from "./components/Content.vue"
+
+  export default {
+    name: 'App',
+    components:{
+      NavTop,
+      Content,
+    }
+  }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+body{
+  margin: 0;
+  padding: 0;
 }
+
 </style>
