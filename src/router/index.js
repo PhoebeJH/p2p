@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
 
 const Home = () => import('@/components/Home.vue');
 //引入充值记录组件
@@ -22,8 +20,7 @@ const UserCapital=()=> import('@/components/RecordMa/UserCapital.vue');
 
 
 
-Vue.use(Router)
-Vue.use(ElementUI)
+Vue.use(Router);
 
 export default new Router({
   routes: [
