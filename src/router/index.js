@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
 
 const Home = () => import('@/components/Home.vue');
 //引入充值记录组件
@@ -11,8 +9,7 @@ const WithdrawRecord = () => import('@/components/RecordMa/WithdrawRecord.vue');
 //引入提现审核组件
 const WithdrawReview = () => import('@/components/RecordMa/WithdrawReview.vue');
 
-Vue.use(Router)
-Vue.use(ElementUI)
+Vue.use(Router);
 
 export default new Router({
   routes: [

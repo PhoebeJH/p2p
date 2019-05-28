@@ -63,10 +63,8 @@
 
 <script>
 
-
 export default {
   name: 'Nav',
-
   data () {
     return {
       isCollapse: true
@@ -80,6 +78,19 @@ export default {
       handleClose(key, keyPath) {
         console.log(key, keyPath);
       }
+  },
+
+  created() {
+      this.Axios.get("https://5cd808f00cc5100014f1e33e.mockapi.io/p2pMenu").then(
+          (res) => {
+              console.log(res);
+          }
+      ).catch(
+          error => {
+              console.log(error);
+              
+          }
+      );
   },
 }
 </script>
