@@ -16,9 +16,13 @@ const BorrowUser = () => import('@/components/Member/BorrowUser.vue');
 const InvUser = () => import('@/components/Member/InvUser.vue');
 //引入用户资金
 const UserCapital=()=> import('@/components/RecordMa/UserCapital.vue');
+//引入资金日志
+const CapitalJournal=()=> import('@/components/RecordMa/CapitalJournal.vue');
+// 引入平台资金
+const Platformfunds=()=> import('@/components/RecordMa/Platformfunds.vue');
 
 
-
+// Platformfunds
 
 Vue.use(Router);
 
@@ -65,11 +69,23 @@ export default new Router({
       name: 'InvUser',
       component: InvUser,
     },
-		//引入用户资金页面
+		//引入用户资金
 		{
 			path:'/UserCapital',
 			name:"UserCapital",
 			component:UserCapital
+		},
+		//引入资金日志
+		{
+			path:'/CapitalJournal',
+			name:"CapitalJournal",
+			component:CapitalJournal
+		},
+		//引入平台资金
+		{
+			path:'/Platformfunds',
+			name:"Platformfunds",
+			component:Platformfunds
 		}
   ]
 })

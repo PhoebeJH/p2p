@@ -4,12 +4,7 @@
 			<el-row :gutter="15">
 				<el-col :span="3">
 					<div class="grid-content bg-purple">
-						<el-input size="mini" v-model="input_phone" suffix-icon="el-icon-search" placeholder="搜索用户手机号"></el-input>
-					</div>
-				</el-col>
-				<el-col :span="3">
-					<div class="grid-content bg-purple">
-						<el-input size="mini" v-model="input_name" suffix-icon="el-icon-search" placeholder="搜索姓名"></el-input>
+						<el-input size="mini" v-model="input_phone" suffix-icon="el-icon-search" placeholder="搜索流水号"></el-input>
 					</div>
 				</el-col>
 				<el-col :span="3">
@@ -18,7 +13,7 @@
 						</el-option>
 					</el-select>
 				</el-col>
-				<el-col :span="2" :offset="13">
+				<el-col :span="2" :offset="16">
 					<el-button plain size="mini">导出</el-button>
 				</el-col>
 
@@ -27,29 +22,28 @@
 		</el-header>
 		<el-main>
 			<el-table stripe style="font-size: 10px;" :data="tableData" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
-				<el-table-column prop="userId" label="用户ID" align="center">
+				
+				<el-table-column prop="name" label="流水号" align="center">
 				</el-table-column>
-				<el-table-column prop="name" label="姓名" align="center">
+				<el-table-column prop="total_assets" label="类型" align="center">
 				</el-table-column>
-				<el-table-column prop="phone" label="用户手机" align="center">
+				<el-table-column prop="Account" label="出入帐" align="center">
 				</el-table-column>
-				<el-table-column prop="total_assets" label="总资产" align="center">
+				<el-table-column prop="total_monney" label="操作金额" align="center">
 				</el-table-column>
-				<el-table-column prop="balance" label="可用余额" align="center">
+					<el-table-column prop="amount_collected" label="手续费" align="center">
 				</el-table-column>
-				<el-table-column prop="Freezing_amount" label="冻结金额" align="center">
+				<el-table-column prop="balance" label="操作前余额" align="center">
 				</el-table-column>
-				<el-table-column prop="amount_collected" label="待收金额" align="center">
+				<el-table-column prop="Freezing_amount" label="操作后余额" align="center">
 				</el-table-column>
-				<el-table-column prop="Cumulative_investment" label="累计投资" align="center">
+				<el-table-column prop="state" label="状态" align="center">
 				</el-table-column>
-				<el-table-column prop="Cumulative_investment_re" label="累计投资收益" align="center">
+			
+
+				<el-table-column prop="Remarks" label="备注" align="center">
 				</el-table-column>
-				<el-table-column prop="Accumulated_loan" label="累计借款" align="center">
-				</el-table-column>
-				<el-table-column prop="Accumulated_repayment" label="累计还款" align="center">
-				</el-table-column>
-				<el-table-column prop="repayment_balance" label="借还款差额" align="center">
+				<el-table-column prop="Accumulated_loan" label="操作时间" align="center">
 				</el-table-column>
 				
 			</el-table>
@@ -66,21 +60,24 @@
 </template>
 <script>
 	export default {
-		name: 'UserCapital',
+		name: 'Platformfunds',
 		data() {
 			const item = {
 				userId: '201709091123',
-				name: '企业1号',
-				phone: '13800009999',
-				total_assets: 300,
+				name: '百事可乐',
+				phone: '13990722322',
+				total_assets: '现金红包',
+				Account :'出入',
+				total_monney:'￥20000',
 				balance: 0,
 				Freezing_amount: 0,
 				amount_collected: 0,
 				Cumulative_investment: 0,
-				Cumulative_investment_re: 0,
-				Accumulated_loan: 0,
+				Remarks:"出入帐明细",
+				Accumulated_loan: '2017-01-01 12:23:33',
 				Accumulated_repayment: 0,
-				repayment_balance: 0
+				repayment_balance: 0,
+				state:'完成'
 			};
 			return {
 				tableData: Array(20).fill(item),
@@ -88,15 +85,15 @@
 				input_name: '',
 				options: [{
 					value: '选项1',
-					label: '全部用户'
+					label: '出入帐'
 				}, {
 					value: '选项2',
-					label: '投资用户'
+					label: '出账'
 				}, {
 					value: '选项3',
-					label: '借款用户'
+					label: '入账'
 				}],
-				value: "全部用户"
+				value: "出入帐"
 			}
 		},
 		methods: {

@@ -27,29 +27,26 @@
 		</el-header>
 		<el-main>
 			<el-table stripe style="font-size: 10px;" :data="tableData" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
-				<el-table-column prop="userId" label="用户ID" align="center">
-				</el-table-column>
+				
 				<el-table-column prop="name" label="姓名" align="center">
 				</el-table-column>
 				<el-table-column prop="phone" label="用户手机" align="center">
 				</el-table-column>
-				<el-table-column prop="total_assets" label="总资产" align="center">
+				<el-table-column prop="total_assets" label="类型" align="center">
 				</el-table-column>
-				<el-table-column prop="balance" label="可用余额" align="center">
+				<el-table-column prop="total_monney" label="操作金额" align="center">
 				</el-table-column>
-				<el-table-column prop="Freezing_amount" label="冻结金额" align="center">
+				<el-table-column prop="balance" label="操作前可用金额" align="center">
 				</el-table-column>
-				<el-table-column prop="amount_collected" label="待收金额" align="center">
+				<el-table-column prop="Freezing_amount" label="操作后可用金额" align="center">
 				</el-table-column>
-				<el-table-column prop="Cumulative_investment" label="累计投资" align="center">
+				<el-table-column prop="amount_collected" label="操作前冻结金额" align="center">
 				</el-table-column>
-				<el-table-column prop="Cumulative_investment_re" label="累计投资收益" align="center">
+				<el-table-column prop="Cumulative_investment" label="操作后冻结金额" align="center">
 				</el-table-column>
-				<el-table-column prop="Accumulated_loan" label="累计借款" align="center">
+				<el-table-column prop="Remarks" label="备注" align="center">
 				</el-table-column>
-				<el-table-column prop="Accumulated_repayment" label="累计还款" align="center">
-				</el-table-column>
-				<el-table-column prop="repayment_balance" label="借还款差额" align="center">
+				<el-table-column prop="Accumulated_loan" label="操作时间" align="center">
 				</el-table-column>
 				
 			</el-table>
@@ -66,19 +63,20 @@
 </template>
 <script>
 	export default {
-		name: 'UserCapital',
+		name: 'CapitalJournal',
 		data() {
 			const item = {
 				userId: '201709091123',
-				name: '企业1号',
-				phone: '13800009999',
-				total_assets: 300,
+				name: '百事可乐',
+				phone: '13990722322',
+				total_assets: '回收本金',
+				total_monney:'￥20000',
 				balance: 0,
 				Freezing_amount: 0,
 				amount_collected: 0,
 				Cumulative_investment: 0,
-				Cumulative_investment_re: 0,
-				Accumulated_loan: 0,
+				Remarks:"[新手标] 还款，收回本金100.00元",
+				Accumulated_loan: '2017-01-01 12:23:33',
 				Accumulated_repayment: 0,
 				repayment_balance: 0
 			};
@@ -88,15 +86,18 @@
 				input_name: '',
 				options: [{
 					value: '选项1',
-					label: '全部用户'
+					label: '全部类型'
 				}, {
 					value: '选项2',
-					label: '投资用户'
+					label: '回收利息'
 				}, {
 					value: '选项3',
-					label: '借款用户'
+					label: '回收本金'
+				}, {
+					value: '选项4',
+					label: '利息管理费'
 				}],
-				value: "全部用户"
+				value: "全部类型"
 			}
 		},
 		methods: {
