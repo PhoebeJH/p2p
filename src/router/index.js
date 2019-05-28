@@ -10,8 +10,15 @@ const RechargeRecord = () => import('@/components/RecordMa/RechargeRecord.vue');
 const WithdrawRecord = () => import('@/components/RecordMa/WithdrawRecord.vue');
 //引入提现审核组件
 const WithdrawReview = () => import('@/components/RecordMa/WithdrawReview.vue');
-//引入用户资金组件
-const UserCapital=()=>import('@/components/RecordMa/UserCapital.vue');
+//引入会员管理/新增借款用户
+const AddUser = () => import('@/components/Member/AddUser.vue');
+//引入会员管理/借款用户管理
+const BorrowUser = () => import('@/components/Member/BorrowUser.vue');
+//引入会员管理/投资用户管理
+const InvUser = () => import('@/components/Member/InvUser.vue');
+
+
+
 
 Vue.use(Router)
 Vue.use(ElementUI)
@@ -41,11 +48,23 @@ export default new Router({
       name: 'WithdrawReview',
       component: WithdrawReview,
     },
-		//用户资金路由
-		{
-			path:"/UserCapital",
-			name:"UserCapital",
-			component:UserCapital
-		}
+    //引入会员管理/新增借款用户
+    {
+      path: '/AddUser',
+      name: 'AddUser',
+      component: AddUser,
+    },
+    //引入会员管理/借款用户管理
+    {
+      path: '/BorrowUser',
+      name: 'BorrowUser',
+      component: BorrowUser,
+    },
+    //引入会员管理/投资用户管理
+    {
+      path: '/InvUser',
+      name: 'InvUser',
+      component: InvUser,
+    }
   ]
 })
