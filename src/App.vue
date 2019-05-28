@@ -6,8 +6,7 @@
   </div>
 </template>
 
-<link type="text/css" rel="stylesheet" href="./static/layui/css/layui.css"/> 
-    <script type="text/javascript" src="./static/layui/layui.js"></script>
+
 <script>
 	
   import NavTop from "./components/nav/NavTop.vue"

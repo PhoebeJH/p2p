@@ -4,22 +4,22 @@
 			<el-row :gutter="15">
 				<el-col :span="3">
 					<div class="grid-content bg-purple">
-						<el-input size="mini" v-model="input_phone"  suffix-icon="el-icon-search" placeholder="搜索用户手机号"></el-input>
+						<el-input size="mini" v-model="input_phone" suffix-icon="el-icon-search" placeholder="搜索用户手机号"></el-input>
 					</div>
 				</el-col>
 				<el-col :span="3">
 					<div class="grid-content bg-purple">
-						<el-input  size="mini" v-model="input_name" suffix-icon="el-icon-search"  placeholder="搜索姓名"></el-input>
+						<el-input size="mini" v-model="input_name" suffix-icon="el-icon-search" placeholder="搜索姓名"></el-input>
 					</div>
 				</el-col>
 				<el-col :span="3">
-					<el-select  size="mini" v-model="value" filterable placeholder="请选择">
+					<el-select size="mini" v-model="value" filterable placeholder="请选择">
 						<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
 						</el-option>
 					</el-select>
 				</el-col>
-				<el-col  :span="2" :offset="13">
-					<el-button plain  size="mini">导出</el-button>
+				<el-col :span="2" :offset="13">
+					<el-button plain size="mini">导出</el-button>
 				</el-col>
 
 
@@ -51,12 +51,19 @@
 				</el-table-column>
 				<el-table-column prop="repayment_balance" label="借还款差额" align="center">
 				</el-table-column>
-
+				
 			</el-table>
+			<el-pagination
+  background
+  layout="prev, pager, next"
+  :page-sizes="[10, 25, 50, 100]"
+  :page-size="10"
+  :total="1000">
+</el-pagination>
 		</el-main>
 	</el-container>
-</template>
 
+</template>
 <script>
 	export default {
 		name: 'UserCapital',
