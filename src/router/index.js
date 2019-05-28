@@ -10,6 +10,8 @@ const RechargeRecord = () => import('@/components/RecordMa/RechargeRecord.vue');
 const WithdrawRecord = () => import('@/components/RecordMa/WithdrawRecord.vue');
 //引入提现审核组件
 const WithdrawReview = () => import('@/components/RecordMa/WithdrawReview.vue');
+//引入用户资金组件
+const UserCapital=()=>import('@/components/RecordMa/UserCapital.vue');
 
 Vue.use(Router)
 Vue.use(ElementUI)
@@ -38,6 +40,12 @@ export default new Router({
       path: '/WithdrawReview',
       name: 'WithdrawReview',
       component: WithdrawReview,
-    }
+    },
+		//用户资金路由
+		{
+			path:"/UserCapital",
+			name:"UserCapital",
+			component:UserCapital
+		}
   ]
 })
