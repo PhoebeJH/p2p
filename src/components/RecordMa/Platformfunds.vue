@@ -4,38 +4,42 @@
 			<el-row :gutter="15">
 				<el-col :span="3">
 					<div class="grid-content bg-purple">
-						<el-input size="mini" v-model="input_phone" suffix-icon="el-icon-search" placeholder="搜索流水号"></el-input>
+						<el-input size="small" v-model="input_phone" suffix-icon="el-icon-search" placeholder="搜索流水号"></el-input>
 					</div>
 				</el-col>
 				<el-col :span="3">
-					<el-select size="mini" v-model="value" filterable placeholder="请选择">
+					<el-select size="small" v-model="value" filterable placeholder="请选择">
 						<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
 						</el-option>
 					</el-select>
 				</el-col>
-				<el-col
-				  
-				 :span="2" :offset="16">
-					<el-button plain size="mini">导出</el-button>
+				<el-col :span="2" :offset="16">
+					<el-button plain size="small" @click="exportExcel">导出</el-button>
 				</el-col>
 			</el-row>
 		</el-header>
 		<el-header>
-			<el-row :gutter="15"  class="boxshadow">
-				<el-col   :span="19">
-					<div>平台账户余额: 123123.12元</div>
+			<el-row :gutter="15">
+				<el-col :span="24">
+					<el-col :span="24" class="platBorder">
+						<el-col :span="18">
+							<div>平台账户余额: <span class="platOrange">123123.12</span>元</div>
+						</el-col>
+						<el-col :span="3">
+							<el-button size="medium" type="primary">平台充值</el-button>
+						</el-col>
+						<el-col :span="3">
+							<el-button size="medium" type="primary">平台提现</el-button>
+						</el-col>
+					</el-col>
+
 				</el-col>
-				<el-col :span="2">
-					<el-button size="mini" type="success">平台充值</el-button>
-				</el-col>
-				<el-col :span="2">
-					<el-button size="mini" type="success">平台提现</el-button>
-				</el-col>
+
 			</el-row>
 		</el-header>
 		<el-main>
-			<el-table stripe style="font-size: 10px;" :data="tableData" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
-				
+			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
+
 				<el-table-column prop="name" label="流水号" align="center">
 				</el-table-column>
 				<el-table-column prop="total_assets" label="类型" align="center">
@@ -44,7 +48,7 @@
 				</el-table-column>
 				<el-table-column prop="total_monney" label="操作金额" align="center">
 				</el-table-column>
-					<el-table-column prop="amount_collected" label="手续费" align="center">
+				<el-table-column prop="amount_collected" label="手续费" align="center">
 				</el-table-column>
 				<el-table-column prop="balance" label="操作前余额" align="center">
 				</el-table-column>
@@ -52,35 +56,32 @@
 				</el-table-column>
 				<el-table-column prop="state" label="状态" align="center">
 				</el-table-column>
-			
+
 
 				<el-table-column prop="Remarks" label="备注" align="center">
 				</el-table-column>
-				<el-table-column prop="Accumulated_loan" width='140' label="操作时间" align="center">
+				<el-table-column prop="Accumulated_loan" width='150' label="操作时间" align="center">
 				</el-table-column>
-				
+
 			</el-table>
 		</el-main>
 		<el-footer style="margin:20px 0 10px">
 			<el-row>
-				<el-col :span="5" :offset="12">
-					<el-pagination
-					  background
-					  layout="total,prev, pager, next,sizes"
-					  :pager-count="5"
-					  :page-sizes="[10, 25, 50, 100]"
-					  :page-size="10"
-					  :total="1000">
+				<el-col :span="5" :offset="11">
+					<el-pagination background layout="total,prev, pager, next,sizes" :pager-count="5" :page-sizes="[10, 25, 50, 100]"
+					 :page-size="10" :total="1000">
 					</el-pagination>
 				</el-col>
-					
+
 			</el-row>
-				
+
 		</el-footer>
 	</el-container>
 
 </template>
 <script>
+	import FileSaver from 'file-saver';
+	import XLSX from 'xlsx';
 	export default {
 		name: 'Platformfunds',
 		data() {
@@ -89,17 +90,17 @@
 				name: '百事可乐',
 				phone: '13990722322',
 				total_assets: '现金红包',
-				Account :'出帐',
-				total_monney:'￥20000',
+				Account: '出帐',
+				total_monney: '￥20000',
 				balance: 0,
 				Freezing_amount: 0,
 				amount_collected: 0,
 				Cumulative_investment: 0,
-				Remarks:"出入帐明细",
+				Remarks: "出入帐明细",
 				Accumulated_loan: '2017-01-01 12:23:33',
 				Accumulated_repayment: 0,
 				repayment_balance: 0,
-				state:'完成'
+				state: '完成'
 			};
 			return {
 				tableData: Array(20).fill(item),
@@ -121,6 +122,24 @@
 		methods: {
 			getRowClass() {
 				return 'background:#f2f2f2'
+			},
+			exportExcel() {
+				/* generate workbook object from table */
+				var wb = XLSX.utils.table_to_book(document.querySelector('#moneyTable'))
+				/* get binary string as output */
+				var wbout = XLSX.write(wb, {
+					bookType: 'xlsx',
+					bookSST: true,
+					type: 'array'
+				})
+				try {
+					FileSaver.saveAs(new Blob([wbout], {
+						type: 'application/octet-stream'
+					}), 'sheetjs.xlsx')
+				} catch (e) {
+					if (typeof console !== 'undefined') console.log(e, wbout)
+				}
+				return wbout
 			}
 		}
 	}
@@ -139,11 +158,18 @@
 	.el-table th {
 		text-align: center !important;
 	}
-	.boxshadow{
+
+	.platBorder {
 		/* width: 100%; */
 		/* height:55px; */
-		/* border: 0.3px solid #bbb; */
-		box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-		box-sizing: border-box;
+		border: 0.3px solid #bbb;
+		/* border-right:none; */
+		/* box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); */
+		/* box-sizing: border-box; */
+		/* background:#bbb; */
+	}
+
+	.platOrange {
+		color: orange;
 	}
 </style>

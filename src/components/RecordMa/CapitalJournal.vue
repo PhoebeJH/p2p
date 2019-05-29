@@ -4,56 +4,56 @@
 			<el-row :gutter="15">
 				<el-col :span="3">
 					<div class="grid-content bg-purple">
-						<el-input size="mini" v-model="input_phone" suffix-icon="el-icon-search" placeholder="搜索用户手机号"></el-input>
+						<el-input size="small" v-model="input_phone" suffix-icon="el-icon-search" placeholder="搜索用户手机号"></el-input>
 					</div>
 				</el-col>
 				<el-col :span="3">
 					<div class="grid-content bg-purple">
-						<el-input size="mini" v-model="input_name" suffix-icon="el-icon-search" placeholder="搜索姓名"></el-input>
+						<el-input size="small" v-model="input_name" suffix-icon="el-icon-search" placeholder="搜索姓名"></el-input>
 					</div>
 				</el-col>
 				<el-col :span="3">
-					<el-select size="mini" v-model="value" filterable placeholder="请选择">
+					<el-select size="small" v-model="value" filterable placeholder="请选择">
 						<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
 						</el-option>
 					</el-select>
 				</el-col>
 				<el-col :span="2" :offset="13">
-					<el-button plain size="mini">导出</el-button>
+					<el-button plain size="small" @click="exportExcel">导出</el-button>
 				</el-col>
 
 
 			</el-row>
 		</el-header>
 		<el-main>
-			<el-table stripe style="font-size: 10px;" :data="tableData" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
+			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
 				
 				<el-table-column prop="name" label="姓名" align="center">
 				</el-table-column>
-				<el-table-column prop="phone" label="用户手机" align="center">
+				<el-table-column prop="phone" width="100" label="用户手机" align="center">
 				</el-table-column>
 				<el-table-column prop="total_assets" label="类型" align="center">
 				</el-table-column>
 				<el-table-column prop="total_monney" label="操作金额" align="center">
 				</el-table-column>
-				<el-table-column prop="balance" label="操作前可用金额" align="center">
+				<el-table-column prop="balance" width='100' label="操作前可用金额" align="center">
 				</el-table-column>
-				<el-table-column prop="Freezing_amount" label="操作后可用金额" align="center">
+				<el-table-column prop="Freezing_amount" width='100' label="操作后可用金额" align="center">
 				</el-table-column>
-				<el-table-column prop="amount_collected" label="操作前冻结金额" align="center">
+				<el-table-column prop="amount_collected" width='100' label="操作前冻结金额" align="center">
 				</el-table-column>
-				<el-table-column prop="Cumulative_investment" label="操作后冻结金额" align="center">
+				<el-table-column prop="Cumulative_investment" width='100' label="操作后冻结金额" align="center">
 				</el-table-column>
-				<el-table-column width='180'  prop="Remarks" label="备注" align="center">
+				<el-table-column width='200'  prop="Remarks" label="备注" align="center">
 				</el-table-column>
-				<el-table-column width='140' prop="Accumulated_loan" label="操作时间" align="center">
+				<el-table-column width='140'  prop="Accumulated_loan" label="操作时间" align="center">
 				</el-table-column>
 				
 			</el-table>
 		</el-main>
 		<el-footer style="margin:20px 0 10px">
 			<el-row>
-				<el-col :span="5" :offset="12">
+				<el-col :span="5" :offset="11">
 					<el-pagination
 					  background
 					  layout="total,prev, pager, next,sizes"
@@ -71,6 +71,8 @@
 
 </template>
 <script>
+	import FileSaver from 'file-saver';
+	import XLSX from 'xlsx';
 	export default {
 		name: 'CapitalJournal',
 		data() {
@@ -112,6 +114,24 @@
 		methods: {
 			getRowClass() {
 				return 'background:#f2f2f2'
+			},
+			exportExcel() {
+				/* generate workbook object from table */
+				var wb = XLSX.utils.table_to_book(document.querySelector('#moneyTable'))
+				/* get binary string as output */
+				var wbout = XLSX.write(wb, {
+					bookType: 'xlsx',
+					bookSST: true,
+					type: 'array'
+				})
+				try {
+					FileSaver.saveAs(new Blob([wbout], {
+						type: 'application/octet-stream'
+					}), 'sheetjs.xlsx')
+				} catch (e) {
+					if (typeof console !== 'undefined') console.log(e, wbout)
+				}
+				return wbout
 			}
 		}
 	}
