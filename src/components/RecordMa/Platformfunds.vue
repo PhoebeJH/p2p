@@ -38,7 +38,8 @@
 			</el-row>
 		</el-header>
 		<el-main>
-			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
+			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData" :header-cell-style="getRowClass"
+			 :cell-style="{'text-align':'center'}">
 
 				<el-table-column prop="name" label="流水号" align="center">
 				</el-table-column>
@@ -119,6 +120,15 @@
 				value: "出入帐"
 			}
 		},
+		// mounted() {
+		// 	this.Axios.get('http://rap2api.taobao.org/app/mock/177576/add')
+		// 		.then(function(response) {
+		// 			console.log(response.data.datas);
+		// 		})
+		// 		.catch(function(error) {
+		// 			console.log(error);
+		// 		});
+		// },
 		methods: {
 			getRowClass() {
 				return 'background:#f2f2f2'
