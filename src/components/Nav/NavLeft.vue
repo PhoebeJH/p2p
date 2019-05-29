@@ -52,9 +52,9 @@
                 <span slot="title">会员管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="4-1">新增用户</el-menu-item>
-                <el-menu-item index="4-2">投资用户管理</el-menu-item>
-                <el-menu-item index="4-3">借款用户管理</el-menu-item>
+                <el-menu-item index="4-1"><router-link to="/AddUser">新增用户</router-link></el-menu-item>
+                <el-menu-item index="4-2"><router-link to="/InvUser">投资用户管理</router-link></el-menu-item>
+                <el-menu-item index="4-3"><router-link to="/BorrowUser">借款用户管理</router-link></el-menu-item>
             </el-menu-item-group>
         </el-submenu>
     </el-menu>
@@ -63,10 +63,8 @@
 
 <script>
 
-
 export default {
   name: 'Nav',
-
   data () {
     return {
       isCollapse: true
@@ -80,6 +78,19 @@ export default {
       handleClose(key, keyPath) {
         console.log(key, keyPath);
       }
+  },
+
+  created() {
+      this.Axios.get("https://5cd808f00cc5100014f1e33e.mockapi.io/p2pMenu").then(
+          (res) => {
+              console.log(res);
+          }
+      ).catch(
+          error => {
+              console.log(error);
+              
+          }
+      );
   },
 }
 </script>

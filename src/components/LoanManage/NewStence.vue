@@ -23,16 +23,16 @@ export default {
   data() {
     return {};
   },
-  getNewsList() {
-    this.axios
-      .get("http://rap2api.taobao.org/app/mock/177576/borrow")
-      .then(response => {
-        console.log(data)
-        // this.newsList = response.data.data;
-      })
-      .catch(response => {
-        console.log(response);
-      });
+  created() {
+    // this.axios
+    //   .get("http://rap2api.taobao.org/app/mock/177576/borrow")
+    //   .then(response => {
+    //     console.log(data);
+    //     // this.newsList = response.data.data;
+    //   })
+    //   .catch(response => {
+    //     console.log(response);
+    //   });
   }
 };
 </script>  
