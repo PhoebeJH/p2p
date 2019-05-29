@@ -53,14 +53,23 @@
 				</el-table-column>
 				
 			</el-table>
-			<el-pagination
-  background
-  layout="total,sizes,prev, pager, next"
-  :page-sizes="[10, 25, 50, 100]"
-  :page-size="10"
-  :total="1000">
-</el-pagination>
 		</el-main>
+		<el-footer style="margin:20px 0 10px">
+			<el-row>
+				<el-col :span="5" :offset="13">
+					<el-pagination
+					  background
+					  layout="total,prev, pager, next,sizes"
+					  :pager-count="5"
+					  :page-sizes="[10, 25, 50, 100]"
+					  :page-size="10"
+					  :total="1000">
+					</el-pagination>
+				</el-col>
+					
+			</el-row>
+				
+		</el-footer>
 	</el-container>
 
 </template>
@@ -77,7 +86,7 @@
 				Freezing_amount: 0,
 				amount_collected: 0,
 				Cumulative_investment: 0,
-				Cumulative_investment_re: 0,
+				Cumulative_investment_re: 200,
 				Accumulated_loan: 0,
 				Accumulated_repayment: 0,
 				repayment_balance: 0

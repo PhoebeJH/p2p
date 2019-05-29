@@ -44,20 +44,29 @@
 				</el-table-column>
 				<el-table-column prop="Cumulative_investment" label="操作后冻结金额" align="center">
 				</el-table-column>
-				<el-table-column prop="Remarks" label="备注" align="center">
+				<el-table-column width='180'  prop="Remarks" label="备注" align="center">
 				</el-table-column>
-				<el-table-column prop="Accumulated_loan" label="操作时间" align="center">
+				<el-table-column width='140' prop="Accumulated_loan" label="操作时间" align="center">
 				</el-table-column>
 				
 			</el-table>
-			<el-pagination
-  background
-  layout="total,sizes,prev, pager, next"
-  :page-sizes="[10, 25, 50, 100]"
-  :page-size="10"
-  :total="1000">
-</el-pagination>
 		</el-main>
+		<el-footer style="margin:20px 0 10px">
+			<el-row>
+				<el-col :span="5" :offset="12">
+					<el-pagination
+					  background
+					  layout="total,prev, pager, next,sizes"
+					  :pager-count="5"
+					  :page-sizes="[10, 25, 50, 100]"
+					  :page-size="10"
+					  :total="1000">
+					</el-pagination>
+				</el-col>
+					
+			</el-row>
+				
+		</el-footer>
 	</el-container>
 
 </template>
