@@ -90,10 +90,11 @@ export default {
   padding: 0;
   width: 85%;
 }
-#nav {
+/* #nav {
   /* width: 100%; */
   /* border: 1px solid green; */
-}
+
+*/
 .wrapper {
   padding-top: 30px;
 }

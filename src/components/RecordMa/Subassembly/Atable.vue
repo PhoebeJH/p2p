@@ -73,8 +73,5 @@ export default {
   /* border: 1px solid red; */
   /* margin: 0 auto; */
 }
-.wrapper-content {
-  /* width: 100%; */
-  /* margin: 0 auto; */
-}
+
 </style>
