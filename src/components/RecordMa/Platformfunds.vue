@@ -4,7 +4,7 @@
 			<el-row :gutter="15">
 				<el-col :span="3">
 					<div class="grid-content bg-purple">
-						<el-input size="small" v-model="input_phone" suffix-icon="el-icon-search" placeholder="搜索流水号"></el-input>
+						<el-input size="small" v-model="id" suffix-icon="el-icon-search" placeholder="搜索流水号"></el-input>
 					</div>
 				</el-col>
 				<el-col :span="3">
@@ -41,27 +41,27 @@
 			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
 			 :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
 
-				<el-table-column prop="act_id" label="流水号" align="center">
+				<el-table-column prop="id" label="流水号" align="center">
 				</el-table-column>
 				<el-table-column prop="real_name.real" label="类型" align="center">
 				</el-table-column>
 				<el-table-column prop="act_states.state" label="出入帐" align="center">
 				</el-table-column>
-				<el-table-column prop="per_bCard" label="操作金额" align="center">
+				<el-table-column prop="money" label="操作金额" align="center">
 				</el-table-column>
-				<el-table-column prop="act_id" label="手续费" align="center">
+				<el-table-column prop="smallmoney" label="手续费" align="center">
 				</el-table-column>
-				<el-table-column prop="act_id" label="操作前余额" align="center">
+				<el-table-column prop="smallmoney" label="操作前余额" align="center">
 				</el-table-column>
-				<el-table-column prop="act_id" label="操作后余额" align="center">
+				<el-table-column prop="maxmoney" label="操作后余额" align="center">
 				</el-table-column>
 				<el-table-column prop="act_states.state" label="状态" align="center">
 				</el-table-column>
 
 
-				<el-table-column prop="act_states.state" label="备注" align="center">
+				<el-table-column prop="message" label="备注" align="center">
 				</el-table-column>
-				<el-table-column prop="reg_time" width='150' label="操作时间" align="center">
+				<el-table-column prop="moneytime" width='150' label="操作时间" align="center">
 				</el-table-column>
 
 			</el-table>
@@ -110,33 +110,63 @@
 				total: 0, //默认数据总数
 				pagesize: 5, //每页的数据条数
 				currentPage: 1, //当前页
-				input_phone: '',
+				id: '',
 				input_name: '',
 				options: [{
-					value: '选项1',
+					value: 0,
 					label: '出入帐'
 				}, {
-					value: '选项2',
+					value: 1,
 					label: '出账'
 				}, {
-					value: '选项3',
+					value: 2,
 					label: '入账'
 				}],
-				value: "出入帐"
+				value: 0
 			}
 		},
 		created() {
 			this.total=this.tableData.length;
-			this.Axios.get('http://rap2api.taobao.org/app/mock/177576/user').then(
+			this.Axios.get('http://a17765582437.vicp.io/money').then(
 					(response) => {
-						this.tableData = response.data.datas.data;
+						this.tableData = response.data;
 						this.total = this.tableData.length;
 						// console.log(response.data.datas.data);
 					})
 				.catch(function(error) {
 					console.log(error);
 				});
-		},
+		},watch:{
+			value(){
+				this.Axios.get('http://a17765582437.vicp.io/money',{
+					params:{
+						usertype:this.value
+					}
+				}).then(
+						(response) => {
+							this.tableData = response.data;
+							this.total = this.tableData.length;
+							// console.log(response);
+						})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},id(){
+				this.Axios.get('http://a17765582437.vicp.io/money',{
+					params:{
+						id:this.id
+					}
+				}).then(
+						(response) => {
+							this.tableData = response.data;
+							this.total = this.tableData.length;
+							// console.log(response);
+						})
+					.catch(function(error) {
+						console.log(error);
+					});
+			}
+			},
 		methods: {
 			getRowClass() {
 				return 'background:#f2f2f2'
