@@ -122,19 +122,9 @@ export default new Router({
         }
       ]
     },
-<<<<<<< HEAD
     
     
     //引入用户资金
-=======
-    //引入会员管理/借款用户资料
-    {
-      path: '/BorrowInfor',
-      name: 'BorrowInfor',
-      component: BorrowInfor,
-    },
-		//引入用户资金
->>>>>>> 11494e6c036d4bec38edb77eb39c1468c6bd6dd4
 		{
 			path:'/UserCapital',
 			name:"UserCapital",
