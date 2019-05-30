@@ -17,7 +17,8 @@ for (let key in filter) {
 }
 
 Vue.use(ElementUI);
-Vue.use(Axios);
+// Vue.use(Axios);
+
 Vue.prototype.Axios = Axios;
 
 /* eslint-disable no-new */
