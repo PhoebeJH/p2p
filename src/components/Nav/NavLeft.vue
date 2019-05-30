@@ -6,7 +6,7 @@
         <span class="collapseIcon" @click="turnOn"></span>
         <!-- <button @click="turnOn">on</button> -->
     </el-radio-group>
-    <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+    <el-menu default-active="1-4-1" :unique-opened="true" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
         <!-- <el-submenu index="1">
             <template slot="title">
                 <i class="el-icon-location"></i>
@@ -61,10 +61,27 @@
             </el-menu-item-group>
         </el-submenu> -->
 
+        <div class="setting">
+            <router-link to="/"><span class="home"></span></router-link>
+            <router-link to="/"><span class="message"></span></router-link>
+            <!-- <span class="setIcon"></span> -->
+            <router-link to="/"><span class="skin"></span></router-link>
+            <router-link to="/"><span class="lock"></span></router-link>
+        </div>
+        <div class="userBox"> 
+            <div>
+                <img src="" alt="">
+                <span class="userName">Sean Ngu</span>
+                <span>Front end developer</span>
+            </div>   
+        </div>
+        <div class="nullBox"></div> 
         <el-submenu v-for="(item,i) in navLeftList" :key="i" :index="i+''">
             <template slot="title">
-                <i class="el-icon-location"></i>
-                <span slot="title">{{item.title}}</span>
+                <div class="menuTitleBox">
+                    <i :class="item.iconName"></i>
+                    <span class="nemuTitle" slot="title">{{item.title}}</span>
+                </div>
             </template>
             <el-menu-item-group>
                 <el-menu-item 
@@ -85,8 +102,8 @@ export default {
   name: 'NavLeft',
   data () {
     return {
-      isCollapse: true,
-      navLeftList:[],
+        isCollapse: false,
+        navLeftList:[],
     }
   },
 
@@ -105,47 +122,41 @@ export default {
   created() {
       this.Axios.get("https://5cd808f00cc5100014f1e33e.mockapi.io/p2pMenu").then(
           (res) => {
-            //   console.log(res);
-              this.navLeftList=res.data;
-            //   console.log(this.navLeftList);
-              
+            this.navLeftList = res.data.map(element => {
+                    switch(element.title){
+                        case "借贷管理":
+                            element.iconName="jiedai";
+                            break;
+                        case "还款管理":
+                            element.iconName="huankuan";
+                            break;
+                        case "资金管理":
+                            element.iconName="money"
+                            break;
+                        case "会员管理":
+                            element.iconName="vip";
+                            break;
+                        default:
+                            break;
+                    }
+                    return element;
+            });
+            // console.log(this.navLeftList);
+            
           }
       ).catch(
           error => {
               console.log(error);
-              
           }
       );
   },
+  mounted(){
+
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     @import "./../../assets/css/nav/navLeft.css";
-
-    .el-menu-vertical-demo{
-        width: 70px;
-        height: calc(100vh - 70px);
-    }
-    .el-menu-vertical-demo:not(.el-menu--collapse) {
-        width: 202px;
-        height: calc(100vh - 70px);
-        overflow-y: auto;
-    }
-    .collapseIcon{
-        display: block;
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-    }
-    .isCollapseIcon{
-        height: 70px;
-        width: 100%;
-    }
-    .routerLink{
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
 </style>
