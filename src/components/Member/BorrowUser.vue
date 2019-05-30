@@ -50,13 +50,9 @@
         <el-table-column fixed prop="user_source" label="用户来源" width="150"></el-table-column>
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
-<<<<<<< HEAD
             <el-button @click="handleClick(scope.row)" type="text" size="small">
               <router-link to="/BorrowInfor">查看</router-link>
             </el-button>
-=======
-            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
->>>>>>> 755c67c972a1c6f937af7935468d97e89896b587
             <el-button type="text" size="small">编辑</el-button>
           </template>
         </el-table-column>
@@ -89,11 +85,6 @@
   </el-container>
 </template>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 755c67c972a1c6f937af7935468d97e89896b587
-
 <script>
 export default {
   name: "BorrowUser",
@@ -101,10 +92,7 @@ export default {
   methods: {
     handleClick(row) {
       console.log(row);
-    }
-  },
-<<<<<<< HEAD
-  methods: {
+    },
     current_change: function(currentPage) {
       this.currentPage = currentPage;
     },
@@ -112,9 +100,6 @@ export default {
       this.pagesize = pagesize;
     }
   },
-=======
->>>>>>> 755c67c972a1c6f937af7935468d97e89896b587
-
   data() {
     return {
       input1: "",
@@ -133,24 +118,7 @@ export default {
         }
       ],
       value: "",
-
-<<<<<<< HEAD
       input_phone: "17765929883",
-      tableData: []
-    };
-  },
-  created() {
-    this.Axios.get("http://rap2api.taobao.org/app/mock/177576/user")
-      .then(res => {
-        
-        this.tableData = res.data.datas.data;
-        this.total=this.tableData.length;
-        console.log(this.tableData);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-=======
       tableData: [
         {
           act_number: "201803011123",
@@ -204,12 +172,24 @@ export default {
         }
       ]
     };
->>>>>>> 755c67c972a1c6f937af7935468d97e89896b587
+  },
+  created() {
+    this.Axios.get("http://rap2api.taobao.org/app/mock/177576/user")
+      .then(res => {
+        
+        this.tableData = res.data.datas.data;
+        this.total=this.tableData.length;
+        console.log(this.tableData);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
-};
+}
 </script>
 
 
 <style scoped>
+
 </style>
         
