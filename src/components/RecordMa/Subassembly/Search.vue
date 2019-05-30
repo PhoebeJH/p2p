@@ -32,12 +32,14 @@ export default {
 </script>  
 
 <style scope>
-.el-select .el-input {
+.el-select  .el-input {
   width: 130px;
 }
 .input-with-select .el-input-group__prepend {
   background-color: #fff;
 }
-
+.input-with-select > .el-input__inner {
+  width: 160px;
+}
 
 </style>

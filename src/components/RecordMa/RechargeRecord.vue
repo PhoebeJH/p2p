@@ -7,10 +7,18 @@
       <ReMode/>
       <!-- 选择状态 -->
       <Status/>
+      <!-- 日期选择器 -->
+      <DatePicke/>
+      <!-- 导出按钮 el-icon-download -->
+      <el-row
+        style="margin-right: 0;position: absolute; top: 15px; right: 0;display: inline-block;"
+      >
+        <el-button plain>朴素按钮</el-button>
+      </el-row>
     </div>
 
     <!-- 表格 -->
-    <div class="wrapper">
+    <div class="wrapper" style="padding-top: 30px;">
       <div class="wrapper-content">
         <!-- <div class="title"><h2>招标管理</h2></div> -->
         <el-table
@@ -19,24 +27,35 @@
           :header-cell-style="{color:'#333',backgroundColor:'#EBEEF5'}"
           style="width: 100%"
         >
-          <el-table-column fixed prop="reId" label="充值单号" width="120"></el-table-column>
-          <el-table-column prop="userPhone" label="用户手机" width="120"></el-table-column>
-          <el-table-column prop="userName" label="真实姓名" width="120"></el-table-column>
-          <el-table-column prop="userSource" label="用户来源" width="120"></el-table-column>
-          <el-table-column prop="appSource" label="应用来源" width="100"></el-table-column>
-          <el-table-column prop="reAmount" label="充值金额" width="100"></el-table-column>
-          <el-table-column prop="arrivalAmount" label="到账金额" width="100"></el-table-column>
-          <el-table-column prop="reHandlingFee" label="手续费" width="80"></el-table-column>
-          <el-table-column prop="reMode" label="充值方式" width="100"></el-table-column>
-          <el-table-column prop="tradingFlowNum" label="交易流水号" width="150"></el-table-column>
-          <el-table-column prop="orderTime" label="订单时间" width="160"></el-table-column>
-          <el-table-column prop="arrivalTime" label="到账时间" width="160"></el-table-column>
+          <el-table-column fixed prop="loan_id" label="充值单号" width="120"></el-table-column>
+          <el-table-column prop="loan_money" label="用户手机" width="120"></el-table-column>
+          <el-table-column prop="isSurety" label="真实姓名" width="120"></el-table-column>
+          <el-table-column prop="loan_ deadline" label="用户来源" width="120"></el-table-column>
+          <el-table-column prop="loan_ deadline" label="应用来源" width="100"></el-table-column>
+          <el-table-column prop="loan_money" label="充值金额" width="100"></el-table-column>
+          <el-table-column prop="loan_money" label="到账金额" width="100"></el-table-column>
+          <el-table-column prop="loan_money" label="手续费" width="80"></el-table-column>
+          <el-table-column prop="loan_money" label="充值方式" width="100"></el-table-column>
+          <el-table-column prop="loan_money" label="交易流水号" width="150"></el-table-column>
+          <el-table-column label="订单时间" width="160">
+            <template slot-scope="scope">
+              <p>{{ scope.row.loan_date | dateFormat }}</p>
+            </template>
+          </el-table-column>
+          <el-table-column label="到账时间" width="160">
+            <template slot-scope="scope">
+              <p>{{ scope.row.loan_date | dateFormat }}</p>
+            </template>
+          </el-table-column>
           <el-table-column fixed="right" prop="status" label="状态" width="100"></el-table-column>
         </el-table>
         <!--分页-->
         <!--<Pagination></Pagination>-->
       </div>
     </div>
+
+    <!-- 分页 -->
+    <Pagination/>
   </div>
 </template>
 
@@ -45,6 +64,8 @@ import Search from "./Subassembly/Search.vue";
 import ReMode from "./Subassembly/ReMode";
 import Status from "./Subassembly/Status";
 // import Atable from "./Subassembly/Atable";
+import Pagination from "./Subassembly/Pagination";
+import DatePicke from "./Subassembly/DatePicke";
 
 export default {
   name: "RechargeRecord",
@@ -52,6 +73,8 @@ export default {
     Search,
     ReMode,
     Status,
+    Pagination,
+    DatePicke
     // Atable
   },
   methods: {
@@ -62,7 +85,8 @@ export default {
 
   data() {
     return {
-      tableData: [
+      tableData: [],
+      tableDatas: [
         {
           reId: "2017040031",
           userPhone: "13845456767",
@@ -80,6 +104,16 @@ export default {
         }
       ]
     };
+  },
+  created() {
+    this.Axios.get("http://rap2api.taobao.org/app/mock/177576/borrow")
+      .then(res => {
+        this.tableData = res.data.datas.data;
+        console.log(res);
+        console.log("object");
+        console.log(this.tableData);
+      })
+      .catch(err => {});
   }
 };
 </script>
@@ -90,12 +124,7 @@ export default {
   padding: 0;
   width: 85%;
 }
-/* #nav {
-  /* width: 100%; */
-  /* border: 1px solid green; */
-
-*/
-.wrapper {
-  padding-top: 30px;
+#nav {
+  position: relative;
 }
 </style>

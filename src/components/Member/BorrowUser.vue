@@ -1,6 +1,10 @@
 <template>
+<<<<<<< HEAD
    <el-container>
      <h1>BorrowUser</h1>
+=======
+  <el-container>
+>>>>>>> 11494e6c036d4bec38edb77eb39c1468c6bd6dd4
     <el-header>
       <el-row :gutter="15">
         <el-col :span="3">
@@ -51,7 +55,11 @@
         <el-table-column fixed prop="user_source" label="用户来源" width="150"></el-table-column>
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
+<<<<<<< HEAD
             <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+=======
+            <el-button @click="handleClick(scope.row)" type="text" size="small"><router-link to='/BorrowInfor'>查看</router-link></el-button>
+>>>>>>> 11494e6c036d4bec38edb77eb39c1468c6bd6dd4
             <el-button type="text" size="small">编辑</el-button>
           </template>
         </el-table-column>
@@ -69,12 +77,19 @@
 
 
 <script>
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 11494e6c036d4bec38edb77eb39c1468c6bd6dd4
 export default {
   name: "BorrowUser",
   components: {},
   methods: {
     handleClick(row) {
       console.log(row);
+<<<<<<< HEAD
     }
   },
 
@@ -149,9 +164,53 @@ export default {
     };
   }
 };
+=======
+    }
+  },
+ 
+
+  data() {
+
+    return {
+   
+      input1: "",
+      input2: "",
+      options: [
+        {
+          value: "选项1",
+          label: "锁定"
+        },
+        {
+          value: "选项2",
+          label: "正常"
+        }
+      ],
+      value: "",
+
+    input_phone:'17765929883',
+    tableData:[],
+        
+    }
+  },
+   created(){
+        this.Axios.get('http://rap2api.taobao.org/app/mock/177576/user').then(
+            (res)=>{
+                console.log(res.data);
+                this.tableData=res.data.datas.data;
+                console.log(this.tableData)
+            }
+        ).catch(
+            (error)=>{
+                console.log(error);
+
+            }
+        )
+    },
+}
+>>>>>>> 11494e6c036d4bec38edb77eb39c1468c6bd6dd4
 </script>
 
 
 <style scoped>
-
 </style>
+        
