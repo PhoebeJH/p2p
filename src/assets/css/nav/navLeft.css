@@ -1,0 +1,17 @@
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  /* 设置滚动条的样式 */
+  /* 滚动槽 */
+  /* 滚动条滑块 */
+}
+.el-menu-vertical-demo:not(.el-menu--collapse)::-webkit-scrollbar {
+  width: 2px;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse)::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse)::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
+}

@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-        <el-radio-button :label="false">展开</el-radio-button>
-        <el-radio-button :label="true">收起</el-radio-button>
+  <div class="navLeft">
+    <el-radio-group class="isCollapseIcon" v-model="isCollapse">
+        <!-- <el-radio-button :label="false">展开</el-radio-button>
+        <el-radio-button :label="true">收起</el-radio-button> -->
+        <span class="collapseIcon" @click="turnOn"></span>
+        <!-- <button @click="turnOn">on</button> -->
     </el-radio-group>
     <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-        <el-submenu index="1">
+        <!-- <el-submenu index="1">
             <template slot="title">
                 <i class="el-icon-location"></i>
                 <span slot="title">借贷管理</span>
@@ -22,6 +24,7 @@
                 <el-menu-item index="1-9">借款标类别</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
+
         <el-submenu index="2">
             <template slot="title">
                 <i class="el-icon-location"></i>
@@ -56,6 +59,21 @@
                 <el-menu-item index="4-2"><router-link to="/InvUser">投资用户管理</router-link></el-menu-item>
                 <el-menu-item index="4-3"><router-link to="/BorrowUser">借款用户管理</router-link></el-menu-item>
             </el-menu-item-group>
+        </el-submenu> -->
+
+        <el-submenu v-for="(item,i) in navLeftList" :key="i" :index="i+''">
+            <template slot="title">
+                <i class="el-icon-location"></i>
+                <span slot="title">{{item.title}}</span>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item 
+                v-for="(childitem,childindex) in item.children" 
+                :key="childindex" 
+                :index="i+'-'+childindex">
+                    <router-link class="routerLink" :to="childitem.url">{{childitem.title}}</router-link>
+                </el-menu-item>
+            </el-menu-item-group>
         </el-submenu>
     </el-menu>
   </div>
@@ -64,26 +82,33 @@
 <script>
 
 export default {
-  name: 'Nav',
+  name: 'NavLeft',
   data () {
     return {
-      isCollapse: true
+      isCollapse: true,
+      navLeftList:[],
     }
   },
 
   methods: {
       handleOpen(key, keyPath) {
-        console.log(key, keyPath);
+        // console.log(key, keyPath);
       },
       handleClose(key, keyPath) {
-        console.log(key, keyPath);
+        // console.log(key, keyPath);
+      },
+      turnOn(){
+          this.isCollapse = !this.isCollapse ;
       }
   },
 
   created() {
       this.Axios.get("https://5cd808f00cc5100014f1e33e.mockapi.io/p2pMenu").then(
           (res) => {
-              console.log(res);
+            //   console.log(res);
+              this.navLeftList=res.data;
+            //   console.log(this.navLeftList);
+              
           }
       ).catch(
           error => {
@@ -97,8 +122,30 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    @import "./../../assets/css/nav/navLeft.css";
+
+    .el-menu-vertical-demo{
+        width: 70px;
+        height: calc(100vh - 70px);
+    }
     .el-menu-vertical-demo:not(.el-menu--collapse) {
-        width: 200px;
-        min-height: 400px;
+        width: 202px;
+        height: calc(100vh - 70px);
+        overflow-y: auto;
+    }
+    .collapseIcon{
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+    }
+    .isCollapseIcon{
+        height: 70px;
+        width: 100%;
+    }
+    .routerLink{
+        display: block;
+        width: 100%;
+        height: 100%;
     }
 </style>

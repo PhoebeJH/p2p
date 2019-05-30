@@ -1,18 +1,18 @@
 <template>
     <div class="ContentBox">
-        <NavLeft/>
+        <NavTop/>
         <router-view/>
     </div>
 </template>
 
 <script>
 
-import NavLeft from "./Nav/NavLeft.vue";
+import NavTop from "./Nav/NavTop";
 
 export default {
     name: 'Content',
     components:{
-        NavLeft,
+        NavTop,
     },
 
     data () {
@@ -26,7 +26,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     .ContentBox{
-        display: flex;
-        flex-flow: row nowrap;
+        width: 100%;
+        height: calc(100vh - 70px);
+        overflow-y: auto;
     }
 </style>

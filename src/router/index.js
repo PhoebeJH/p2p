@@ -21,47 +21,46 @@ const InvUser = () => import('@/components/Member/InvUser.vue');
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    //充值记录页面路由
-    {
-      path: '/RechargeRecord',
-      name: 'RechargeRecord',
-      component: RechargeRecord,
-    },
-    //提现记录页面路由
-    {
-      path: '/WithdrawRecord',
-      name: 'WithdrawRecord',
-      component: WithdrawRecord,
-    },
-    //提现审核页面路由
-    {
-      path: '/WithdrawReview',
-      name: 'WithdrawReview',
-      component: WithdrawReview,
-    },
-    //引入会员管理/新增借款用户
-    {
-      path: '/AddUser',
-      name: 'AddUser',
-      component: AddUser,
-    },
-    //引入会员管理/借款用户管理
-    {
-      path: '/BorrowUser',
-      name: 'BorrowUser',
-      component: BorrowUser,
-    },
-    //引入会员管理/投资用户管理
-    {
-      path: '/InvUser',
-      name: 'InvUser',
-      component: InvUser,
-    }
+  routes: [{
+        path: '/',
+        name: 'Home',
+        component: Home
+      },
+      //充值记录页面路由
+      {
+        path: '/RechargeRecord',
+        name: 'RechargeRecord',
+        component: RechargeRecord
+      },
+      //提现记录页面路由
+      {
+        path: '/WithdrawRecord',
+        name: 'WithdrawRecord',
+        component: WithdrawRecord,
+      },
+      //提现审核页面路由
+      {
+        path: '/WithdrawReview',
+        name: 'WithdrawReview',
+        component: WithdrawReview,
+      },
+      //引入会员管理/新增借款用户
+      {
+        path: '/AddUser',
+        name: 'AddUser',
+        component: AddUser,
+      },
+      //引入会员管理/借款用户管理
+      {
+        path: '/BorrowUser',
+        name: 'BorrowUser',
+        component: BorrowUser,
+      },
+      //引入会员管理/投资用户管理
+      {
+        path: '/InvUser',
+        name: 'InvUser',
+        component: InvUser,
+      }
   ]
 })
