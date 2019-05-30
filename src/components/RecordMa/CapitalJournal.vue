@@ -55,7 +55,7 @@
 		<el-footer style="margin:20px 0 10px">
 			<el-row>
 				<el-col>
-					<el-pagination background layout="total,prev, pager, next,sizes" :page-sizes="[5,10, 25, 50, 100]" :page-size="pagesize"
+					<el-pagination background layout="total,prev, pager, next,sizes" :page-sizes="[10, 25, 50, 100]" :page-size="pagesize"
 					 :total="total" :current-page="currentPage" @size-change="handleSizeChange" @current-change="current_change">
 					</el-pagination>
 				</el-col>
@@ -90,7 +90,7 @@
 			return {
 				tableData: [],
 				total: 0, //默认数据总数
-				pagesize: 5, //每页的数据条数
+				pagesize: 10, //每页的数据条数
 				currentPage: 1, //当前页
 				input_phone: '',
 				input_name: '',
