@@ -38,39 +38,39 @@
 			</el-row>
 		</el-header>
 		<el-main>
-			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData" :header-cell-style="getRowClass"
-			 :cell-style="{'text-align':'center'}">
+			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+			 :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
 
-				<el-table-column prop="name" label="流水号" align="center">
+				<el-table-column prop="act_id" label="流水号" align="center">
 				</el-table-column>
-				<el-table-column prop="total_assets" label="类型" align="center">
+				<el-table-column prop="real_name.real" label="类型" align="center">
 				</el-table-column>
-				<el-table-column prop="Account" label="出入帐" align="center">
+				<el-table-column prop="act_states.state" label="出入帐" align="center">
 				</el-table-column>
-				<el-table-column prop="total_monney" label="操作金额" align="center">
+				<el-table-column prop="per_bCard" label="操作金额" align="center">
 				</el-table-column>
-				<el-table-column prop="amount_collected" label="手续费" align="center">
+				<el-table-column prop="act_id" label="手续费" align="center">
 				</el-table-column>
-				<el-table-column prop="balance" label="操作前余额" align="center">
+				<el-table-column prop="act_id" label="操作前余额" align="center">
 				</el-table-column>
-				<el-table-column prop="Freezing_amount" label="操作后余额" align="center">
+				<el-table-column prop="act_id" label="操作后余额" align="center">
 				</el-table-column>
-				<el-table-column prop="state" label="状态" align="center">
+				<el-table-column prop="act_states.state" label="状态" align="center">
 				</el-table-column>
 
 
-				<el-table-column prop="Remarks" label="备注" align="center">
+				<el-table-column prop="act_states.state" label="备注" align="center">
 				</el-table-column>
-				<el-table-column prop="Accumulated_loan" width='150' label="操作时间" align="center">
+				<el-table-column prop="reg_time" width='150' label="操作时间" align="center">
 				</el-table-column>
 
 			</el-table>
 		</el-main>
 		<el-footer style="margin:20px 0 10px">
 			<el-row>
-				<el-col :span="5" :offset="11">
-					<el-pagination background layout="total,prev, pager, next,sizes" :pager-count="5" :page-sizes="[10, 25, 50, 100]"
-					 :page-size="10" :total="1000">
+				<el-col style="float:right">
+					<el-pagination background layout="total,prev, pager, next,sizes" :page-sizes="[5,10, 25, 50, 100]" :page-size="pagesize"
+					 :total="total" :current-page="currentPage"  @size-change="handleSizeChange" @current-change="current_change">
 					</el-pagination>
 				</el-col>
 
@@ -86,25 +86,30 @@
 	export default {
 		name: 'Platformfunds',
 		data() {
-			const item = {
-				userId: '201709091123',
-				name: '百事可乐',
-				phone: '13990722322',
-				total_assets: '现金红包',
-				Account: '出帐',
-				total_monney: '￥20000',
-				balance: 0,
-				Freezing_amount: 0,
-				amount_collected: 0,
-				Cumulative_investment: 0,
-				Remarks: "出入帐明细",
-				Accumulated_loan: '2017-01-01 12:23:33',
-				Accumulated_repayment: 0,
-				repayment_balance: 0,
-				state: '完成'
-			};
+			// const item = {
+			// 	userId: '201709091123',
+			// 	name: '百事可乐',
+			// 	phone: '13990722322',
+			// 	total_assets: '现金红包',
+			// 	Account: '出帐',
+			// 	total_monney: '￥20000',
+			// 	balance: 0,
+			// 	Freezing_amount: 0,
+			// 	amount_collected: 0,
+			// 	Cumulative_investment: 0,
+			// 	Remarks: "出入帐明细",
+			// 	Accumulated_loan: '2017-01-01 12:23:33',
+			// 	Accumulated_repayment: 0,
+			// 	repayment_balance: 0,
+			// 	state: '完成'
+			// };
+
 			return {
-				tableData: Array(20).fill(item),
+				// tableData: Array(20).fill(item),
+				tableData: [],
+				total: 0, //默认数据总数
+				pagesize: 5, //每页的数据条数
+				currentPage: 1, //当前页
 				input_phone: '',
 				input_name: '',
 				options: [{
@@ -120,15 +125,18 @@
 				value: "出入帐"
 			}
 		},
-		// mounted() {
-		// 	this.Axios.get('http://rap2api.taobao.org/app/mock/177576/add')
-		// 		.then(function(response) {
-		// 			console.log(response.data.datas);
-		// 		})
-		// 		.catch(function(error) {
-		// 			console.log(error);
-		// 		});
-		// },
+		created() {
+			this.total=this.tableData.length;
+			this.Axios.get('http://rap2api.taobao.org/app/mock/177576/user').then(
+					(response) => {
+						this.tableData = response.data.datas.data;
+						this.total = this.tableData.length;
+						// console.log(response.data.datas.data);
+					})
+				.catch(function(error) {
+					console.log(error);
+				});
+		},
 		methods: {
 			getRowClass() {
 				return 'background:#f2f2f2'
@@ -145,11 +153,17 @@
 				try {
 					FileSaver.saveAs(new Blob([wbout], {
 						type: 'application/octet-stream'
-					}), 'sheetjs.xlsx')
+					}), 'sheet.xlsx')
 				} catch (e) {
 					if (typeof console !== 'undefined') console.log(e, wbout)
 				}
 				return wbout
+			},
+			current_change:function(currentPage){
+				this.currentPage = currentPage;
+			},handleSizeChange(pagesize){
+				this.pagesize=pagesize;
+				
 			}
 		}
 	}
