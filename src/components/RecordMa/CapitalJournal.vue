@@ -27,29 +27,26 @@
 		</el-header>
 		<el-main>
 			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
-				<el-table-column prop="act_id" width="130" label="用户ID" align="center">
-				</el-table-column>
+				
 				<el-table-column prop="per_name" label="姓名" align="center">
 				</el-table-column>
-				<el-table-column prop="per_phone" width="130" label="用户手机" align="center">
+				<el-table-column prop="per_phone" width="100" label="用户手机" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="总资产" align="center">
+				<el-table-column prop="act_states.state" label="类型" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="可用余额" align="center">
+				<el-table-column prop="per_number" label="操作金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="冻结金额" align="center">
+				<el-table-column prop="per_number" width='100' label="操作前可用金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="待收金额" align="center">
+				<el-table-column prop="per_number" width='100' label="操作后可用金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="累计投资" align="center">
+				<el-table-column prop="per_number" width='100' label="操作前冻结金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_balance" width="100" label="累计投资收益" align="center">
+				<el-table-column prop="per_number" width='100' label="操作后冻结金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_balance" label="累计借款" align="center">
+				<el-table-column width='act_states.state'  prop="Remarks" label="备注" align="center">
 				</el-table-column>
-				<el-table-column prop="per_balance" label="累计还款" align="center">
-				</el-table-column>
-				<el-table-column prop="per_balance" label="借还款差额" align="center">
+				<el-table-column width='140'  prop="reg_time" label="操作时间" align="center">
 				</el-table-column>
 				
 			</el-table>
@@ -72,19 +69,20 @@
 	import FileSaver from 'file-saver';
 	import XLSX from 'xlsx';
 	export default {
-		name: 'UserCapital',
+		name: 'CapitalJournal',
 		data() {
 			// const item = {
 			// 	userId: '201709091123',
-			// 	name: '企业1号',
-			// 	phone: '13800009999',
-			// 	total_assets: 300,
+			// 	name: '百事可乐',
+			// 	phone: '13990722322',
+			// 	total_assets: '回收本金',
+			// 	total_monney:'￥20000',
 			// 	balance: 0,
 			// 	Freezing_amount: 0,
 			// 	amount_collected: 0,
 			// 	Cumulative_investment: 0,
-			// 	Cumulative_investment_re: 200,
-			// 	Accumulated_loan: 0,
+			// 	Remarks:"[新手标] 还款，收回本金100.00元",
+			// 	Accumulated_loan: '2017-01-01 12:23:33',
 			// 	Accumulated_repayment: 0,
 			// 	repayment_balance: 0
 			// };
@@ -97,15 +95,18 @@
 				input_name: '',
 				options: [{
 					value: '选项1',
-					label: '全部用户'
+					label: '全部类型'
 				}, {
 					value: '选项2',
-					label: '投资用户'
+					label: '回收利息'
 				}, {
 					value: '选项3',
-					label: '借款用户'
+					label: '回收本金'
+				}, {
+					value: '选项4',
+					label: '利息管理费'
 				}],
-				value: "全部用户"
+				value: "全部类型"
 			}
 		},
 		created() {
@@ -141,7 +142,7 @@
 					if (typeof console !== 'undefined') console.log(e, wbout)
 				}
 				return wbout
-			},			current_change:function(currentPage){
+			},current_change:function(currentPage){
 				this.currentPage = currentPage;
 			},handleSizeChange(pagesize){
 				this.pagesize=pagesize;
