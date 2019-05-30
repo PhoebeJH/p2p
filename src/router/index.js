@@ -14,6 +14,8 @@ const AddUser = () => import('@/components/Member/AddUser.vue');
 const BorrowUser = () => import('@/components/Member/BorrowUser.vue');
 //引入会员管理/投资用户管理
 const InvUser = () => import('@/components/Member/InvUser.vue');
+//引入会员新增用户资料
+const BorrowInfor = () =>import('@/components/Member/BorrowInfor.vue')
 //引入用户资金
 const UserCapital=()=> import('@/components/RecordMa/UserCapital.vue');
 //引入资金日志
@@ -68,6 +70,12 @@ export default new Router({
       path: '/InvUser',
       name: 'InvUser',
       component: InvUser,
+    },
+    //引入会员管理/借款用户资料
+    {
+      path: '/BorrowInfor',
+      name: 'BorrowInfor',
+      component: BorrowInfor,
     },
 		//引入用户资金
 		{
