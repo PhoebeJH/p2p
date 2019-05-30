@@ -20,14 +20,12 @@
 </template>
 
 <script>
-
-
 export default {
   name: 'NavTop',
   data () {
     return {
       activeIndex: '1',
-        activeIndex2: '1'
+      activeIndex2: '1'
     }
   },
   methods: {

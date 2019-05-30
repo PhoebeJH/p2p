@@ -55,9 +55,15 @@
                 <span slot="title">会员管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="4-1"><router-link to="/AddUser">新增用户</router-link></el-menu-item>
-                <el-menu-item index="4-2"><router-link to="/InvUser">投资用户管理</router-link></el-menu-item>
-                <el-menu-item index="4-3"><router-link to="/BorrowUser">借款用户管理</router-link></el-menu-item>
+                <el-menu-item index="4-1">
+                    <router-link to="/AddUser">新增用户</router-link>
+                </el-menu-item>
+                <el-menu-item index="4-2">
+                    <router-link to="/InvUser">投资用户管理</router-link>
+                </el-menu-item>
+                <el-menu-item index="4-3">
+                    <router-link to="/BorrowUser">借款用户管理</router-link>
+                </el-menu-item>
             </el-menu-item-group>
         </el-submenu> -->
 

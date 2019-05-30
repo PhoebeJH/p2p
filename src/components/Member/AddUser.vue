@@ -1,79 +1,237 @@
 <template>
-  <el-form ref="form" :model="sizeForm" label-width="80px" size="mini">
+  <el-container>
+    <el-header></el-header>
     <el-row>
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">基本信息</div>
       </el-col>
     </el-row>
-    <el-form-item label="活动名称">
-      <el-input v-model="sizeForm.name"></el-input>
-    </el-form-item>
-    <el-form-item label="活动区域">
-      <el-select v-model="sizeForm.region" placeholder="请选择活动区域">
-        <el-option label="区域一" value="shanghai"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-      </el-select>
-    </el-form-item>
-    <el-form-item label="活动时间">
-      <el-col :span="11">
-        <el-date-picker
-          type="date"
-          placeholder="选择日期"
-          v-model="sizeForm.date1"
-          style="width: 100%;"
-        ></el-date-picker>
+    <el-row>
+      <el-col :span="2">
+        <div class="grid-content bg-purple"></div>
       </el-col>
-      <el-col class="line" :span="2">-</el-col>
-      <el-col :span="11">
-        <el-time-picker placeholder="选择时间" v-model="sizeForm.date2" style="width: 100%;"></el-time-picker>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light">手机号码：</div>
       </el-col>
-    </el-form-item>
-    <el-form-item label="活动性质">
-      <el-checkbox-group v-model="sizeForm.type">
-        <el-checkbox-button label="美食/餐厅线上活动" name="type"></el-checkbox-button>
-        <el-checkbox-button label="地推活动" name="type"></el-checkbox-button>
-        <el-checkbox-button label="线下主题活动" name="type"></el-checkbox-button>
-      </el-checkbox-group>
-    </el-form-item>
-    <el-form-item label="特殊资源">
-      <el-radio-group v-model="sizeForm.resource" size="medium">
-        <el-radio border label="线上品牌商赞助"></el-radio>
-        <el-radio border label="线下场地免费"></el-radio>
-      </el-radio-group>
-    </el-form-item>
-    <el-form-item size="large">
-      <el-button type="primary" @click="onSubmit">立即创建</el-button>
-      <el-button>取消</el-button>
-    </el-form-item>
-  </el-form>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <el-input v-model="input1" placeholder="请输入内容"></el-input>
+        </div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light"></div>
+      </el-col>
+      <el-col :span="0">
+        <div class="grid-content bg-purple"></div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light">用户类型</div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <el-radio v-model="radio1" label="1">企业用户</el-radio>
+          <el-radio v-model="radio1" label="2">个人用户</el-radio>
+        </div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light"></div>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :span="2">
+        <div class="grid-content bg-purple"></div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light">企业名称</div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <div class="grid-content bg-purple">
+            <el-input v-model="input2" placeholder="请输入内容"></el-input>
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light"></div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple">税务登记证号</div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <div class="grid-content bg-purple">
+            <el-input v-model="input3" placeholder="请输入内容"></el-input>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :span="2">
+        <div class="grid-content bg-purple"></div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light">法人姓名</div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <div class="grid-content bg-purple">
+            <el-input v-model="input4" placeholder="请输入内容"></el-input>
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light"></div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple">邮箱</div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <div class="grid-content bg-purple">
+            <el-input v-model="input5" placeholder="请输入内容"></el-input>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
+    
+
+    
+
+    <el-row>
+      <el-col :span="24">
+        <div class="grid-content bg-purple-dark">密码管理</div>
+      </el-col>
+    </el-row>
+    
+    <el-row>
+      <el-col :span="2">
+        <div class="grid-content bg-purple"></div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light">登录密码</div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <div class="grid-content bg-purple">
+            <el-input placeholder="请输入密码" v-model="input6" show-password></el-input>
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light"></div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple">确认登录密码</div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <div class="grid-content bg-purple">
+            <el-input placeholder="请输入密码" v-model="input7" show-password></el-input>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
+    
+
+    <el-row>
+      <el-col :span="24">
+        <div class="grid-content bg-purple-dark"></div>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :span="2">
+        <div class="grid-content bg-purple"></div>
+      </el-col>
+      <el-col :span="3">
+        <div class="grid-content bg-purple-light"><el-button type="primary" @click="Add">确认新增</el-button></div>
+      </el-col>
+      
+      <el-col :span="16">
+        <div class="grid-content bg-purple-light"></div>
+      </el-col>
+    </el-row>
+
+
+  </el-container>
 </template>
 
 <script>
 export default {
-  name: "AddUser",
+  name: "BorrowInfor",
   components: {},
+  methods: {
+    Add(){
+      this.Axios.get("http://rap2api.taobao.org/app/mock/177576/user",{
+        parmas:{
+          input1:"",
+          input2:"",
+          input3:"",
+          input4:"",
+          input5:"",
+          input6:"",
+          input7:""
+        }
+      })
+      .then(res => {
+        console.log(this.parmas);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+ },
+  
   data() {
     return {
-      sizeForm: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: ""
-      }
+      input1: "",
+      input2: "",
+      input3: "",
+      input4: "",
+      input5: "",
+      input6: "",
+      input7: "",
+      radio: "",
+      radio1: "",
+      textarea: ""
     };
-  },
-  methods: {
-    onSubmit() {
-      console.log("submit!");
-    }
   }
 };
 </script>
 
-
 <style scoped>
+.el-col {
+  font-size: 17px;
+  line-height: 40px;
+}
+.el-row {
+  margin-bottom: 20px;
+}
+.el-row el-row:last-child {
+  margin-bottom: 0;
+}
+.el-col {
+  border-radius: 4px;
+}
+/* .bg-purple-dark {
+  background: #99a9bf;
+}
+.bg-purple {
+  background: #d3dce6;
+}
+.bg-purple-light {
+  background: #e5e9f2;
+} */
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+/* .row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
+} */
 </style>
+
+
