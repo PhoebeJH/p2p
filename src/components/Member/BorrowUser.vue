@@ -1,5 +1,6 @@
 <template>
-  <el-container>
+   <el-container>
+     <h1>BorrowUser</h1>
     <el-header>
       <el-row :gutter="15">
         <el-col :span="3">
@@ -49,9 +50,13 @@
         <el-table-column fixed prop="user_source" label="用户来源" width="150"></el-table-column>
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
+<<<<<<< HEAD
             <el-button @click="handleClick(scope.row)" type="text" size="small">
               <router-link to="/BorrowInfor">查看</router-link>
             </el-button>
+=======
+            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+>>>>>>> 755c67c972a1c6f937af7935468d97e89896b587
             <el-button type="text" size="small">编辑</el-button>
           </template>
         </el-table-column>
@@ -84,7 +89,10 @@
   </el-container>
 </template>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 755c67c972a1c6f937af7935468d97e89896b587
 
 <script>
 export default {
@@ -95,6 +103,7 @@ export default {
       console.log(row);
     }
   },
+<<<<<<< HEAD
   methods: {
     current_change: function(currentPage) {
       this.currentPage = currentPage;
@@ -103,6 +112,8 @@ export default {
       this.pagesize = pagesize;
     }
   },
+=======
+>>>>>>> 755c67c972a1c6f937af7935468d97e89896b587
 
   data() {
     return {
@@ -123,6 +134,7 @@ export default {
       ],
       value: "",
 
+<<<<<<< HEAD
       input_phone: "17765929883",
       tableData: []
     };
@@ -138,9 +150,65 @@ export default {
       .catch(error => {
         console.log(error);
       });
+=======
+      tableData: [
+        {
+          act_number: "201803011123",
+          per_name: "漆小明",
+          per_phone: "18890909500",
+          borrower_email: "123@123.com",
+          act_state: "锁定",
+          reg_time: "2016-02-02",
+          register: "2018-03-01",
+          user_source: "管理员新增"
+        },
+        {
+          act_number: "201803011123",
+          per_name: "漆小明",
+          per_phone: "18890909500",
+          borrower_email: "123@123.com",
+          act_state: "锁定",
+          reg_time: "2016-02-02",
+          register: "2018-03-01",
+          user_source: "管理员新增"
+        },
+        {
+          act_number: "201803011123",
+          per_name: "漆小明",
+          per_phone: "18890909500",
+          borrower_email: "123@123.com",
+          act_state: "锁定",
+          reg_time: "2016-02-02",
+          register: "2018-03-01",
+          user_source: "管理员新增"
+        },
+        {
+          act_number: "201803011123",
+          per_name: "漆小明",
+          per_phone: "18890909500",
+          borrower_email: "123@123.com",
+          act_state: "锁定",
+          reg_time: "2016-02-02",
+          register: "2018-03-01",
+          user_source: "管理员新增"
+        },
+        {
+          act_number: "201803011123",
+          per_name: "漆小明",
+          per_phone: "18890909500",
+          borrower_email: "123@123.com",
+          act_state: "锁定",
+          reg_time: "2016-02-02",
+          register: "2018-03-01",
+          user_source: "管理员新增"
+        }
+      ]
+    };
+>>>>>>> 755c67c972a1c6f937af7935468d97e89896b587
   }
 };
 </script>
+
 
 <style scoped>
 </style>
