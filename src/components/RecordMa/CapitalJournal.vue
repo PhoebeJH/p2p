@@ -26,41 +26,36 @@
 			</el-row>
 		</el-header>
 		<el-main>
-			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
+			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
 				
-				<el-table-column prop="name" label="姓名" align="center">
+				<el-table-column prop="per_name" label="姓名" align="center">
 				</el-table-column>
-				<el-table-column prop="phone" width="100" label="用户手机" align="center">
+				<el-table-column prop="per_phone" width="100" label="用户手机" align="center">
 				</el-table-column>
-				<el-table-column prop="total_assets" label="类型" align="center">
+				<el-table-column prop="act_states.state" label="类型" align="center">
 				</el-table-column>
-				<el-table-column prop="total_monney" label="操作金额" align="center">
+				<el-table-column prop="per_number" label="操作金额" align="center">
 				</el-table-column>
-				<el-table-column prop="balance" width='100' label="操作前可用金额" align="center">
+				<el-table-column prop="per_number" width='100' label="操作前可用金额" align="center">
 				</el-table-column>
-				<el-table-column prop="Freezing_amount" width='100' label="操作后可用金额" align="center">
+				<el-table-column prop="per_number" width='100' label="操作后可用金额" align="center">
 				</el-table-column>
-				<el-table-column prop="amount_collected" width='100' label="操作前冻结金额" align="center">
+				<el-table-column prop="per_number" width='100' label="操作前冻结金额" align="center">
 				</el-table-column>
-				<el-table-column prop="Cumulative_investment" width='100' label="操作后冻结金额" align="center">
+				<el-table-column prop="per_number" width='100' label="操作后冻结金额" align="center">
 				</el-table-column>
-				<el-table-column width='200'  prop="Remarks" label="备注" align="center">
+				<el-table-column width='act_states.state'  prop="Remarks" label="备注" align="center">
 				</el-table-column>
-				<el-table-column width='140'  prop="Accumulated_loan" label="操作时间" align="center">
+				<el-table-column width='140'  prop="reg_time" label="操作时间" align="center">
 				</el-table-column>
 				
 			</el-table>
 		</el-main>
 		<el-footer style="margin:20px 0 10px">
 			<el-row>
-				<el-col :span="5" :offset="11">
-					<el-pagination
-					  background
-					  layout="total,prev, pager, next,sizes"
-					  :pager-count="5"
-					  :page-sizes="[10, 25, 50, 100]"
-					  :page-size="10"
-					  :total="1000">
+				<el-col>
+					<el-pagination background layout="total,prev, pager, next,sizes" :page-sizes="[5,10, 25, 50, 100]" :page-size="pagesize"
+					 :total="total" :current-page="currentPage"  @size-change="handleSizeChange" @current-change="current_change">
 					</el-pagination>
 				</el-col>
 					
@@ -76,23 +71,26 @@
 	export default {
 		name: 'CapitalJournal',
 		data() {
-			const item = {
-				userId: '201709091123',
-				name: '百事可乐',
-				phone: '13990722322',
-				total_assets: '回收本金',
-				total_monney:'￥20000',
-				balance: 0,
-				Freezing_amount: 0,
-				amount_collected: 0,
-				Cumulative_investment: 0,
-				Remarks:"[新手标] 还款，收回本金100.00元",
-				Accumulated_loan: '2017-01-01 12:23:33',
-				Accumulated_repayment: 0,
-				repayment_balance: 0
-			};
+			// const item = {
+			// 	userId: '201709091123',
+			// 	name: '百事可乐',
+			// 	phone: '13990722322',
+			// 	total_assets: '回收本金',
+			// 	total_monney:'￥20000',
+			// 	balance: 0,
+			// 	Freezing_amount: 0,
+			// 	amount_collected: 0,
+			// 	Cumulative_investment: 0,
+			// 	Remarks:"[新手标] 还款，收回本金100.00元",
+			// 	Accumulated_loan: '2017-01-01 12:23:33',
+			// 	Accumulated_repayment: 0,
+			// 	repayment_balance: 0
+			// };
 			return {
-				tableData: Array(20).fill(item),
+				tableData: [],
+				total: 0, //默认数据总数
+				pagesize: 5, //每页的数据条数
+				currentPage: 1, //当前页
 				input_phone: '',
 				input_name: '',
 				options: [{
@@ -110,6 +108,18 @@
 				}],
 				value: "全部类型"
 			}
+		},
+		created() {
+			this.total=this.tableData.length;
+			this.Axios.get('http://rap2api.taobao.org/app/mock/177576/user').then(
+					(response) => {
+						this.tableData = response.data.datas.data;
+						this.total = this.tableData.length;
+						// console.log(response.data.datas.data);
+					})
+				.catch(function(error) {
+					console.log(error);
+				});
 		},
 		methods: {
 			getRowClass() {
@@ -132,6 +142,11 @@
 					if (typeof console !== 'undefined') console.log(e, wbout)
 				}
 				return wbout
+			},current_change:function(currentPage){
+				this.currentPage = currentPage;
+			},handleSizeChange(pagesize){
+				this.pagesize=pagesize;
+				
 			}
 		}
 	}

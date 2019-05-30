@@ -68,7 +68,7 @@
 		</el-main>
 		<el-footer style="margin:20px 0 10px">
 			<el-row>
-				<el-col style="float:right">
+				<el-col>
 					<el-pagination background layout="total,prev, pager, next,sizes" :page-sizes="[5,10, 25, 50, 100]" :page-size="pagesize"
 					 :total="total" :current-page="currentPage"  @size-change="handleSizeChange" @current-change="current_change">
 					</el-pagination>
