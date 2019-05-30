@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 搜索框、过滤器 -->
-    <searchSon/>
+    <search/>
     <!-- 表格 -->
     <Table/>
     <!-- 分页 -->
@@ -10,29 +10,20 @@
 </template>
 
 <script>
-import Table from "./LoansSon/Table";
-import searchSon from "./LoansSon/searchSon";
-import Pagination from "./LoansSon/Pagination";
+import Table from "./Child/Table";
+import search from "./Child/search";
+import Pagination from "./Child/Pagination";
 export default {
   name: "NewLoans",
   components: {
     Table,
-    searchSon,
+    search,
     Pagination
   },
   data() {
     return {};
   },
   created() {
-    // this.axios
-    //   .get("http://rap2api.taobao.org/app/mock/177576/borrow")
-    //   .then(response => {
-    //     console.log(data);
-    //     // this.newsList = response.data.data;
-    //   })
-    //   .catch(response => {
-    //     console.log(response);
-    //   });
   }
 };
 </script>  

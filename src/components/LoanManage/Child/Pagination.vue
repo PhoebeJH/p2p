@@ -17,7 +17,6 @@ export default {
 
 <style scoped>
 .wrapper {
-  /* padding-top:20px;  */
   position: relative;
 }
 .el-pagination {

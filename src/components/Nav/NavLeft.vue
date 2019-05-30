@@ -83,11 +83,11 @@ export default {
   created() {
       this.Axios.get("https://5cd808f00cc5100014f1e33e.mockapi.io/p2pMenu").then(
           (res) => {
-              console.log(res);
+            //   console.log(res);
           }
       ).catch(
           error => {
-              console.log(error);
+            //   console.log(error);
               
           }
       );
