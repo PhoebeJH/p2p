@@ -13,6 +13,7 @@ const TenderingManage = () => import('@/components/LoanManage/TenderingManage.vu
 //满标复审组件
 const TenderFullReview = () => import('@/components/LoanManage/TenderFullReview.vue');
 const TenderFullReviewHome = () => import('@/components/LoanManage/TenderFullReviewChildren/TenderFullReviewHome.vue');
+const TenderFullReviewRedo = () => import('@/components/LoanManage/TenderFullReviewChildren/TenderFullReviewRedo.vue');
 //引入会员管理/新增借款用户
 const AddUser = () => import('@/components/Member/AddUser.vue');
 //引入会员管理/借款用户管理
@@ -82,6 +83,11 @@ export default new Router({
           path: '/',
           name: 'TenderFullReviewHome',
           component: TenderFullReviewHome,
+        },
+        {
+          path: 'TenderFullReviewRedo',
+          name: 'TenderFullReviewRedo',
+          component: TenderFullReviewRedo,
         }
       ]
     },
@@ -96,6 +102,7 @@ export default new Router({
       path: '/BorrowUser',
       name: 'BorrowUser',
       component: BorrowUser,
+
     },
 
     //引入会员管理/投资用户管理+子路由修改用户管理

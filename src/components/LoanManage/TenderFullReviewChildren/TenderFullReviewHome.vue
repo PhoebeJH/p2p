@@ -2,7 +2,21 @@
   <div id="review-home">
     <h1>满标复审</h1>
 
-
+    <div class="searchWrap">
+      <div>
+        <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select">
+          <el-select v-model="searchSel" slot="prepend" placeholder="请选择">
+            <el-option
+              v-for="item in searchOpt"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+          <el-button slot="append" icon="el-icon-search" @click="executeSearch"></el-button>
+        </el-input>
+      </div>
+    </div>
 
     <el-table
       :data="tableData"
@@ -80,8 +94,9 @@
         label="操作"
         width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
-          <el-button type="text" size="small">下架</el-button>
+          <el-button type="text" size="small">
+            <router-link :to="{name:'TenderFullReviewRedo',params:{row:scope.row}}">复审</router-link>
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -99,13 +114,35 @@
       components:{
         Pagination
       },
+      created(){
+          this.tableDataOrigin = this.tableData;
+      },
       methods: {
         handleClick(row) {
           console.log(row);
         },
+        executeSearch(){
+          if(this.searchSel == "" || this.searchText == ""){
+            return this.$message('请选择分类或输入搜索内容！');
+          }else if(this.searchSel == 1){ //搜索借款方
+            this.tableData = this.tableDataOrigin.filter(item => {
+              return item.name.includes(this.searchText);
+            })
+          }else if(this.searchSel == 2){ //搜索借款方手机
+
+          }
+
+        }
       },
       data() {
         return {
+          searchText:"",
+          searchSel:"",
+          searchOpt: [
+            { value: 1, label: "借款方" },
+            { value: 2, label: "借款人手机" },
+          ],
+          tableDataOrigin:[],
           tableData: [{
             date: '2016-05-02',
             name: '王小虎',
@@ -129,14 +166,14 @@
             zip: 200333
           }, {
             date: '2016-05-03',
-            name: '王小虎',
+            name: '王大虎',
             province: '上海',
             city: '普陀区',
             address: '上海市普陀区金沙江路 1516 弄',
             zip: 200333
           }, {
             date: '2016-05-03',
-            name: '王小虎',
+            name: '王大虎',
             province: '上海',
             city: '普陀区',
             address: '上海市普陀区金沙江路 1516 弄',

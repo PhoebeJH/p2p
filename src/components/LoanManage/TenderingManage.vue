@@ -26,33 +26,68 @@
         <el-table-column
           fixed
           prop="date"
-          label="日期"
+          label="借款编号"
           width="150">
         </el-table-column>
         <el-table-column
           prop="name"
-          label="姓名"
+          label="借款方"
           width="120">
         </el-table-column>
         <el-table-column
           prop="province"
-          label="省份"
+          label="借款人手机"
           width="120">
         </el-table-column>
         <el-table-column
           prop="city"
-          label="市区"
+          label="标名"
           width="120">
         </el-table-column>
         <el-table-column
           prop="address"
-          label="地址"
+          label="借款金额"
           width="300">
         </el-table-column>
         <el-table-column
           prop="zip"
-          label="邮编"
+          label="年化利率"
           width="120">
+        </el-table-column>
+        <el-table-column
+          prop="zip"
+          label="还款方式"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="zip"
+          label="期限"
+          width="90">
+        </el-table-column>
+        <el-table-column
+          prop="zip"
+          label="上架时间"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="zip"
+          label="开售时间"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="zip"
+          label="已投金额"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="zip"
+          label="投资进度"
+          width="80">
+        </el-table-column>
+        <el-table-column
+          prop="zip"
+          label="状态"
+          width="80">
         </el-table-column>
         <el-table-column
           fixed="right"
@@ -65,6 +100,7 @@
           </template>
         </el-table-column>
       </el-table>
+
       <!--分页-->
       <Pagination></Pagination>
 
@@ -78,7 +114,7 @@
             <p><label>注意：</label><span style="color:#990000">标的下架后，投资款项全部返还至投资者账户中，只能获得返还的本金，无法获得利息</span></p>
             <div class="notes-wrap">
               <label><i style="color: red;margin-right: 2px;">*</i>备注：</label>
-              <textarea name="notes" cols="65" rows="6"></textarea>
+              <textarea name="notes" cols="65" rows="6" v-model="notesText"></textarea>
             </div>
           </div>
           <div class="btns">
@@ -99,6 +135,7 @@
     data() {
       return {
         isShowModal:false,
+        notesText:"",
         tableData: [{
           date: '2016-05-02',
           name: '王小虎',
@@ -152,6 +189,7 @@
         console.log(row);
       },
       showModal() {
+        this.notesText = "";
         this.isShowModal = !this.isShowModal;
       }
     }
@@ -160,19 +198,16 @@
 
 <style scoped>
   .wrapper{
-    width: 100%;
-    padding-top: 30px;
+    margin:50px auto 0;
   }
   .wrapper-content{
-    width: 90%;
-    margin: 0 auto;
   }
   .searchWrap{
     display: flex;
     margin-bottom: 30px;
   }
   .searchWrap>div{
-    flex-basis: 30%;
+    flex-basis: 40%;
   }
   .searchWrap >>> .el-select .el-input {
     width: 130px;
@@ -241,7 +276,7 @@
   }
 
   .wrapper >>> .pagination-dom{
-    right: 50px;
-    bottom: 30px;
+    right: 45px;
+    bottom: 13%;
   }
 </style>
