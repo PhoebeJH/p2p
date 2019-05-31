@@ -1,51 +1,9 @@
 <template>
-  <div id="AudiWrap">
-    <!-- 过滤器 -->
-    <search/>
-    <!-- 表格 -->
-    <Table :getLoansList="getLoansList"></Table>
-    <!-- 分页 -->
-    <Pagination></Pagination>
-    <!-- {{getLoansList}}  -->
-  </div>
+<router-view></router-view>
 </template>
 
 <script>
-import search from "./Child/search";
-import Table from "./Child/Table";
-import Pagination from "./Child/Pagination";
-export default {
-  name: "LoanAuid",
-  data(){
-    return{
-      getLoansList:[]
-    }
-  },
-  components: {
-    search,
-    Table,
-    Pagination
-  },
-  beforeMount() {
-    this.getLoans();
-  },
-  methods: {
-    getLoans(){
-      this.Axios.get("http://rap2api.taobao.org/app/mock/177576/borrow").then(res=>{
-        console.log(res)
-        this.getLoansList = res.data.datas.data;
-        console.log(this.getLoansList)
-      }).catch(err=>{
-        console.log(err)
-      })
-    }
-  },
-};
 </script>
 
 <style scoped>
-#AudiWrap {
-  width: 100%;
-  margin: 0 auto;
-}
 </style>
