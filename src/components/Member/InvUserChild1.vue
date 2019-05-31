@@ -134,37 +134,20 @@ export default {
       this.$router.push("/inv_update");
     },
 
-<<<<<<< HEAD
-    handleClick:function(row){
-     window.sessionStorage.setItem('rows',JSON.stringify(row))
-     this.$router.push('/inv_update')
-=======
     update(row) {
       window.sessionStorage.setItem("rows", JSON.stringify(row));
       console.log(this.$router);
       this.$router.push("/inv_pwd");
->>>>>>> ea22d5c36f34677af332e973f57d7cee89d2025b
     },
 
     current_change: function(currentPage) {
       this.currentPage = currentPage;
     },
-<<<<<<< HEAD
-    
-    current_change:function(currentPage){
-				this.currentPage = currentPage;
-			},handleSizeChange(pagesize){
-				this.pagesize=pagesize;
-    }
-  },
-}
-=======
     handleSizeChange(pagesize) {
       this.pagesize = pagesize;
     }
   }
 };
->>>>>>> ea22d5c36f34677af332e973f57d7cee89d2025b
 </script>
 
 <style scoped>
