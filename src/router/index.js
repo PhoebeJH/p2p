@@ -34,15 +34,15 @@ const AddUser = () => import('@/components/Member/AddUser.vue');
 const BorrowUser = () => import('@/components/Member/BorrowUser.vue');
 //引入会员管理/投资用户管理
 const InvUser = () => import('@/components/Member/InvUser.vue');
-<<<<<<< HEAD
+
 //引入会员新增用户资料主要
 const BorrowUserHome = () =>import('@/components/Member/BorrowUserHome.vue')
 //引入会员新增用户资料子
 const BorrowUserChild = () =>import('@/components/Member/child_member/BorrowUserChild.vue')
-=======
+
 //引入会员新增用户资料
-const BorrowInfor = () => import('@/components/Member/BorrowInfor.vue')
->>>>>>> 326ac77a751cb9ead5764a6a9dd2796c7d8c2c8c
+const Borrowuser = () => import('@/components/Member/BorrowUser.vue')
+
 //引入用户资金
 const UserCapital = () => import('@/components/RecordMa/UserCapital.vue');
 //引入资金日志
