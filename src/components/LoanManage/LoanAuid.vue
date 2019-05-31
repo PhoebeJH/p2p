@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="AudiWrap">
     <!-- 过滤器 -->
     <search/>
     <!-- 表格 -->
@@ -44,7 +44,8 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  width: 85%;
+#AudiWrap {
+  width: 100%;
+  margin: 0 auto;
 }
 </style>

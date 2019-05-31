@@ -87,8 +87,9 @@ export default {
 <style scoped>
 /* table */
 .wrapper {
-  width: 85%;
+  width: 90%;
   padding-top: 20px;
+  margin: 0 auto;
 }
 .wrapper-content {
   width: 100%;

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const Home = () => import('@/components/Home.vue');
+const Home = () => import('@/components/Home/Home.vue');
 //引入新增借款组件
 const NewLoans = () => import('@/components/LoanManage/NewLoans.vue');
 //引入新标维护组件
@@ -12,6 +12,7 @@ const LoanAuid = () => import('@/components/LoanManage/LoanAuid.vue');
 const BidFrame = () => import('@/components/LoanManage/BidFrame.vue');
 const BidFrameHome = () => import('@/components/LoanManage/MaintainChild/BidFrameHome.vue');
 const Maintain = () => import('@/components/LoanManage/MaintainChild/Maintain.vue');
+// const Checkbox = () => import('@/components/LoanManage/MaintainChild/Checkbox.vue')
 //引入充值记录组件
 const RechargeRecord = () => import('@/components/RecordMa/RechargeRecord.vue');
 //引入提现记录组件
@@ -54,7 +55,7 @@ export default new Router({
   mode:"history",
   routes: [
     {
-      path: '/',
+      path: '',
       name: 'Home',
       component: Home
     },

@@ -186,7 +186,7 @@ export default {
 .from2,
 .from3 {
   padding-top: 10px;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 }
 .el-form-item {
