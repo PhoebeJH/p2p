@@ -15,12 +15,14 @@ const TenderFullReview = () => import('@/components/LoanManage/TenderFullReview.
 const TenderFullReviewHome = () => import('@/components/LoanManage/TenderFullReviewChildren/TenderFullReviewHome.vue');
 //引入会员管理/新增借款用户
 const AddUser = () => import('@/components/Member/AddUser.vue');
-//引入会员管理/借款用户管理
+//引入会员管理/借款用户管理子
 const BorrowUser = () => import('@/components/Member/BorrowUser.vue');
 //引入会员管理/投资用户管理
 const InvUser = () => import('@/components/Member/InvUser.vue');
-//引入会员新增用户资料
-const BorrowInfor = () =>import('@/components/Member/BorrowInfor.vue')
+//引入会员新增用户资料主要
+const BorrowUserHome = () =>import('@/components/Member/BorrowUserHome.vue')
+//引入会员新增用户资料子
+const BorrowUserChild = () =>import('@/components/Member/child_member/BorrowUserChild.vue')
 //引入用户资金
 const UserCapital=()=> import('@/components/RecordMa/UserCapital.vue');
 //引入资金日志
@@ -93,15 +95,21 @@ export default new Router({
     },
     //引入会员管理/借款用户管理
     {
-      path: '/BorrowUser',
-      name: 'BorrowUser',
-      component: BorrowUser,
+      path: '/BorrowUserHome',
+      name: 'BorrowUserHome',
+      component: BorrowUserHome,
       children:[
         {
-          path: 'BorrowInfor',
-          name: 'BorrowInfor',
-          component: BorrowInfor,
+          path: '/',
+          name: 'BorrowUser',
+          component: BorrowUser,
+        },
+        {
+          path: 'BorrowUserChild',
+          name: 'BorrowUserChild',
+          component: BorrowUserChild,
         }
+        
       ]
     },
 
