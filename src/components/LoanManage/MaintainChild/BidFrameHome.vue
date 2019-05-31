@@ -39,7 +39,7 @@
         <el-table-column fixed="right" label="操作" width="80">
           <template>
             <el-button type="button" size="small">
-              <router-link to="/BidFrame/Maintain">上架</router-link>
+              <router-link :to="{name:'Maintain'}">上架</router-link>
             </el-button>
           </template>
         </el-table-column>
