@@ -16,7 +16,7 @@
       <el-row
         style="margin-right: 0;position: absolute; top: 15px; right: 0;display: inline-block;"
       >
-        <el-button plain>导出</el-button>
+        <el-button plain @click="exportExcel">导出</el-button>
       </el-row>
     </div>
 
@@ -66,6 +66,9 @@
 </template>
 
 <script>
+import FileSaver from "file-saver";
+import XLSX from "xlsx";
+
 import Search from "./Subassembly/Search.vue";
 import ReMode from "./Subassembly/ReMode";
 import Status from "./Subassembly/Status";
@@ -113,12 +116,32 @@ export default {
     };
   },
   
-  methods: {
+ methods: {
     handleClick(row) {
       console.log(row);
-      window.sessionStorage.setItem("rows", JSON.stringify(row));
-      console.log(this.$router);
-      this.$router.push("/WithdrawReview/Reviewdetails");
+    },
+    exportExcel() {
+      /* generate workbook object from table */
+      var wb = XLSX.utils.table_to_book(
+        document.querySelector("#RechargeRecord")
+      );
+      /* get binary string as output */
+      var wbout = XLSX.write(wb, {
+        bookType: "xlsx",
+        bookSST: true,
+        type: "array"
+      });
+      try {
+        FileSaver.saveAs(
+          new Blob([wbout], {
+            type: "application/octet-stream"
+          }),
+          "sheetjs.xlsx"
+        );
+      } catch (e) {
+        if (typeof console !== "undefined") console.log(e, wbout);
+      }
+      return wbout;
     },
     current_change: function(currentPage) {
       this.currentPage = currentPage;

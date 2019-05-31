@@ -14,7 +14,7 @@
       <DatePicke/>
       <!-- 导出按钮 el-icon-download -->
       <el-row style="margin-right: 0; margin-top: 15px; display: inline-block;">
-        <el-button plain @click="exportExcel">朴素按钮</el-button>
+        <el-button plain @click="exportExcel">导出</el-button>
       </el-row>
     </div>
 
@@ -104,6 +104,7 @@ export default {
       ]
     };
   },
+
   methods: {
     handleClick(row) {
       console.log(row);
@@ -157,7 +158,6 @@ export default {
   margin: 0 auto;
   padding: 0;
   position: relative;
-  /* width: 90%; */
 }
 #recharge_app > #nav {
   width: 100%;
