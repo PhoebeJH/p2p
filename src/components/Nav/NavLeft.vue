@@ -62,7 +62,7 @@
                     <router-link to="/InvUser">投资用户管理</router-link>
                 </el-menu-item>
                 <el-menu-item index="4-3">
-                    <router-link to="/BorrowUser">借款用户管理</router-link>
+                    <router-link to="/BorrowUserHome">借款用户管理</router-link>
                 </el-menu-item>
             </el-menu-item-group>
         </el-submenu> -->
