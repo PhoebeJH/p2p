@@ -1,9 +1,11 @@
 <template>
-  <div id="withdraw_app">
-    <div class="title"><h2>提现记录</h2></div>
-    <div id="nav">
+  <div id="review_app">
+    <div class="title">
+      <h2>提现审核</h2>
+    </div>
+    <div id="nav" style="display: block; width: 100%">
       <!-- 搜索框 -->
-      <Search/>
+      <Search :searchOpt="searchOpt"/>
       <!-- 选择充值方式 -->
       <ReMode/>
       <!-- 选择状态 -->
@@ -19,7 +21,7 @@
     </div>
 
     <!-- 表格 -->
-    <div class="wrapper" style="padding-top: 30px;">
+    <div class="wrapper" style="padding-top: 30px;display: block;">
       <div class="wrapper-content">
         <!-- <div class="title"><h2>招标管理</h2></div> -->
         <el-table
@@ -48,7 +50,12 @@
               <p>{{ scope.row.loan_date | dateFormat }}</p>
             </template>
           </el-table-column>
-          <el-table-column fixed="right" prop="status" label="状态" width="100"></el-table-column>
+          <el-table-column prop="status" label="状态" width="100"></el-table-column>
+          <el-table-column fixed="right" label="操作" width="100">
+            <template slot-scope="scope">
+              <el-button @click.native.prevent="handleClick(scope.row)" type="text" size="small">审核</el-button>
+            </template>
+          </el-table-column>
         </el-table>
       </div>
     </div>
@@ -67,7 +74,7 @@ import Pagination from "./Subassembly/Pagination";
 import DatePicke from "./Subassembly/DatePicke";
 
 export default {
-  name: "WithdrawRecord",
+  name: "WithdrawReview",
   components: {
     Search,
     ReMode,
@@ -79,6 +86,9 @@ export default {
   methods: {
     handleClick(row) {
       console.log(row);
+      window.sessionStorage.setItem("rows", JSON.stringify(row));
+      console.log(this.$router);
+      this.$router.push("/WithdrawReview/Reviewdetails");
     }
   },
 
@@ -101,6 +111,10 @@ export default {
           arrivalTime: "2015-02-10 11:08:34",
           status: "充值成功"
         }
+      ],
+      searchOpt: [
+        { value: 1, label: "提现单号" },
+        { value: 2, label: "用户手机" }
       ]
     };
   },
@@ -110,20 +124,23 @@ export default {
         this.tableData = res.data.datas.data;
       })
       .catch(err => {
-          console.log(err);
+        console.log(err);
       });
   }
 };
 </script>
 
 <style scoped>
-#withdraw_app {
+#review_app {
   margin: 0 auto;
   padding: 0;
   position: relative;
+  /* border: 1px solid red; */
   /* width: 85%; */
 }
-#withdraw_app>#nav {
+#review_app > #nav {
   width: 100%;
+  /* border: 1px solid rebeccapurple; */
 }
 </style>
+
