@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const Home = () => import('@/components/Home.vue');
+const Home = () => import('@/components/Home/Home.vue');
 //引入充值记录组件
 const RechargeRecord = () => import('@/components/RecordMa/RechargeRecord.vue');
 //引入提现记录组件
@@ -29,14 +29,22 @@ const CapitalJournal=()=> import('@/components/RecordMa/CapitalJournal.vue');
 const Platformfunds=()=> import('@/components/RecordMa/Platformfunds.vue');
 
 
+//引入投资用户表单子组件1
+const InvUserChildren1 = () => import('@/components/Member/InvUserChild1.vue');
+// 引入投资管理修改资料页面
+const inv_update = () => import('@/components/Member/child_member/inv_update.vue');
+// 引入投资管理密码管理
+const inv_pwd = () => import('@/components/Member/child_member/inv_pwd.vue');
+
 // Platformfunds
 
 Vue.use(Router);
 
 export default new Router({
+  mode:"history",
   routes: [
     {
-      path: '/',
+      path: '',
       name: 'Home',
       component: Home
     },
@@ -89,24 +97,40 @@ export default new Router({
       name: 'BorrowUser',
       component: BorrowUser,
     },
-    //引入会员管理/投资用户管理
+
+    //引入会员管理/投资用户管理+子路由修改用户管理
+
     {
       path: '/InvUser',
       name: 'InvUser',
       component: InvUser,
+      children:[
+        {
+          path: '',
+          name: 'InvUserChildren1',
+          component: InvUserChildren1,
+        },{
+          path: '/inv_update',
+          name: 'inv_update',
+          component: inv_update,
+        },
+        {
+          path:'/inv_pwd',
+          name:'inv_pwd',
+          component:inv_pwd
+
+        }
+      ]
     },
-    //引入会员管理/借款用户资料
-    {
-      path: '/BorrowInfor',
-      name: 'BorrowInfor',
-      component: BorrowInfor,
-    },
-		//引入用户资金
+    
+    
+    //引入用户资金
 		{
 			path:'/UserCapital',
 			name:"UserCapital",
 			component:UserCapital
-		},
+    },
+    
 		//引入资金日志
 		{
 			path:'/CapitalJournal',

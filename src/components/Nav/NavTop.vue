@@ -1,41 +1,31 @@
 <template>
-  <div>
-    <el-menu
-    :default-active="activeIndex2"
-    class="el-menu-demo"
-    mode="horizontal"
-    @select="handleSelect"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b">
-        <el-menu-item index="1">处理中心</el-menu-item>
-        <el-submenu index="2">
-            <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-            <el-submenu index="2-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="2-4-1">选项1</el-menu-item>
-            <el-menu-item index="2-4-2">选项2</el-menu-item>
-            <el-menu-item index="2-4-3">选项3</el-menu-item>
-            </el-submenu>
-        </el-submenu>
-        <el-menu-item index="3" disabled>消息中心</el-menu-item>
-        <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
-    </el-menu>
-  </div>
+  <ul class="navTop">
+    <li>
+      <span class="lock"></span>
+    </li>
+    <li>
+      <input type="text" placeholder="业务搜索">
+      <span class="search"></span>
+    </li>
+    <li>
+      <span class="message"></span>
+      <span class="line"></span>
+      <span class="name">Mike Greene</span>
+      <span class="headerImg"></span>
+      <span class="el-icon-arrow-down"></span>
+      <span class="line"></span>
+      <span class="fullScreen"></span>
+    </li>
+  </ul>
 </template>
 
 <script>
-
-
 export default {
-  name: 'Nav',
+  name: 'NavTop',
   data () {
     return {
       activeIndex: '1',
-        activeIndex2: '1'
+      activeIndex2: '1'
     }
   },
   methods: {
@@ -48,5 +38,27 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  /* @import url(); */
+  @import "./../../assets/css/nav/navTop.css"
+  /* .navTop{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    border-bottom: 1px solid #eee;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    background-color: #fff;
+  }
+  .navTop>li{
+    margin: 0 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+  .navTop>li>span{
+    margin: 0 15px;
+  }
+  .search::before{
+    color:#222;
+  } */
 </style>

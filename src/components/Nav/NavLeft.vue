@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-        <el-radio-button :label="false">展开</el-radio-button>
-        <el-radio-button :label="true">收起</el-radio-button>
+  <div class="navLeft">
+    <el-radio-group class="isCollapseIcon" v-model="isCollapse">
+        <!-- <el-radio-button :label="false">展开</el-radio-button>
+        <el-radio-button :label="true">收起</el-radio-button> -->
+        <span class="collapseIcon" @click="turnOn"></span>
+        <!-- <button @click="turnOn">on</button> -->
     </el-radio-group>
-    <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-        <el-submenu index="1">
+    <el-menu default-active="1-4-1" :unique-opened="true" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+        <!-- <el-submenu index="1">
             <template slot="title">
                 <i class="el-icon-location"></i>
                 <span slot="title">借贷管理</span>
@@ -22,6 +24,7 @@
                 <el-menu-item index="1-9">借款标类别</el-menu-item>
             </el-menu-item-group>
         </el-submenu>
+
         <el-submenu index="2">
             <template slot="title">
                 <i class="el-icon-location"></i>
@@ -52,9 +55,47 @@
                 <span slot="title">会员管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="4-1"><router-link to="/AddUser">新增用户</router-link></el-menu-item>
-                <el-menu-item index="4-2"><router-link to="/InvUser">投资用户管理</router-link></el-menu-item>
-                <el-menu-item index="4-3"><router-link to="/BorrowUser">借款用户管理</router-link></el-menu-item>
+                <el-menu-item index="4-1">
+                    <router-link to="/AddUser">新增用户</router-link>
+                </el-menu-item>
+                <el-menu-item index="4-2">
+                    <router-link to="/InvUser">投资用户管理</router-link>
+                </el-menu-item>
+                <el-menu-item index="4-3">
+                    <router-link to="/BorrowUser">借款用户管理</router-link>
+                </el-menu-item>
+            </el-menu-item-group>
+        </el-submenu> -->
+
+        <div class="setting">
+            <router-link to="/"><span class="home"></span></router-link>
+            <router-link to="/"><span class="message"></span></router-link>
+            <!-- <span class="setIcon"></span> -->
+            <router-link to="/"><span class="skin"></span></router-link>
+            <router-link to="/"><span class="lock"></span></router-link>
+        </div>
+        <div class="userBox"> 
+            <div>
+                <img src="" alt="">
+                <span class="userName">Sean Ngu</span>
+                <span>Front end developer</span>
+            </div>   
+        </div>
+        <div class="nullBox"></div> 
+        <el-submenu v-for="(item,i) in navLeftList" :key="i" :index="i+''">
+            <template slot="title">
+                <div class="menuTitleBox">
+                    <i :class="item.iconName"></i>
+                    <span class="nemuTitle" slot="title">{{item.title}}</span>
+                </div>
+            </template>
+            <el-menu-item-group>
+                <el-menu-item 
+                v-for="(childitem,childindex) in item.children" 
+                :key="childindex" 
+                :index="i+'-'+childindex">
+                    <router-link class="routerLink" :to="childitem.url">{{childitem.title}}</router-link>
+                </el-menu-item>
             </el-menu-item-group>
         </el-submenu>
     </el-menu>
@@ -64,41 +105,64 @@
 <script>
 
 export default {
-  name: 'Nav',
+  name: 'NavLeft',
   data () {
     return {
-      isCollapse: true
+        isCollapse: false,
+        navLeftList:[],
     }
   },
 
   methods: {
       handleOpen(key, keyPath) {
-        console.log(key, keyPath);
+        // console.log(key, keyPath);
       },
       handleClose(key, keyPath) {
-        console.log(key, keyPath);
+        // console.log(key, keyPath);
+      },
+      turnOn(){
+          this.isCollapse = !this.isCollapse ;
       }
   },
 
   created() {
       this.Axios.get("https://5cd808f00cc5100014f1e33e.mockapi.io/p2pMenu").then(
           (res) => {
-              console.log(res);
+            this.navLeftList = res.data.map(element => {
+                    switch(element.title){
+                        case "借贷管理":
+                            element.iconName="jiedai";
+                            break;
+                        case "还款管理":
+                            element.iconName="huankuan";
+                            break;
+                        case "资金管理":
+                            element.iconName="money"
+                            break;
+                        case "会员管理":
+                            element.iconName="vip";
+                            break;
+                        default:
+                            break;
+                    }
+                    return element;
+            });
+            // console.log(this.navLeftList);
+            
           }
       ).catch(
           error => {
               console.log(error);
-              
           }
       );
   },
+  mounted(){
+
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .el-menu-vertical-demo:not(.el-menu--collapse) {
-        width: 200px;
-        min-height: 400px;
-    }
+    @import "./../../assets/css/nav/navLeft.css";
 </style>

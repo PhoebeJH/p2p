@@ -1,14 +1,14 @@
 <template>
-
-     <h1>InvUser</h1>
-
+    <router-view></router-view>
 </template>
 
 <script>
   export default {
     name: "InvUser",
-    components:{
-        
+    components:{},
+    data() {
+      return {
+      }
     }
   }
 </script>
