@@ -142,6 +142,9 @@ export default {
                         case "会员管理":
                             element.iconName="vip";
                             break;
+                        case "权限管理":
+                            element.iconName="quanxian";
+                            break;
                         default:
                             break;
                     }
