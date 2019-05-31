@@ -18,14 +18,14 @@
 <script>
 export default {
   name: "Search",
+  props: [
+    "searchOpt"
+  ],
   data() {
     return {
       input5: "",
       searchSel: "",
-      searchOpt: [
-        { value: 1, label: "充值单号" },
-        { value: 2, label: "用户手机" }
-      ]
+      
     };
   }
 };

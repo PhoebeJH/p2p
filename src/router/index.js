@@ -18,7 +18,11 @@ const RechargeRecord = () => import('@/components/RecordMa/RechargeRecord.vue');
 //引入提现记录组件
 const WithdrawRecord = () => import('@/components/RecordMa/WithdrawRecord.vue');
 //引入提现审核组件
-const WithdrawReview = () => import('@/components/RecordMa/WithdrawReview.vue');
+const WithdrawReview = () => import('@/components/RecordMa/Withdraw.vue');
+//引入提现审核组件-表单子组件
+const Withdraw = () => import('@/components/RecordMa/WithdrawReview.vue');
+//引入提现审核详情组件
+const Reviewdetails = () => import('@/components/RecordMa/Reviewdetails.vue');
 //进行中标的管理组件
 const TenderingManage = () => import('@/components/LoanManage/TenderingManage.vue');
 //满标复审组件
@@ -31,13 +35,13 @@ const BorrowUser = () => import('@/components/Member/BorrowUser.vue');
 //引入会员管理/投资用户管理
 const InvUser = () => import('@/components/Member/InvUser.vue');
 //引入会员新增用户资料
-const BorrowInfor = () =>import('@/components/Member/BorrowInfor.vue')
+const BorrowInfor = () => import('@/components/Member/BorrowInfor.vue')
 //引入用户资金
-const UserCapital=()=> import('@/components/RecordMa/UserCapital.vue');
+const UserCapital = () => import('@/components/RecordMa/UserCapital.vue');
 //引入资金日志
-const CapitalJournal=()=> import('@/components/RecordMa/CapitalJournal.vue');
+const CapitalJournal = () => import('@/components/RecordMa/CapitalJournal.vue');
 // 引入平台资金
-const Platformfunds=()=> import('@/components/RecordMa/Platformfunds.vue');
+const Platformfunds = () => import('@/components/RecordMa/Platformfunds.vue');
 
 
 //引入投资用户表单子组件1
@@ -52,7 +56,7 @@ const inv_pwd = () => import('@/components/Member/child_member/inv_pwd.vue');
 Vue.use(Router);
 
 export default new Router({
-  mode:"history",
+  mode: "history",
   routes: [
     {
       path: '',
@@ -112,6 +116,18 @@ export default new Router({
       path: '/WithdrawReview',
       name: 'WithdrawReview',
       component: WithdrawReview,
+      children: [
+        {
+          path: '',
+          name: 'Withdraw',
+          component: Withdraw,
+        },
+        { // 提现审核详情子路由
+          path: 'Reviewdetails',
+          name: 'Reviewdetails',
+          component: Reviewdetails,
+        }
+      ]
     },
     //进行中标的管理路由
     {
@@ -124,7 +140,7 @@ export default new Router({
       path: '/TenderFullReview',
       name: 'TenderFullReview',
       component: TenderFullReview,
-      children:[
+      children: [
         {
           path: '/',
           name: 'TenderFullReviewHome',
@@ -143,6 +159,13 @@ export default new Router({
       path: '/BorrowUser',
       name: 'BorrowUser',
       component: BorrowUser,
+      children:[
+        {
+          path: 'BorrowInfor',
+          name: 'BorrowInfor',
+          component: BorrowInfor,
+        }
+      ]
     },
 
     //引入会员管理/投资用户管理+子路由修改用户管理
@@ -151,44 +174,44 @@ export default new Router({
       path: '/InvUser',
       name: 'InvUser',
       component: InvUser,
-      children:[
+      children: [
         {
           path: '',
           name: 'InvUserChildren1',
           component: InvUserChildren1,
-        },{
+        }, {
           path: '/inv_update',
           name: 'inv_update',
           component: inv_update,
         },
         {
-          path:'/inv_pwd',
-          name:'inv_pwd',
-          component:inv_pwd
+          path: '/inv_pwd',
+          name: 'inv_pwd',
+          component: inv_pwd
 
         }
       ]
     },
-    
-    
+
+
     //引入用户资金
-		{
-			path:'/UserCapital',
-			name:"UserCapital",
-			component:UserCapital
+    {
+      path: '/UserCapital',
+      name: "UserCapital",
+      component: UserCapital
     },
-    
-		//引入资金日志
-		{
-			path:'/CapitalJournal',
-			name:"CapitalJournal",
-			component:CapitalJournal
-		},
-		//引入平台资金
-		{
-			path:'/Platformfunds',
-			name:"Platformfunds",
-			component:Platformfunds
-		}
+
+    //引入资金日志
+    {
+      path: '/CapitalJournal',
+      name: "CapitalJournal",
+      component: CapitalJournal
+    },
+    //引入平台资金
+    {
+      path: '/Platformfunds',
+      name: "Platformfunds",
+      component: Platformfunds
+    }
   ]
 })
