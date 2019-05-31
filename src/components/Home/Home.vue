@@ -4,10 +4,10 @@
             <Search/>
         </div>
         <div class="homeNumberShow">
-            <NumberShow title="注册用户(人)" number="9317" newNumber="3人" iconName="people"/>
-            <NumberShow title="投资总额(万元)" number="4356.08" newNumber="1.10万元" iconName="touziNumber"/>
-            <NumberShow title="借款总额(万元)" number="5356.08" newNumber="1.10万元" iconName="daikuanNumber"/>
-            <NumberShow title="用户累计收益(万元)" number="4356.08" newNumber="1.10万元" iconName="shouyi"/>
+            <NumberShow title="注册用户(人)" :number="data.borrow" :newNumber="data.full_wait" iconName="people"/>
+            <NumberShow title="投资总额(万元)" :number="data.member_money" :newNumber="data.money_wait" iconName="touziNumber"/>
+            <NumberShow title="借款总额(万元)" :number="data.register" :newNumber="data.today" iconName="daikuanNumber"/>
+            <NumberShow title="用户累计收益(万元)" :number="data.wait_do" :newNumber="data.invest" iconName="shouyi"/>
         </div>
         <div class="homeNeedDo">
             <NeedDo/>
@@ -36,8 +36,26 @@ export default {
 
     data () {
         return {
-            
+            data:{
+
+            },
+            seven:{
+
+            }
         }
+    },
+    created(){
+        this.Axios.get("http://172.16.6.64:8080/index").then(
+            res => {
+                console.log(res);
+                this.data = res.data
+            }
+        ).catch(
+            error => {
+                console.log("222");
+            }
+        );
+        
     }
 }
 </script>

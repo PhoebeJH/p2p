@@ -53,12 +53,7 @@ export default {
                     type: 'pie',
                     radius : '55%',
                     center: ['50%', '60%'],
-                    data:[
-                        {value:335, name:'标申请'},
-                        {value:310, name:'待上架'},
-                        {value:234, name:'待审核'},
-                        {value:135, name:'还款中'},
-                    ],
+                    data:this.status,
                     itemStyle: {
                         emphasis: {
                             shadowBlur: 10,
@@ -70,6 +65,18 @@ export default {
             ]
         });
     },
+    created(){
+        this.Axios.get("http://172.16.6.64:8080/seven").then(
+            res => {
+                console.log(res);
+                this.status = res.data;
+            }
+        ).catch(
+            error => {
+                console.log("222");
+            }
+        );
+    }
 }
 </script>
 
