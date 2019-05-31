@@ -1,9 +1,12 @@
 <template>
   <div class="wrapper">
     <el-pagination
+      class="pagination-dom"
       background
       layout="sizes, prev, pager, next"
-      :total="800" :page-sizes="[100, 200, 300, 400]">
+      :total="800" :page-sizes="[100, 200, 300, 400]"
+
+    >
     </el-pagination>
   </div>
 </template>
@@ -15,12 +18,7 @@
 </script>
 
 <style scoped>
-  .wrapper{
-    position: relative;
-  }
   .el-pagination{
     position: absolute;
-    bottom: -100%;
-    right: -10px;
   }
 </style>

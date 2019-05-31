@@ -5,34 +5,46 @@
       :data="tableData"
       stripe
       :header-cell-style="{color:'#333',backgroundColor:'#EBEEF5'}"
-      style="width: 100%">
+      style="width: 100%"
+    >
       <el-table-column
-        v-for="(item,index) in tableHeadData"
+        v-for="(item,index) in tableData[0]"
         :key="index"
         v-if="index == 0"
         fixed
-        prop=""
         :label="item">
+          <template slot-scope="scope">
+            <span>{{scope.row[index]}}</span>
+          </template>
       </el-table-column>
-      <el-table-column v-else-if="index == tableHeadData.length-1"
+      <!--<el-table-column v-else-if="index == tableHeadData.length-1"
         fixed="right"
         :label="item"
         width="100">
-        <!--<template slot-scope="scope">
+        &lt;!&ndash;<template slot-scope="scope">
           <el-button @click="handleClick(scope.row)" type="text" size="small"><router-link to="/">修改</router-link></el-button>
           <el-divider direction="vertical"></el-divider>
           <el-button type="text" size="small">下架</el-button>
-        </template>-->
+        </template>&ndash;&gt;
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small"><router-link to="/">修改</router-link></el-button>
-          <el-divider direction="vertical"></el-divider>
-          <el-button type="text" size="small">下架</el-button>
+          <span class="opts" v-for="(item2,index2) in item.optionData" v-if="index2 == optionData.length-1">
+            <el-button @click="item2.action" type="text" size="small">{{item2.name}}</el-button>
+          </span>
+          <span class="opts" v-else>
+            <el-button @click="item2.action" type="text" size="small">{{item2.name}}</el-button>
+            <el-divider direction="vertical"></el-divider>
+          </span>
         </template>
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column
         v-else
-        prop=""
-        :label="item">
+        :label="item"
+        show-overflow-tooltip
+        width="230"
+      >
+          <template slot-scope="scope">
+            <span>{{scope.row[index]}}</span>
+          </template>
       </el-table-column>
     </el-table>
     <!--分页-->
@@ -52,9 +64,6 @@
     ],
     data() {
       return {
-        input5: "",
-        searchSel: "",
-        modeSel: "",
         searchOpt: [
           { value: 1, label: "借款方" },
           { value: 2, label: "借款人手机" },
