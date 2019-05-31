@@ -88,7 +88,7 @@ export default {
       console.log(row);
       window.sessionStorage.setItem("rows", JSON.stringify(row));
       console.log(this.$router);
-      this.$router.push("/Reviewdetails");
+      this.$router.push("/WithdrawReview/Reviewdetails");
     },
     current_change: function(currentPage) {
       this.currentPage = currentPage;

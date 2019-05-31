@@ -18,9 +18,9 @@ const RechargeRecord = () => import('@/components/RecordMa/RechargeRecord.vue');
 //引入提现记录组件
 const WithdrawRecord = () => import('@/components/RecordMa/WithdrawRecord.vue');
 //引入提现审核组件
-const WithdrawReview = () => import('@/components/RecordMa/Withdraw.vue');
+const Withdraw = () => import('@/components/RecordMa/Withdraw.vue');
 //引入提现审核组件-表单子组件
-const Withdraw = () => import('@/components/RecordMa/WithdrawReview.vue');
+const WithdrawReview = () => import('@/components/RecordMa/WithdrawReview.vue');
 //引入提现审核详情组件
 const Reviewdetails = () => import('@/components/RecordMa/Reviewdetails.vue');
 //进行中标的管理组件
@@ -129,7 +129,7 @@ export default new Router({
           component: Withdraw,
         },
         { // 提现审核详情子路由
-          path: '/Reviewdetails',
+          path: 'Reviewdetails',
           name: 'Reviewdetails',
           component: Reviewdetails,
         }
