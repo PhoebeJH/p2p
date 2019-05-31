@@ -13,10 +13,10 @@
                 <span slot="title">借贷管理</span>
             </template>
             <el-menu-item-group>
-                <el-menu-item index="1-1">新增借贷</el-menu-item>
-                <el-menu-item index="1-2">新标维护</el-menu-item>
-                <el-menu-item index="1-3">借贷审核</el-menu-item>
-                <el-menu-item index="1-4">新标上架</el-menu-item>
+                <el-menu-item index="1-1"><router-link to="/NewLoans">新增借贷</router-link></el-menu-item>
+                <el-menu-item index="1-2"><router-link to="/NewStence">新标维护</router-link></el-menu-item>
+                <el-menu-item index="1-3"><router-link to="/LoanAuid">借贷审核</router-link></el-menu-item>
+                <el-menu-item index="1-4"><router-link to="/BidFrame">新标上架</router-link></el-menu-item>
                 <el-menu-item index="1-5">进行中标的管理</el-menu-item>
                 <el-menu-item index="1-6">满标审核</el-menu-item>
                 <el-menu-item index="1-7">所有借款标</el-menu-item>
@@ -62,7 +62,7 @@
                     <router-link to="/InvUser">投资用户管理</router-link>
                 </el-menu-item>
                 <el-menu-item index="4-3">
-                    <router-link to="/BorrowUser">借款用户管理</router-link>
+                    <router-link to="/BorrowUserHome">借款用户管理</router-link>
                 </el-menu-item>
             </el-menu-item-group>
         </el-submenu> -->

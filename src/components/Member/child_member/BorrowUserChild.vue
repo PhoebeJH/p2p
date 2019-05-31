@@ -1,5 +1,6 @@
 <template>
   <el-container>
+    
     <el-header></el-header>
     <el-row>
       <el-col :span="24">
@@ -138,7 +139,7 @@
         <div class="grid-content bg-purple-light"><el-button type="primary">保存修改</el-button></div>
       </el-col>
       <el-col :span="3">
-        <div class="grid-content bg-purple"><el-button><router-link to="/BorrowUser">返回</router-link></el-button></div>
+        <div class="grid-content bg-purple"><el-button><router-link to="/BorrowUserHome">返回</router-link></el-button></div>
       </el-col>
       <el-col :span="16">
         <div class="grid-content bg-purple-light"></div>
@@ -149,7 +150,8 @@
 
 <script>
 export default {
-  name: "BorrowInfor",
+
+  name: "BorrowUserChild",
   components: {},
   data() {
     return {
