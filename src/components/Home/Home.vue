@@ -12,6 +12,9 @@
         <div class="homeNeedDo">
             <NeedDo/>
         </div>
+        <div class="charBox">
+            <CharBox/>
+        </div>
     </div>
 </template>
 
@@ -20,6 +23,7 @@
 import Search from "./children/Search";
 import NumberShow from "./children/NumberShow";
 import NeedDo from "./children/NeedDo";
+import CharBox from './echar/CharBox';
 
 export default {
     name: 'Home',
@@ -27,6 +31,7 @@ export default {
         Search,
         NumberShow,
         NeedDo,
+        CharBox,
     },
 
     data () {
