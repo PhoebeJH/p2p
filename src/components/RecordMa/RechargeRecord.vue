@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div id="recharge_app">
+    <div class="title"><h2>充值记录</h2></div>
     <div id="nav">
       <!-- 搜索框 -->
       <Search/>
@@ -11,7 +12,7 @@
       <DatePicke/>
       <!-- 导出按钮 el-icon-download -->
       <el-row
-        style="margin-right: 0;position: absolute; top: 15px; right: 0;display: inline-block;"
+        style="margin-right: 0; margin-top: 15px; display: inline-block;"
       >
         <el-button plain>朴素按钮</el-button>
       </el-row>
@@ -20,7 +21,7 @@
     <!-- 表格 -->
     <div class="wrapper" style="padding-top: 30px;">
       <div class="wrapper-content">
-        <!-- <div class="title"><h2>招标管理</h2></div> -->
+        
         <el-table
           :data="tableData"
           stripe
@@ -29,7 +30,7 @@
         >
           <el-table-column fixed prop="loan_id" label="充值单号" width="120"></el-table-column>
           <el-table-column prop="loan_money" label="用户手机" width="120"></el-table-column>
-          <el-table-column prop="isSurety" label="真实姓名" width="120"></el-table-column>
+          <el-table-column prop="loan_money" label="真实姓名" width="100"></el-table-column>
           <el-table-column prop="loan_ deadline" label="用户来源" width="120"></el-table-column>
           <el-table-column prop="loan_ deadline" label="应用来源" width="100"></el-table-column>
           <el-table-column prop="loan_money" label="充值金额" width="100"></el-table-column>
@@ -49,8 +50,6 @@
           </el-table-column>
           <el-table-column fixed="right" prop="status" label="状态" width="100"></el-table-column>
         </el-table>
-        <!--分页-->
-        <!--<Pagination></Pagination>-->
       </div>
     </div>
 
@@ -109,22 +108,22 @@ export default {
     this.Axios.get("http://rap2api.taobao.org/app/mock/177576/borrow")
       .then(res => {
         this.tableData = res.data.datas.data;
-        console.log(res);
-        console.log("object");
-        console.log(this.tableData);
       })
-      .catch(err => {});
+      .catch(err => {
+          console.log(err);
+      });
   }
 };
 </script>
 
 <style scoped>
-#app {
-  margin: 0;
+#recharge_app {
+  margin: 0 auto;
   padding: 0;
-  width: 85%;
-}
-#nav {
   position: relative;
+  /* width: 90%; */
+}
+#recharge_app>#nav {
+  width: 100%;
 }
 </style>

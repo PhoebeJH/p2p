@@ -61,9 +61,36 @@
 
 				<el-table-column prop="message" label="备注" align="center">
 				</el-table-column>
-				<el-table-column prop="moneytime" width='150' label="操作时间" align="center">
+				<el-table-column prop="moneytime" width='165' label="操作时间" align="center">
 				</el-table-column>
 
+			</el-table>
+			<el-table hidden="true" id="moneyTableExport" stripe style="font-size: 11px;" :data="tableData"
+			 :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
+			
+				<el-table-column prop="id" label="流水号" align="center">
+				</el-table-column>
+				<el-table-column prop="real_name.real" label="类型" align="center">
+				</el-table-column>
+				<el-table-column prop="act_states.state" label="出入帐" align="center">
+				</el-table-column>
+				<el-table-column prop="money" label="操作金额" align="center">
+				</el-table-column>
+				<el-table-column prop="smallmoney" label="手续费" align="center">
+				</el-table-column>
+				<el-table-column prop="smallmoney" label="操作前余额" align="center">
+				</el-table-column>
+				<el-table-column prop="maxmoney" label="操作后余额" align="center">
+				</el-table-column>
+				<el-table-column prop="act_states.state" label="状态" align="center">
+				</el-table-column>
+			
+			
+				<el-table-column prop="message" label="备注" align="center">
+				</el-table-column>
+				<el-table-column prop="moneytime" width='165' label="操作时间" align="center">
+				</el-table-column>
+			
 			</el-table>
 		</el-main>
 		<el-footer style="margin:20px 0 10px">
@@ -127,7 +154,7 @@
 		},
 		created() {
 			this.total=this.tableData.length;
-			this.Axios.get('http://a17765582437.vicp.io/money').then(
+			this.Axios.get('http://19h4o94140.51mypc.cn/money').then(
 					(response) => {
 						this.tableData = response.data;
 						this.total = this.tableData.length;
@@ -138,7 +165,7 @@
 				});
 		},watch:{
 			value(){
-				this.Axios.get('http://a17765582437.vicp.io/money',{
+				this.Axios.get('http://19h4o94140.51mypc.cn/money',{
 					params:{
 						usertype:this.value
 					}
@@ -152,7 +179,7 @@
 						console.log(error);
 					});
 			},id(){
-				this.Axios.get('http://a17765582437.vicp.io/money',{
+				this.Axios.get('http://19h4o94140.51mypc.cn/money',{
 					params:{
 						id:this.id
 					}
@@ -173,7 +200,7 @@
 			},
 			exportExcel() {
 				/* generate workbook object from table */
-				var wb = XLSX.utils.table_to_book(document.querySelector('#moneyTable'))
+				var wb = XLSX.utils.table_to_book(document.querySelector('#moneyTableExport'))
 				/* get binary string as output */
 				var wbout = XLSX.write(wb, {
 					bookType: 'xlsx',
