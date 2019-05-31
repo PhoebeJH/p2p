@@ -84,7 +84,7 @@ export default new Router({
     //标的上架
     {
       path:'/BidFrame',
-      name:'BidFrame',
+      // name:'BidFrame',
       component:BidFrame,
       children:[
         {
@@ -114,7 +114,6 @@ export default new Router({
     //提现审核页面路由
     {
       path: '/WithdrawReview',
-      name: 'WithdrawReview',
       component: WithdrawReview,
       children: [
         {
@@ -123,7 +122,7 @@ export default new Router({
           component: Withdraw,
         },
         { // 提现审核详情子路由
-          path: 'Reviewdetails',
+          path: '/Reviewdetails',
           name: 'Reviewdetails',
           component: Reviewdetails,
         }
@@ -138,7 +137,7 @@ export default new Router({
     //满标复审路由
     {
       path: '/TenderFullReview',
-      name: 'TenderFullReview',
+      // name: 'TenderFullReview',
       component: TenderFullReview,
       children: [
         {
@@ -172,7 +171,7 @@ export default new Router({
 
     {
       path: '/InvUser',
-      name: 'InvUser',
+      // name: 'InvUser',
       component: InvUser,
       children: [
         {

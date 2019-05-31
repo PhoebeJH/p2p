@@ -1,17 +1,30 @@
 <template>
-  <div class="wrapper" >
+  <div class="wrapper">
     <el-pagination
       background
-      layout="sizes, prev, pager, next"
-      :total="800"
-      :page-sizes="[5, 100, 200, 300, 400]"
+      layout="total, sizes, prev, pager, next"
+      :total="total"
+      :page-sizes="[5, 8, 10, 20, 50]"
+      :page-size="pagesize"
+      :current-page="currentPage"
+      @size-change="handleSizeChange"
+      @current-change="current_change"
     ></el-pagination>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Pagination"
+  name: "Pagination",
+  props: ["total", "pagesize", "currentPage", "current_change", "handleSizeChange"],
+  data() {
+    return {
+     
+    };
+  },
+  methods: {
+    
+  },
 };
 </script>
 
@@ -19,8 +32,6 @@ export default {
 .wrapper {
   /* padding-top:20px;  */
   position: relative;
-  
-  
 }
 .el-pagination {
   position: absolute;
