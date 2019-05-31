@@ -67,7 +67,7 @@ export default new Router({
     //满标复审路由
     {
       path: '/TenderFullReview',
-      name: 'TenderFullReview',
+      // name: 'TenderFullReview',
       component: TenderFullReview,
       children:[
         {
