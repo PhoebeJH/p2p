@@ -20,14 +20,13 @@ const BorrowUser = () => import('@/components/Member/BorrowUser.vue');
 //引入会员管理/投资用户管理
 const InvUser = () => import('@/components/Member/InvUser.vue');
 //引入会员新增用户资料
-const BorrowInfor = () =>import('@/components/Member/BorrowInfor.vue')
+const BorrowInfor = () => import('@/components/Member/BorrowInfor.vue')
 //引入用户资金
-const UserCapital=()=> import('@/components/RecordMa/UserCapital.vue');
+const UserCapital = () => import('@/components/RecordMa/UserCapital.vue');
 //引入资金日志
-const CapitalJournal=()=> import('@/components/RecordMa/CapitalJournal.vue');
+const CapitalJournal = () => import('@/components/RecordMa/CapitalJournal.vue');
 // 引入平台资金
-const Platformfunds=()=> import('@/components/RecordMa/Platformfunds.vue');
-
+const Platformfunds = () => import('@/components/RecordMa/Platformfunds.vue');
 
 //引入投资用户表单子组件1
 const InvUserChildren1 = () => import('@/components/Member/InvUserChild1.vue');
@@ -38,12 +37,17 @@ const inv_pwd = () => import('@/components/Member/child_member/inv_pwd.vue');
 
 // Platformfunds
 
+// 引入权限--角色管理--用户管理--用户组--部门管理
+const roleMana = () => import('@/components/Privilege/RoleMana.vue');
+const userMana = () => import('@/components/Privilege/UserMana.vue');
+const userGroup = () => import('@/components/Privilege/UserGroup.vue');
+const department = () => import('@/components/Privilege/Department.vue');
+
 Vue.use(Router);
 
 export default new Router({
-  mode:"history",
-  routes: [
-    {
+  mode: "history",
+  routes: [{
       path: '',
       name: 'Home',
       component: Home
@@ -77,13 +81,11 @@ export default new Router({
       path: '/TenderFullReview',
       name: 'TenderFullReview',
       component: TenderFullReview,
-      children:[
-        {
-          path: '/',
-          name: 'TenderFullReviewHome',
-          component: TenderFullReviewHome,
-        }
-      ]
+      children: [{
+        path: '/',
+        name: 'TenderFullReviewHome',
+        component: TenderFullReviewHome,
+      }]
     },
     //引入会员管理/新增借款用户
     {
@@ -91,6 +93,7 @@ export default new Router({
       name: 'AddUser',
       component: AddUser,
     },
+
     //引入会员管理/借款用户管理
     {
       path: '/BorrowUser',
@@ -104,44 +107,74 @@ export default new Router({
       path: '/InvUser',
       name: 'InvUser',
       component: InvUser,
-      children:[
-        {
+      children: [{
           path: '',
           name: 'InvUserChildren1',
           component: InvUserChildren1,
-        },{
+        }, {
           path: '/inv_update',
           name: 'inv_update',
           component: inv_update,
         },
         {
-          path:'/inv_pwd',
-          name:'inv_pwd',
-          component:inv_pwd
-
+          path: '/inv_pwd',
+          name: 'inv_pwd',
+          component: inv_pwd
         }
       ]
     },
-    
-    
+
+
     //引入用户资金
-		{
-			path:'/UserCapital',
-			name:"UserCapital",
-			component:UserCapital
+    {
+      path: '/UserCapital',
+      name: "UserCapital",
+      component: UserCapital
     },
-    
-		//引入资金日志
-		{
-			path:'/CapitalJournal',
-			name:"CapitalJournal",
-			component:CapitalJournal
-		},
-		//引入平台资金
-		{
-			path:'/Platformfunds',
-			name:"Platformfunds",
-			component:Platformfunds
-		}
+
+    //引入资金日志
+    {
+      path: '/CapitalJournal',
+      name: "CapitalJournal",
+      component: CapitalJournal
+    },
+
+    //引入平台资金
+    {
+      path: '/Platformfunds',
+      name: "Platformfunds",
+      component: Platformfunds
+    },
+
+    // 引入角色管理
+    {
+      path: '/roleMana',
+      name: "roleMana",
+      component: roleMana
+    },
+   
+
+    // 引入用户管理
+    {
+      path: '/userMana',
+      name: "userMana",
+      component: userMana
+    },
+
+
+    // 引入用户组
+    {
+      path: '/userGroup',
+      name: "userGroup",
+      component: userGroup
+    },
+
+    // 引入部门管理
+    {
+      path: '/department',
+      name: "department",
+      component: department
+    }
+
   ]
 })

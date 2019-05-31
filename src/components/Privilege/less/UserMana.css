@@ -1,0 +1,50 @@
+ul {
+  list-style: none;
+  margin: 0;
+}
+.container {
+  display: flex;
+}
+.container > div:nth-child(1) {
+  width: 200px;
+  height: 100%;
+  border: 1px solid red;
+  text-align: center;
+}
+.container > div:nth-child(1) ul {
+  width: 100%;
+}
+.container > div:nth-child(1) ul li {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  border: 1px dashed red;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+.container > div:nth-child(1) p {
+  margin: 20px 0;
+}
+.container > div:nth-child(2) {
+  width: 1000px;
+  border: 1px dashed red;
+}
+.container > div:nth-child(2) > ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  height: 60px;
+  line-height: 60px;
+}
+.container > div:nth-child(2) > ul h3 {
+  font-weight: normal;
+  height: 60px;
+  width: 100%;
+  line-height: 60px;
+}
+.container > div:nth-child(2) div {
+  margin: 20px 0;
+  padding: 0 30px;
+}

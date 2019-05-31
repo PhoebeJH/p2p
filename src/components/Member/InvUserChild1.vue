@@ -186,7 +186,6 @@ export default {
 
     handleClick:function(row){
      window.sessionStorage.setItem('rows',JSON.stringify(row))
-     console.log(this.$router)
      this.$router.push('/inv_update')
     },
 
@@ -200,7 +199,7 @@ export default {
 				this.currentPage = currentPage;
 			},handleSizeChange(pagesize){
 				this.pagesize=pagesize;
-			}
+    }
   },
 }
 </script>

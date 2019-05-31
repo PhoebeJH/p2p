@@ -128,6 +128,7 @@ export default {
   created() {
       this.Axios.get("https://5cd808f00cc5100014f1e33e.mockapi.io/p2pMenu").then(
           (res) => {
+              
             this.navLeftList = res.data.map(element => {
                     switch(element.title){
                         case "借贷管理":

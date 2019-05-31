@@ -60,13 +60,11 @@ export default {
 
     data() {
         return {
-
             // session闯过来需要的数据字段
             phone:"",
             pre_name:"",
             entitle:"",
             blink:""
-
             // 
         }
     },
@@ -82,7 +80,7 @@ export default {
                 () => {
                     this.$message({
                         type: 'success',
-                        message: '保存成功!'
+                        message: '保存成功!',
                     });
             })
             .catch(
@@ -95,7 +93,7 @@ export default {
         },
         Pathto(){
             this.$router.push('/InvUser')   
-        }
+        },  
     }
 }
 </script>
