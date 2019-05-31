@@ -112,6 +112,13 @@ export default new Router({
       path: '/BorrowUser',
       name: 'BorrowUser',
       component: BorrowUser,
+      children:[
+        {
+          path: 'BorrowInfor',
+          name: 'BorrowInfor',
+          component: BorrowInfor,
+        }
+      ]
     },
 
     //引入会员管理/投资用户管理+子路由修改用户管理

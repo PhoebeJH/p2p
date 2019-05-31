@@ -51,21 +51,14 @@
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" type="text" size="small">
-              <router-link to="/BorrowInfor">查看</router-link>
+              <router-link to="/BorrowUser/BorrowInfor">查看</router-link>
             </el-button>
             <el-button type="text" size="small">编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-main>
-    <!-- <el-pagination
-      background
-      layout="total,sizes,prev, pager, next"
-      :page-sizes="[10, 25, 50, 100]"
-      :page-size="10"
-      :total="1000"
-    ></el-pagination>
-    </el-container>-->
+    
     <el-footer style="margin:20px 0 10px">
       <el-row>
         <el-col style="float:right">
