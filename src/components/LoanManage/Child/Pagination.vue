@@ -1,10 +1,10 @@
 <template>
-  <div class="wrapper" >
+  <div class="wrapper">
     <el-pagination
       background
       layout="sizes, prev, pager, next"
       :total="800"
-      :page-sizes="[5, 100, 200, 300, 400]"
+      :page-sizes="[100, 200, 300, 400]"
     ></el-pagination>
   </div>
 </template>
@@ -17,10 +17,7 @@ export default {
 
 <style scoped>
 .wrapper {
-  /* padding-top:20px;  */
   position: relative;
-  
-  
 }
 .el-pagination {
   position: absolute;

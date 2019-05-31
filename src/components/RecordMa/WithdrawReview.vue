@@ -1,16 +1,18 @@
 <template>
-  <h1>WithdrawReview</h1>
+    <router-view></router-view>
 </template>
 
 <script>
-
   export default {
-    name: 'WithdrawReview',
-    components:{
-        
+    name: "Withdraw",
+    components:{},
+    data() {
+      return {
+      }
     }
   }
 </script>
 
-<style>
+<style scoped>
+
 </style>
