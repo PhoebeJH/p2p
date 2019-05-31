@@ -6,9 +6,16 @@ import router from './router'
 import Axios from 'axios';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
-
+import filter from './common/filter'
 Vue.config.productionTip = false;
+
+
+for (let key in filter) {
+  Vue.filter(key, (val, value1, value2) => {
+    return filter[key](val, value1, value2);
+  });
+}
+
 Vue.use(ElementUI);
 // Vue.use(Axios);
 Vue.prototype.Axios = Axios;

@@ -27,29 +27,29 @@
 		</el-header>
 		<el-main>
 			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
-				<el-table-column prop="act_id" width="130" label="用户ID" align="center">
+				<el-table-column prop="id" width="130" label="用户ID" align="center">
 				</el-table-column>
-				<el-table-column prop="per_name" label="姓名" align="center">
+				<el-table-column prop="username" label="姓名" align="center">
 				</el-table-column>
-				<el-table-column prop="per_phone" width="130" label="用户手机" align="center">
+				<el-table-column prop="phone" width="130" label="用户手机" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="总资产" align="center">
+				<el-table-column prop="money" label="总资产" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="可用余额" align="center">
+				<el-table-column prop="money" label="可用余额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="冻结金额" align="center">
+				<el-table-column prop="smallmoney" label="冻结金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="待收金额" align="center">
+				<el-table-column prop="smallmoney" label="待收金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="累计投资" align="center">
+				<el-table-column prop="maxmoney" label="累计投资" align="center">
 				</el-table-column>
-				<el-table-column prop="per_balance" width="100" label="累计投资收益" align="center">
+				<el-table-column prop="maxmoney" width="100" label="累计投资收益" align="center">
 				</el-table-column>
-				<el-table-column prop="per_balance" label="累计借款" align="center">
+				<el-table-column prop="smallmoney" label="累计借款" align="center">
 				</el-table-column>
-				<el-table-column prop="per_balance" label="累计还款" align="center">
+				<el-table-column prop="smallmoney" label="累计还款" align="center">
 				</el-table-column>
-				<el-table-column prop="per_balance" label="借还款差额" align="center">
+				<el-table-column prop="smallmoney" label="借还款差额" align="center">
 				</el-table-column>
 				
 			</el-table>
@@ -57,7 +57,7 @@
 		<el-footer style="margin:20px 0 10px">
 			<el-row>
 				<el-col>
-					<el-pagination background layout="total,prev, pager, next,sizes" :page-sizes="[5,10, 25, 50, 100]" :page-size="pagesize"
+					<el-pagination background layout="total,prev, pager, next,sizes" :page-sizes="[10, 25, 50, 100]" :page-size="pagesize"
 					 :total="total" :current-page="currentPage"  @size-change="handleSizeChange" @current-change="current_change">
 					</el-pagination>
 				</el-col>
@@ -91,30 +91,74 @@
 			return {
 				tableData: [],
 				total: 0, //默认数据总数
-				pagesize: 5, //每页的数据条数
+				pagesize: 10, //每页的数据条数
 				currentPage: 1, //当前页
 				input_phone: '',
 				input_name: '',
 				options: [{
-					value: '选项1',
+					value: 0,
 					label: '全部用户'
 				}, {
-					value: '选项2',
+					value: 1,
 					label: '投资用户'
 				}, {
-					value: '选项3',
+					value: 2,
 					label: '借款用户'
 				}],
-				value: "全部用户"
+				value: 0
+			}
+		},watch:{
+			input_phone(){
+				this.Axios.get('http://a17765582437.vicp.io/money',{
+					params:{
+						phone:this.input_phone
+					}
+				}).then(
+						(response) => {
+							this.tableData = response.data;
+							this.total = this.tableData.length;
+							// console.log(response);
+						})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},input_name(){
+				this.Axios.get('http://a17765582437.vicp.io/money',{
+					params:{
+						name:this.input_name
+					}
+				}).then(
+						(response) => {
+							this.tableData = response.data;
+							this.total = this.tableData.length;
+							// console.log(response);
+						})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},value(){
+				this.Axios.get('http://a17765582437.vicp.io/money',{
+					params:{
+						usertype:this.value
+					}
+				}).then(
+						(response) => {
+							this.tableData = response.data;
+							this.total = this.tableData.length;
+							// console.log(response);
+						})
+					.catch(function(error) {
+						console.log(error);
+					});
 			}
 		},
 		created() {
 			this.total=this.tableData.length;
-			this.Axios.get('http://rap2api.taobao.org/app/mock/177576/user').then(
+			this.Axios.get('http://a17765582437.vicp.io/money').then(
 					(response) => {
-						this.tableData = response.data.datas.data;
+						this.tableData = response.data;
 						this.total = this.tableData.length;
-						// console.log(response.data.datas.data);
+						// console.log(response);
 					})
 				.catch(function(error) {
 					console.log(error);

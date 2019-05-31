@@ -39,19 +39,21 @@
         <el-table-column fixed="right" label="操作" width="80">
           <template>
             <el-button type="button" size="small">
-              <router-link to="/BidFrame/Maintain">下架</router-link>
+              <router-link to="/BidFrame/Maintain">上架</router-link>
             </el-button>
           </template>
         </el-table-column>
       </el-table>
       <!--分页-->
-      <Pagination></Pagination>
     </div>
+      <Pagination></Pagination>
+
   </div>
 </template>
 
 <script>
-import Pagination from "../Pagination/Pagination";
+// import Pagination from "../Pagination/Pagination";
+import Pagination from '../Child/Pagination'
 export default {
   name: "BidFrame",
   components: {

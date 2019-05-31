@@ -26,41 +26,42 @@
 			</el-row>
 		</el-header>
 		<el-main>
-			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
-				
-				<el-table-column prop="per_name" label="姓名" align="center">
+			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+			 :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
+
+				<el-table-column prop="username" label="姓名" align="center">
 				</el-table-column>
-				<el-table-column prop="per_phone" width="100" label="用户手机" align="center">
+				<el-table-column prop="phone" width="100" label="用户手机" align="center">
 				</el-table-column>
 				<el-table-column prop="act_states.state" label="类型" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" label="操作金额" align="center">
+				<el-table-column prop="money" label="操作金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" width='100' label="操作前可用金额" align="center">
+				<el-table-column prop="smallmoney" width='100' label="操作前可用金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" width='100' label="操作后可用金额" align="center">
+				<el-table-column prop="smallmoney" width='100' label="操作后可用金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" width='100' label="操作前冻结金额" align="center">
+				<el-table-column prop="smallmoney" width='100' label="操作前冻结金额" align="center">
 				</el-table-column>
-				<el-table-column prop="per_number" width='100' label="操作后冻结金额" align="center">
+				<el-table-column prop="maxmoney" width='100' label="操作后冻结金额" align="center">
 				</el-table-column>
-				<el-table-column width='act_states.state'  prop="Remarks" label="备注" align="center">
+				<el-table-column width='100' prop="message" label="备注" align="center">
 				</el-table-column>
-				<el-table-column width='140'  prop="reg_time" label="操作时间" align="center">
+				<el-table-column width='170' prop="moneytime" label="操作时间" align="center">
 				</el-table-column>
-				
+
 			</el-table>
 		</el-main>
 		<el-footer style="margin:20px 0 10px">
 			<el-row>
 				<el-col>
-					<el-pagination background layout="total,prev, pager, next,sizes" :page-sizes="[5,10, 25, 50, 100]" :page-size="pagesize"
-					 :total="total" :current-page="currentPage"  @size-change="handleSizeChange" @current-change="current_change">
+					<el-pagination background layout="total,prev, pager, next,sizes" :page-sizes="[10, 25, 50, 100]" :page-size="pagesize"
+					 :total="total" :current-page="currentPage" @size-change="handleSizeChange" @current-change="current_change">
 					</el-pagination>
 				</el-col>
-					
+
 			</el-row>
-				
+
 		</el-footer>
 	</el-container>
 
@@ -89,37 +90,81 @@
 			return {
 				tableData: [],
 				total: 0, //默认数据总数
-				pagesize: 5, //每页的数据条数
+				pagesize: 10, //每页的数据条数
 				currentPage: 1, //当前页
 				input_phone: '',
 				input_name: '',
 				options: [{
-					value: '选项1',
+					value: 0,
 					label: '全部类型'
 				}, {
-					value: '选项2',
+					value: 1,
 					label: '回收利息'
 				}, {
-					value: '选项3',
+					value: 2,
 					label: '回收本金'
 				}, {
-					value: '选项4',
+					value: 3,
 					label: '利息管理费'
 				}],
-				value: "全部类型"
+				value: 0
 			}
 		},
 		created() {
-			this.total=this.tableData.length;
-			this.Axios.get('http://rap2api.taobao.org/app/mock/177576/user').then(
+			this.total = this.tableData.length;
+			this.Axios.get('http://a17765582437.vicp.io/money').then(
 					(response) => {
-						this.tableData = response.data.datas.data;
+						this.tableData = response.data;
 						this.total = this.tableData.length;
 						// console.log(response.data.datas.data);
 					})
 				.catch(function(error) {
 					console.log(error);
 				});
+		},watch:{
+			input_phone(){
+				this.Axios.get('http://a17765582437.vicp.io/money',{
+					params:{
+						phone:this.input_phone
+					}
+				}).then(
+						(response) => {
+							this.tableData = response.data;
+							this.total = this.tableData.length;
+							// console.log(response);
+						})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},input_name(){
+				this.Axios.get('http://a17765582437.vicp.io/money',{
+					params:{
+						name:this.input_name
+					}
+				}).then(
+						(response) => {
+							this.tableData = response.data;
+							this.total = this.tableData.length;
+							// console.log(response);
+						})
+					.catch(function(error) {
+						console.log(error);
+					});
+			},value(){
+				this.Axios.get('http://a17765582437.vicp.io/money',{
+					params:{
+						usertype:this.value
+					}
+				}).then(
+						(response) => {
+							this.tableData = response.data;
+							this.total = this.tableData.length;
+							// console.log(response);
+						})
+					.catch(function(error) {
+						console.log(error);
+					});
+			}
 		},
 		methods: {
 			getRowClass() {
@@ -142,11 +187,13 @@
 					if (typeof console !== 'undefined') console.log(e, wbout)
 				}
 				return wbout
-			},current_change:function(currentPage){
+			},
+			current_change: function(currentPage) {
 				this.currentPage = currentPage;
-			},handleSizeChange(pagesize){
-				this.pagesize=pagesize;
-				
+			},
+			handleSizeChange(pagesize) {
+				this.pagesize = pagesize;
+
 			}
 		}
 	}

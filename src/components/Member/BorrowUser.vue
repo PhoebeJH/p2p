@@ -1,5 +1,6 @@
 <template>
-  <el-container>
+   <el-container>
+     <h1>BorrowUser</h1>
     <el-header>
       <el-row :gutter="15">
         <el-col :span="3">
@@ -38,38 +39,52 @@
       </el-row>
     </el-header>
     <el-main>
-      <el-table :data="tableData" border style="width: 100%">
+      <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" border style="width: 100%">
         <el-table-column prop="act_number" label="用户编号" width="120"></el-table-column>
         <el-table-column prop="per_name" label="姓名/公司名称" width="120"></el-table-column>
         <el-table-column prop="per_phone" label="手机/用户名" width="120"></el-table-column>
         <el-table-column prop="borrower_email" label="借款人邮箱" width="120"></el-table-column>
         <el-table-column prop="act_state" label="锁定状态" width="300"></el-table-column>
-
         <el-table-column fixed prop="reg_time" label="注册时间" width="150"></el-table-column>
         <el-table-column fixed prop="register" label="最近登录" width="150"></el-table-column>
         <el-table-column fixed prop="user_source" label="用户来源" width="150"></el-table-column>
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small"><router-link to='/BorrowInfor'>查看</router-link></el-button>
+            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
             <el-button type="text" size="small">编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-main>
-    <el-pagination
+    <!-- <el-pagination
       background
       layout="total,sizes,prev, pager, next"
       :page-sizes="[10, 25, 50, 100]"
       :page-size="10"
       :total="1000"
     ></el-pagination>
+    </el-container>-->
+    <el-footer style="margin:20px 0 10px">
+      <el-row>
+        <el-col style="float:right">
+          <el-pagination
+            background
+            layout="total,prev, pager, next,sizes"
+            :page-sizes="[5,10, 25, 50, 100]"
+            :page-size="pagesize"
+            :total="total"
+            :current-page="currentPage"
+            @size-change="handleSizeChange"
+            @current-change="current_change"
+          ></el-pagination>
+        </el-col>
+      </el-row>
+    </el-footer>
   </el-container>
 </template>
 
+
 <script>
-
-
-
 export default {
   name: "BorrowUser",
   components: {},
@@ -78,14 +93,14 @@ export default {
       console.log(row);
     }
   },
- 
 
   data() {
-
     return {
-   
       input1: "",
       input2: "",
+      total: 0, //默认数据总数
+				pagesize: 5, //每页的数据条数
+				currentPage: 1, //当前页
       options: [
         {
           value: "选项1",
@@ -98,27 +113,63 @@ export default {
       ],
       value: "",
 
-    input_phone:'17765929883',
-    tableData:[],
-        
-    }
-  },
-   created(){
-        this.Axios.get('http://rap2api.taobao.org/app/mock/177576/user').then(
-            (res)=>{
-                console.log(res.data);
-                this.tableData=res.data.datas.data;
-                console.log(this.tableData)
-            }
-        ).catch(
-            (error)=>{
-                console.log(error);
-
-            }
-        )
-    },
-}
+      tableData: [
+        {
+          act_number: "201803011123",
+          per_name: "漆小明",
+          per_phone: "18890909500",
+          borrower_email: "123@123.com",
+          act_state: "锁定",
+          reg_time: "2016-02-02",
+          register: "2018-03-01",
+          user_source: "管理员新增"
+        },
+        {
+          act_number: "201803011123",
+          per_name: "漆小明",
+          per_phone: "18890909500",
+          borrower_email: "123@123.com",
+          act_state: "锁定",
+          reg_time: "2016-02-02",
+          register: "2018-03-01",
+          user_source: "管理员新增"
+        },
+        {
+          act_number: "201803011123",
+          per_name: "漆小明",
+          per_phone: "18890909500",
+          borrower_email: "123@123.com",
+          act_state: "锁定",
+          reg_time: "2016-02-02",
+          register: "2018-03-01",
+          user_source: "管理员新增"
+        },
+        {
+          act_number: "201803011123",
+          per_name: "漆小明",
+          per_phone: "18890909500",
+          borrower_email: "123@123.com",
+          act_state: "锁定",
+          reg_time: "2016-02-02",
+          register: "2018-03-01",
+          user_source: "管理员新增"
+        },
+        {
+          act_number: "201803011123",
+          per_name: "漆小明",
+          per_phone: "18890909500",
+          borrower_email: "123@123.com",
+          act_state: "锁定",
+          reg_time: "2016-02-02",
+          register: "2018-03-01",
+          user_source: "管理员新增"
+        }
+      ]
+    };
+  }
+};
 </script>
+
 
 <style scoped>
 </style>
