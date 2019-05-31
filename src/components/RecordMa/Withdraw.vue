@@ -83,21 +83,6 @@ export default {
     DatePicke
     // Atable
   },
-  methods: {
-    handleClick(row) {
-      console.log(row);
-      window.sessionStorage.setItem("rows", JSON.stringify(row));
-      console.log(this.$router);
-      this.$router.push("/WithdrawReview/Reviewdetails");
-    },
-    current_change: function(currentPage) {
-      this.currentPage = currentPage;
-    },
-    handleSizeChange(pagesize) {
-      this.pagesize = pagesize;
-    }
-  },
-
   data() {
     return {
       tableData: [],
@@ -127,6 +112,22 @@ export default {
       ],
     };
   },
+  
+  methods: {
+    handleClick(row) {
+      console.log(row);
+      window.sessionStorage.setItem("rows", JSON.stringify(row));
+      console.log(this.$router);
+      this.$router.push("/WithdrawReview/Reviewdetails");
+    },
+    current_change: function(currentPage) {
+      this.currentPage = currentPage;
+    },
+    handleSizeChange(pagesize) {
+      this.pagesize = pagesize;
+    }
+  },
+
   created() {
     this.Axios.get("http://rap2api.taobao.org/app/mock/177576/borrow")
       .then(res => {

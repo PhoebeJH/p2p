@@ -175,7 +175,7 @@ export default new Router({
       children: [{
         path: 'BorrowInfor',
         name: 'BorrowInfor',
-        component: BorrowInfor,
+        // component: BorrowInfor,
       }]
     },
 
