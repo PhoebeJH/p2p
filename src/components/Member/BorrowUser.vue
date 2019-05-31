@@ -7,7 +7,7 @@
           <div class="grid-content bg-purple">
             <el-input
               size="mini"
-              v-model="input_phone"
+              v-model="input_phone1"
               suffix-icon="el-icon-search"
               placeholder="搜索姓名"
             ></el-input>
@@ -17,7 +17,7 @@
           <div class="grid-content bg-purple">
             <el-input
               size="mini"
-              v-model="input_phone"
+              v-model="input_phone2"
               suffix-icon="el-icon-search"
               placeholder="搜索手机/用户名"
             ></el-input>
@@ -51,7 +51,7 @@
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" type="text" size="small">
-              <router-link to="/BorrowUser/BorrowInfor">查看</router-link>
+              <router-link to="/BorrowUserHome/BorrowUserChild">查看</router-link>
             </el-button>
             <el-button type="text" size="small">编辑</el-button>
           </template>
@@ -75,6 +75,7 @@
         </el-col>
       </el-row>
     </el-footer>
+    
   </el-container>
 </template>
 
@@ -97,6 +98,8 @@ export default {
     return {
       input1: "",
       input2: "",
+      input_phone1:"",
+      input_phone2:"",
       total: 0, //默认数据总数
 				pagesize: 5, //每页的数据条数
 				currentPage: 1, //当前页
@@ -185,4 +188,5 @@ export default {
 <style scoped>
 
 </style>
-        
+
+

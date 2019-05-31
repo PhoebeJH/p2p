@@ -29,9 +29,9 @@
 			<el-table id="moneyTable" stripe style="font-size: 11px;" :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
 			 :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
 
-				<el-table-column prop="username" label="姓名" align="center">
+				<el-table-column prop="personageMemberInfoName" label="姓名" align="center">
 				</el-table-column>
-				<el-table-column prop="phone" width="100" label="用户手机" align="center">
+				<el-table-column prop="personageMemberInfoPhone" width="100" label="用户手机" align="center">
 				</el-table-column>
 				<el-table-column prop="act_states.state" label="类型" align="center">
 				</el-table-column>
@@ -50,6 +50,31 @@
 				<el-table-column width='170' prop="moneytime" label="操作时间" align="center">
 				</el-table-column>
 
+			</el-table>
+			<el-table hidden="true" id="moneyTableExport" stripe style="font-size: 11px;" :data="tableData"
+			 :header-cell-style="getRowClass" :cell-style="{'text-align':'center'}">
+			
+				<el-table-column prop="personageMemberInfoName" label="姓名" align="center">
+				</el-table-column>
+				<el-table-column prop="personageMemberInfoPhone" width="100" label="用户手机" align="center">
+				</el-table-column>
+				<el-table-column prop="act_states.state" label="类型" align="center">
+				</el-table-column>
+				<el-table-column prop="money" label="操作金额" align="center">
+				</el-table-column>
+				<el-table-column prop="smallmoney" width='100' label="操作前可用金额" align="center">
+				</el-table-column>
+				<el-table-column prop="smallmoney" width='100' label="操作后可用金额" align="center">
+				</el-table-column>
+				<el-table-column prop="smallmoney" width='100' label="操作前冻结金额" align="center">
+				</el-table-column>
+				<el-table-column prop="maxmoney" width='100' label="操作后冻结金额" align="center">
+				</el-table-column>
+				<el-table-column width='100' prop="message" label="备注" align="center">
+				</el-table-column>
+				<el-table-column width='170' prop="moneytime" label="操作时间" align="center">
+				</el-table-column>
+			
 			</el-table>
 		</el-main>
 		<el-footer style="margin:20px 0 10px">
@@ -112,9 +137,9 @@
 		},
 		created() {
 			this.total = this.tableData.length;
-			this.Axios.get('http://a17765582437.vicp.io/money').then(
+			this.Axios.get('http://172.16.6.64:8080/member/funds?type=1').then(
 					(response) => {
-						this.tableData = response.data;
+						this.tableData = response.data.data;
 						this.total = this.tableData.length;
 						// console.log(response.data.datas.data);
 					})
@@ -123,7 +148,7 @@
 				});
 		},watch:{
 			input_phone(){
-				this.Axios.get('http://a17765582437.vicp.io/money',{
+				this.Axios.get('http://172.16.6.64:8080/member/funds?type=1',{
 					params:{
 						phone:this.input_phone
 					}
@@ -137,7 +162,7 @@
 						console.log(error);
 					});
 			},input_name(){
-				this.Axios.get('http://a17765582437.vicp.io/money',{
+				this.Axios.get('http://172.16.6.64:8080/member/funds?type=1',{
 					params:{
 						name:this.input_name
 					}
@@ -151,7 +176,7 @@
 						console.log(error);
 					});
 			},value(){
-				this.Axios.get('http://a17765582437.vicp.io/money',{
+				this.Axios.get('http://172.16.6.64:8080/member/funds?type=1',{
 					params:{
 						usertype:this.value
 					}
@@ -172,7 +197,7 @@
 			},
 			exportExcel() {
 				/* generate workbook object from table */
-				var wb = XLSX.utils.table_to_book(document.querySelector('#moneyTable'))
+				var wb = XLSX.utils.table_to_book(document.querySelector('#moneyTableExport'))
 				/* get binary string as output */
 				var wbout = XLSX.write(wb, {
 					bookType: 'xlsx',
