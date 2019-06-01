@@ -44,16 +44,17 @@
           </template>
         </el-table-column>
       </el-table>
+      <Pagination></Pagination>
       <!--分页-->
     </div>
-      <Pagination></Pagination>
 
   </div>
 </template>
 
 <script>
-// import Pagination from "../Pagination/Pagination";
+
 import Pagination from '../Child/Pagination'
+
 export default {
   name: "BidFrame",
   components: {
@@ -87,8 +88,8 @@ export default {
 <style scoped>
 /* table */
 .wrapper {
-  width: 90%;
-  padding-top: 20px;
+  width: 100%;
+  /* padding-top: 20px; */
   margin: 0 auto;
 }
 .wrapper-content {
@@ -96,14 +97,24 @@ export default {
   margin: 0 auto;
 }
 /* title */
-.title {
-  margin-left: 15px;
+.el-table{
+  margin-top: 20px;
+}
+.title{
+  width: 100%;
+  height: 40px;
+  background-color: #006d75;
+}
+h2{
+  color: #fff;
+  line-height: 40px;
+  margin-left:10px;
 }
 /* search */
 .searchWrap {
   display: flex;
-  margin-bottom: 30px;
-  margin-left: 15px;
+  /* margin-bottom: 30px; */
+  /* margin-left: 15px; */
 }
 .searchWrap > div {
   flex-basis: 30%;
