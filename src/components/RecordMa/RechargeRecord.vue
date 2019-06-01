@@ -1,6 +1,8 @@
 <template>
   <div id="recharge_app">
-    <div class="title"><h2>充值记录</h2></div>
+    <div class="title">
+      <h2>充值记录</h2>
+    </div>
     <div id="nav">
       <!-- 搜索框 -->
       <Search/>
@@ -11,17 +13,14 @@
       <!-- 日期选择器 -->
       <DatePicke/>
       <!-- 导出按钮 el-icon-download -->
-      <el-row
-        style="margin-right: 0; margin-top: 15px; display: inline-block;"
-      >
-        <el-button plain>朴素按钮</el-button>
+      <el-row style="margin-right: 0; margin-top: 15px; display: inline-block;">
+        <el-button plain @click="exportExcel">导出</el-button>
       </el-row>
     </div>
 
     <!-- 表格 -->
-    <div class="wrapper" style="padding-top: 30px;">
+    <div class="wrapper" style="padding-top: 30px;" id="RechargeRecord">
       <div class="wrapper-content">
-        
         <el-table
           :data="tableData"
           stripe
@@ -54,11 +53,14 @@
     </div>
 
     <!-- 分页 -->
-    <Pagination/>
+    <Pagination :total="total" :pagesize="pagesize" :currentPage="currentPage" :current_change="current_change" :handleSizeChange="handleSizeChange" />
   </div>
 </template>
 
 <script>
+import FileSaver from "file-saver";
+import XLSX from "xlsx";
+
 import Search from "./Subassembly/Search.vue";
 import ReMode from "./Subassembly/ReMode";
 import Status from "./Subassembly/Status";
@@ -76,15 +78,13 @@ export default {
     DatePicke
     // Atable
   },
-  methods: {
-    handleClick(row) {
-      console.log(row);
-    }
-  },
 
   data() {
     return {
       tableData: [],
+      currentPage: 1,
+      pagesize: 5,
+      total: 0,
       tableDatas: [
         {
           reId: "2017040031",
@@ -104,13 +104,50 @@ export default {
       ]
     };
   },
+
+  methods: {
+    handleClick(row) {
+      console.log(row);
+    },
+    exportExcel() {
+      /* generate workbook object from table */
+      var wb = XLSX.utils.table_to_book(
+        document.querySelector("#RechargeRecord")
+      );
+      /* get binary string as output */
+      var wbout = XLSX.write(wb, {
+        bookType: "xlsx",
+        bookSST: true,
+        type: "array"
+      });
+      try {
+        FileSaver.saveAs(
+          new Blob([wbout], {
+            type: "application/octet-stream"
+          }),
+          "sheetjs.xlsx"
+        );
+      } catch (e) {
+        if (typeof console !== "undefined") console.log(e, wbout);
+      }
+      return wbout;
+    },
+    current_change: function(currentPage) {
+      this.currentPage = currentPage;
+    },
+    handleSizeChange(pagesize) {
+      this.pagesize = pagesize;
+    }
+  },
+
   created() {
     this.Axios.get("http://rap2api.taobao.org/app/mock/177576/borrow")
       .then(res => {
         this.tableData = res.data.datas.data;
+        this.total = this.tableData.length;
       })
       .catch(err => {
-          console.log(err);
+        console.log(err);
       });
   }
 };
@@ -121,9 +158,8 @@ export default {
   margin: 0 auto;
   padding: 0;
   position: relative;
-  /* width: 90%; */
 }
-#recharge_app>#nav {
+#recharge_app > #nav {
   width: 100%;
 }
 </style>

@@ -1,53 +1,47 @@
 <template>
   <div id="app">
-    <NavLeft/>
-    <Content/>
+    <router-view></router-view>
   </div>
 </template>
 
 
 <script>
-import NavLeft from "./components/Nav/NavLeft.vue";
-import Content from "./components/Content.vue";
 
-export default {
-  name: "App",
-  components: {
-    NavLeft,
-    Content
+  export default {
+    name: 'App',
+    components:{
+    }
   }
 };
 </script>
 
 
 <style>
-@import "./assets/css/public.css";
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "微软雅黑";
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
-ul {
-  list-style: none;
-}
-body {
-  background-color: #f8f8f8;
-}
-#app {
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-}
-/* iconfont字体 */
-@font-face {
-  font-family: iconfont;
-  src: url("./assets/font/iconfont.ttf");
-}
-
+  @import "./assets/css/public.css";
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑"
+  }
+  a{
+    color: inherit;
+    text-decoration: none;
+  }
+  ul{
+    list-style: none;
+  }
+  body{
+    background-color: #f8f8f8;
+  }
+  #app{
+    width: 100%;
+  }
+  /* iconfont字体 */
+  @font-face {
+    font-family: iconfont;
+    src: url('./assets/font/iconfont.ttf');
+  }
+  
 /* ICONFONT */
 .fullScreen::before {
   font-family: iconfont;
