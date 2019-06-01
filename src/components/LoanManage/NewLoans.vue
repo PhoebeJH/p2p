@@ -1,11 +1,13 @@
 <template>
   <div class="Loans">
     <div class="title">
-      <h2>借款审核详情</h2>
+      <h2>新增借款</h2>
     </div>
     <div class="content">
-      <div class="from1">
-        <h3>基本信息</h3>
+      <div class="EssentialInfo">
+        <div class="EssentialTitle">
+          <h4>基本信息</h4>
+        </div>
         <el-form ref="form" :model="form" label-width="150px">
           <!-- *标名： -->
           <el-form-item label="*标名：">
@@ -88,8 +90,10 @@
         </el-form>
       </div>
       <el-divider></el-divider>
-      <div class="from2">
-        <h4>担保信息</h4>
+      <div class="GuaranteeInfo">
+        <div class="GuaranteeTitle">
+          <h4>担保信息</h4>
+        </div>
         <el-form ref="form" :model="form" label-width="150px">
           <!-- 是否担保： -->
           <el-form-item label="是否担保：">
@@ -126,8 +130,9 @@
         </el-form>
       </div>
       <el-divider></el-divider>
-      <div class="from3">
+      <div class="BorrowingInfo">
         <h4>借款资料</h4>
+        <div class="BorrowingInfo"></div>
         <el-form ref="form" :model="form" label-width="150px">
           <!-- *上传借款资料: -->
           <el-form-item label="*上传借款资料：">
@@ -209,6 +214,11 @@ h2 {
   width: 100%;
   margin: 0 auto;
 }
+.EssentialTitle,
+.GuaranteeTitle,
+.BorrowingInfo {
+  padding: 20px 0 10px 10px;
+}
 .el-form-item {
   display: inline-block;
   width: 49%;
@@ -216,6 +226,10 @@ h2 {
 .el-select,
 .el-input {
   width: 70%;
+}
+select,
+input {
+  width: 100%;
 }
 /* 按钮 */
 .el-row {
