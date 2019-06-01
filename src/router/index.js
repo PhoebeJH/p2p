@@ -71,12 +71,13 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: '',
+      path: '/',
       name: 'Loged',
+      redirect: '/Home',
       component: Loged,
       children:[
         {
-          path: '',
+          path: '/Home',
           name: 'Home',
           component: Home,
         },
@@ -96,9 +97,10 @@ export default new Router({
         {
           path: '/LoanAuid',
           name: 'LoanAuid',
+          redirect:'/Auid',
           component: LoanAuid,
           children: [{
-            path: "/",
+            path: "/Auid",
             name: "Auid",
             component: Auid,
 
@@ -112,9 +114,10 @@ export default new Router({
         {
           path: '/BidFrame',
           name: 'BidFrame',
+          redirect: '/BidFrameHome',
           component: BidFrame,
           children: [{
-              path: '/',
+              path: '/BidFrameHome',
               name: 'BidFrameHome',
               component: BidFrameHome,
             },
@@ -140,9 +143,10 @@ export default new Router({
         //提现审核页面路由
         {
           path: '/WithdrawReview',
+          redirect: '/Withdraw',
           component: WithdrawReview,
           children: [{
-              path: '',
+              path: '/Withdraw',
               name: 'Withdraw',
               component: Withdraw,
             },
@@ -162,10 +166,11 @@ export default new Router({
         //满标复审路由
         {
           path: '/TenderFullReview',
-          // name: 'TenderFullReview',
+          name: 'TenderFullReview',
+          redirect: '/TenderFullReviewHome',
           component: TenderFullReview,
           children: [{
-            path: '/',
+            path: '/TenderFullReviewHome',
             name: 'TenderFullReviewHome',
             component: TenderFullReviewHome,
           }]
@@ -192,10 +197,11 @@ export default new Router({
 
         {
           path: '/InvUser',
-          // name: 'InvUser',
+          name: 'InvUser',
+          redirect: '/InvUserChildren1',
           component: InvUser,
           children: [{
-              path: '',
+              path: '/InvUserChildren1',
               name: 'InvUserChildren1',
               component: InvUserChildren1,
             }, {
@@ -235,7 +241,7 @@ export default new Router({
       ]
     },
     {
-      path: 'Login',
+      path: '/Login',
       name: 'Login',
       component: Login,
     }

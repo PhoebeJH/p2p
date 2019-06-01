@@ -10,7 +10,7 @@
 }
 .Home .homeNumberShow {
   margin: auto;
-  padding: 0 0 20px;
+  padding: 20px 0;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
