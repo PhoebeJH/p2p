@@ -117,55 +117,9 @@ export default {
       input_phone: "17765929883",
       tableData: [
         {
-          act_number: "201803011123",
-          per_name: "漆小明",
-          per_phone: "18890909500",
-          borrower_email: "123@123.com",
-          act_state: "锁定",
-          reg_time: "2016-02-02",
-          register: "2018-03-01",
-          user_source: "管理员新增"
+
         },
-        {
-          act_number: "201803011123",
-          per_name: "漆小明",
-          per_phone: "18890909500",
-          borrower_email: "123@123.com",
-          act_state: "锁定",
-          reg_time: "2016-02-02",
-          register: "2018-03-01",
-          user_source: "管理员新增"
-        },
-        {
-          act_number: "201803011123",
-          per_name: "漆小明",
-          per_phone: "18890909500",
-          borrower_email: "123@123.com",
-          act_state: "锁定",
-          reg_time: "2016-02-02",
-          register: "2018-03-01",
-          user_source: "管理员新增"
-        },
-        {
-          act_number: "201803011123",
-          per_name: "漆小明",
-          per_phone: "18890909500",
-          borrower_email: "123@123.com",
-          act_state: "锁定",
-          reg_time: "2016-02-02",
-          register: "2018-03-01",
-          user_source: "管理员新增"
-        },
-        {
-          act_number: "201803011123",
-          per_name: "漆小明",
-          per_phone: "18890909500",
-          borrower_email: "123@123.com",
-          act_state: "锁定",
-          reg_time: "2016-02-02",
-          register: "2018-03-01",
-          user_source: "管理员新增"
-        }
+       
       ]
     };
   },

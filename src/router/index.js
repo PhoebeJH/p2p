@@ -72,8 +72,8 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect:'/Home',
       name: 'Loged',
-      redirect: '/Home',
       component: Loged,
       children:[
         {
@@ -113,6 +113,7 @@ export default new Router({
         //标的上架
         {
           path: '/BidFrame',
+          redirect:'/BidFrameHome',
           name: 'BidFrame',
           redirect: '/BidFrameHome',
           component: BidFrame,
@@ -181,15 +182,27 @@ export default new Router({
           name: 'AddUser',
           component: AddUser,
         },
-        //引入会员管理/借款用户管理
+        //引git会员管理/借款用户管理
         {
-          path: '/BorrowUser',
-          name: 'BorrowUser',
-          component: BorrowUser,
-          children: [{
-            path: 'BorrowInfor',
-            name: 'BorrowInfor',
-            // component: BorrowInfor,
+          path: '/BorrowUserHome',
+          name: 'BorrowUserHome',
+          component: BorrowUserHome,
+          children: [
+            {
+              path: '',
+              name: 'BorrowUser',
+              component: BorrowUser,
+            },
+            {
+              path: '',
+              name: 'BorrowUser',
+              component: BorrowUser,
+            },
+
+            {
+            path: 'BorrowUserChild',
+            name: 'BorrowUserChild',
+            component: BorrowUserChild,
           }]
         },
 
