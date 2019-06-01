@@ -8,6 +8,8 @@ const NewLoans = () => import('@/components/LoanManage/NewLoans.vue');
 const NewStence = () => import('@/components/LoanManage/NewStence.vue');
 //引入借款审核组件
 const LoanAuid = () => import('@/components/LoanManage/LoanAuid.vue');
+const Auid = () => import('@/components/LoanManage/AuidChild/Auid.vue');
+const Examine = () => import('@/components/LoanManage/AuidChild/Examine.vue');
 //引入标的上架组件
 const BidFrame = () => import('@/components/LoanManage/BidFrame.vue');
 const BidFrameHome = () => import('@/components/LoanManage/MaintainChild/BidFrameHome.vue');
@@ -18,9 +20,9 @@ const RechargeRecord = () => import('@/components/RecordMa/RechargeRecord.vue');
 //引入提现记录组件
 const WithdrawRecord = () => import('@/components/RecordMa/WithdrawRecord.vue');
 //引入提现审核组件
-const WithdrawReview = () => import('@/components/RecordMa/Withdraw.vue');
+const Withdraw = () => import('@/components/RecordMa/Withdraw.vue');
 //引入提现审核组件-表单子组件
-const Withdraw = () => import('@/components/RecordMa/WithdrawReview.vue');
+const WithdrawReview = () => import('@/components/RecordMa/WithdrawReview.vue');
 //引入提现审核详情组件
 const Reviewdetails = () => import('@/components/RecordMa/Reviewdetails.vue');
 //进行中标的管理组件
@@ -64,37 +66,45 @@ Vue.use(Router);
 
 export default new Router({
   mode: "history",
-  routes: [
-    {
+  routes: [{
       path: '',
       name: 'Home',
       component: Home
     },
     //新增借款页面路由
     {
-      path:'/NewLoans',
-      name:'NewLoans',
-      component:NewLoans
+      path: '/NewLoans',
+      name: 'NewLoans',
+      component: NewLoans
     },
     //新标维护页面路由
     {
-      path:'/NewStence',
-      name:'NewStence',
-      component:NewStence
+      path: '/NewStence',
+      name: 'NewStence',
+      component: NewStence
     },
     //借款审核页面路由
     {
-      path:'/LoanAuid',
-      name:'LoanAuid',
-      component:LoanAuid
+      path: '/LoanAuid',
+      name: 'LoanAuid',
+      component: LoanAuid,
+      children: [{
+        path: "/",
+        name: "Auid",
+        component: Auid,
+
+      }, {
+        path: "Examine",
+        name: "Examine",
+        component: Examine,
+      }]
     },
     //标的上架
     {
-      path:'/BidFrame',
-      name:'BidFrame',
-      component:BidFrame,
-      children:[
-        {
+      path: '/BidFrame',
+      name: 'BidFrame',
+      component: BidFrame,
+      children: [{
           path: '/',
           name: 'BidFrameHome',
           component: BidFrameHome,
@@ -121,10 +131,8 @@ export default new Router({
     //提现审核页面路由
     {
       path: '/WithdrawReview',
-      name: 'WithdrawReview',
       component: WithdrawReview,
-      children: [
-        {
+      children: [{
           path: '',
           name: 'Withdraw',
           component: Withdraw,
@@ -145,15 +153,13 @@ export default new Router({
     //满标复审路由
     {
       path: '/TenderFullReview',
-      name: 'TenderFullReview',
+      // name: 'TenderFullReview',
       component: TenderFullReview,
-      children: [
-        {
-          path: '/',
-          name: 'TenderFullReviewHome',
-          component: TenderFullReviewHome,
-        }
-      ]
+      children: [{
+        path: '/',
+        name: 'TenderFullReviewHome',
+        component: TenderFullReviewHome,
+      }]
     },
     //引入会员管理/新增借款用户
     {
@@ -163,32 +169,23 @@ export default new Router({
     },
     //引入会员管理/借款用户管理
     {
-      path: '/BorrowUserHome',
-      name: 'BorrowUserHome',
-      component: BorrowUserHome,
-      children:[
-        {
-          path: '/',
-          name: 'BorrowUser',
-          component: BorrowUser,
-        },
-        {
-          path: 'BorrowUserChild',
-          name: 'BorrowUserChild',
-          component: BorrowUserChild,
-        }
-        
-      ]
+      path: '/BorrowUser',
+      name: 'BorrowUser',
+      component: BorrowUser,
+      children: [{
+        path: 'BorrowInfor',
+        name: 'BorrowInfor',
+        // component: BorrowInfor,
+      }]
     },
 
     //引入会员管理/投资用户管理+子路由修改用户管理
 
     {
       path: '/InvUser',
-      name: 'InvUser',
+      // name: 'InvUser',
       component: InvUser,
-      children: [
-        {
+      children: [{
           path: '',
           name: 'InvUserChildren1',
           component: InvUserChildren1,

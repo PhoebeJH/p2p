@@ -1,12 +1,12 @@
 <template>
   <div id="details_app">
     <div class="tilte">
-      <h2>上架维护</h2>
+      <h2>提现审核详情</h2>
     </div>
     <div class="from1">
       <div class="title1">
         <h4>
-          基本信息
+          提现信息
           <span @click="isShow = !isShow" class="show">
             收起
             <i class="el-icon-arrow-down el-icon--right"></i>
@@ -14,41 +14,35 @@
         </h4>
       </div>
       <el-form ref="from1" :model="from1" label-width="150px" v-if="isShow">
-        <el-form-item label="借款名称：">
-          <span>上海xx公司</span>
+        <el-form-item label="提现单号：">
+          <span>1231231</span>
         </el-form-item>
-        <el-form-item label="风险等级：">
-          <span>较低等级</span>
+        <el-form-item label="用户手机号码：">
+          <span>13800000001</span>
         </el-form-item>
-        <el-form-item label="借款方：">
-          <span>上海x x x公司(13599090001)</span>
+        <el-form-item label="真实姓名：">
+          <span>陈一二</span>
         </el-form-item>
-        <el-form-item label="借款总金额：">
-          <span>10000元</span>
+        <el-form-item label="用户类型：">
+          <span>理财用户</span>
         </el-form-item>
-        <el-form-item label="年利率：">
-          <span>12%</span>
+        <el-form-item label="提现银行：">
+          <span>招商银行</span>
         </el-form-item>
-        <el-form-item label="资金用途：">
-          <span>供应链周转</span>
+        <el-form-item label="银行账号：">
+          <span>473821747823782</span>
         </el-form-item>
-        <el-form-item label="借款期限：">
-          <span>30天</span>
+        <el-form-item label="提现金额：">
+          <span>¥100.00</span>
         </el-form-item>
-        <el-form-item label="起息方式：">
-          <span>成立计息</span>
+        <el-form-item label="提现手续费：">
+          <span>¥2.00(2%)</span>
         </el-form-item>
-        <el-form-item label="还款方式：">
-          <span>一次性还款</span>
+        <el-form-item label="预计到账金额：">
+          <span>¥98.00</span>
         </el-form-item>
-        <el-form-item label="借款管理费：">
-          <span>0%</span>
-        </el-form-item>
-        <el-form-item label="利息管理费：">
-          <span>0%</span>
-        </el-form-item>
-        <el-form-item label="逾期罚息利率：">
-          <span>0%</span>
+        <el-form-item label="提交时间：">
+          <span>2015-02-10  10:00:00</span>
         </el-form-item>
       </el-form>
     </div>
@@ -56,7 +50,7 @@
     <div class="from2">
       <div class="title1">
         <h4>
-          担保信息
+          用户资产
           <span @click="isShow1 = !isShow1" class="show">
             收起
             <i class="el-icon-arrow-down el-icon--right"></i>
@@ -64,12 +58,73 @@
         </h4>
       </div>
       <el-form ref="from1" :model="from1" label-width="150px" v-if="isShow1">
-        <el-form-item label="逾期罚息利率：">
-          <span>0%</span>
+        <el-form-item label="总资产：">
+          <span>¥12312.00</span>
+        </el-form-item>
+        <el-form-item label="冻结资金：">
+          <span>¥0.00</span>
+        </el-form-item>
+        <el-form-item label="待收利息：">
+          <span>¥12.00</span>
+        </el-form-item>
+        <el-form-item label="可提现金额：">
+          <span>¥120.00</span>
         </el-form-item>
       </el-form>
     </div>
-    <router-view></router-view>
+
+    <div class="from2">
+      <div class="title1">
+        <h4>
+          最近提现记录
+          <span @click="isShow1 = !isShow1" class="show">
+            收起
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+        </h4>
+      </div>
+      <el-form ref="from1" :model="from1" label-width="150px" v-if="isShow1">
+        <el-form-item label="总资产：">
+          <span>¥12312.00</span>
+        </el-form-item>
+        <el-form-item label="冻结资金：">
+          <span>¥0.00</span>
+        </el-form-item>
+        <el-form-item label="待收利息：">
+          <span>¥12.00</span>
+        </el-form-item>
+        <el-form-item label="可提现金额：">
+          <span>¥120.00</span>
+        </el-form-item>
+      </el-form>
+    </div>
+
+    <div class="from2">
+      <div class="title1">
+        <h4>
+          审核
+          <span @click="isShow1 = !isShow1" class="show">
+            收起
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+        </h4>
+      </div>
+      <el-form ref="from1" :model="from1" label-width="150px" v-if="isShow1">
+        <el-form-item label="总资产：">
+          <span>¥12312.00</span>
+        </el-form-item>
+        <el-form-item label="冻结资金：">
+          <span>¥0.00</span>
+        </el-form-item>
+        <el-form-item label="待收利息：">
+          <span>¥12.00</span>
+        </el-form-item>
+        <el-form-item label="可提现金额：">
+          <span>¥120.00</span>
+        </el-form-item>
+      </el-form>
+    </div>
+
   </div>
 </template>
 

@@ -10,12 +10,7 @@
         :header-cell-style="{color:'#333',backgroundColor:'#EBEEF5'}"
         style="width: 100%"
       >
-        <el-table-column
-          fixed
-          prop="loan_id"
-          label="编号"
-          width="120"
-        ></el-table-column>
+        <el-table-column fixed prop="loan_id" label="编号" width="120"></el-table-column>
         <el-table-column prop="loan_use" label="借款方" width="120"></el-table-column>
         <el-table-column prop="province" label="借款人手机" width="120"></el-table-column>
         <el-table-column prop="city" label="标名" width="120"></el-table-column>
@@ -29,7 +24,9 @@
         <el-table-column prop="state" label="状态" width="120"></el-table-column>
         <el-table-column fixed="right" label="操作" width="140">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="button" size="small">编辑</el-button>
+            <el-button @click="handleClick(scope.row)" type="button" size="small">
+              <router-link :to="{name:'Examine'}">编辑</router-link>
+            </el-button>
             <el-divider direction="vertical"></el-divider>
             <el-button type="text" size="small">作废</el-button>
           </template>
