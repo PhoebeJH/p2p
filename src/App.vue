@@ -1,21 +1,15 @@
 <template>
   <div id="app">
-    <NavLeft/>
-    <Content/>
+    <router-view></router-view>
   </div>
 </template>
 
 
 <script>
-	
-  import NavLeft from "./components/Nav/NavLeft.vue"
-  import Content from "./components/Content.vue"
 
   export default {
     name: 'App',
     components:{
-      NavLeft,
-      Content,
     }
   }
 </script>
@@ -40,8 +34,6 @@
   }
   #app{
     width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
   }
   /* iconfont字体 */
   @font-face {

@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+
+const Login = () => import('@/components/Login/Login.vue');
+const Loged = () => import('@/components/Loged.vue');
 const Home = () => import('@/components/Home/Home.vue');
 //引入新增借款组件
 const NewLoans = () => import('@/components/LoanManage/NewLoans.vue');
@@ -66,162 +69,175 @@ Vue.use(Router);
 
 export default new Router({
   mode: "history",
-  routes: [{
+  routes: [
+    {
       path: '',
-      name: 'Home',
-      component: Home
-    },
-    //新增借款页面路由
-    {
-      path: '/NewLoans',
-      name: 'NewLoans',
-      component: NewLoans
-    },
-    //新标维护页面路由
-    {
-      path: '/NewStence',
-      name: 'NewStence',
-      component: NewStence
-    },
-    //借款审核页面路由
-    {
-      path: '/LoanAuid',
-      name: 'LoanAuid',
-      component: LoanAuid,
-      children: [{
-        path: "/",
-        name: "Auid",
-        component: Auid,
-
-      }, {
-        path: "Examine",
-        name: "Examine",
-        component: Examine,
-      }]
-    },
-    //标的上架
-    {
-      path: '/BidFrame',
-      name: 'BidFrame',
-      component: BidFrame,
-      children: [{
-          path: '/',
-          name: 'BidFrameHome',
-          component: BidFrameHome,
-        },
+      name: 'Loged',
+      component: Loged,
+      children:[
         {
-          path: 'Maintain',
-          name: 'Maintain',
-          component: Maintain,
-        }
-      ]
-    },
-    //充值记录页面路由
-    {
-      path: '/RechargeRecord',
-      name: 'RechargeRecord',
-      component: RechargeRecord,
-    },
-    //提现记录页面路由
-    {
-      path: '/WithdrawRecord',
-      name: 'WithdrawRecord',
-      component: WithdrawRecord,
-    },
-    //提现审核页面路由
-    {
-      path: '/WithdrawReview',
-      component: WithdrawReview,
-      children: [{
           path: '',
-          name: 'Withdraw',
-          component: Withdraw,
+          name: 'Home',
+          component: Home,
         },
-        { // 提现审核详情子路由
-          path: 'Reviewdetails',
-          name: 'Reviewdetails',
-          component: Reviewdetails,
-        }
-      ]
-    },
-    //进行中标的管理路由
-    {
-      path: '/TenderingManage',
-      name: 'TenderingManage',
-      component: TenderingManage,
-    },
-    //满标复审路由
-    {
-      path: '/TenderFullReview',
-      // name: 'TenderFullReview',
-      component: TenderFullReview,
-      children: [{
-        path: '/',
-        name: 'TenderFullReviewHome',
-        component: TenderFullReviewHome,
-      }]
-    },
-    //引入会员管理/新增借款用户
-    {
-      path: '/AddUser',
-      name: 'AddUser',
-      component: AddUser,
-    },
-    //引入会员管理/借款用户管理
-    {
-      path: '/BorrowUser',
-      name: 'BorrowUser',
-      component: BorrowUser,
-      children: [{
-        path: 'BorrowInfor',
-        name: 'BorrowInfor',
-        // component: BorrowInfor,
-      }]
-    },
-
-    //引入会员管理/投资用户管理+子路由修改用户管理
-
-    {
-      path: '/InvUser',
-      // name: 'InvUser',
-      component: InvUser,
-      children: [{
-          path: '',
-          name: 'InvUserChildren1',
-          component: InvUserChildren1,
-        }, {
-          path: '/inv_update',
-          name: 'inv_update',
-          component: inv_update,
-        },
+        //新增借款页面路由
         {
-          path: '/inv_pwd',
-          name: 'inv_pwd',
-          component: inv_pwd
+          path: '/NewLoans',
+          name: 'NewLoans',
+          component: NewLoans
+        },
+        //新标维护页面路由
+        {
+          path: '/NewStence',
+          name: 'NewStence',
+          component: NewStence
+        },
+        //借款审核页面路由
+        {
+          path: '/LoanAuid',
+          name: 'LoanAuid',
+          component: LoanAuid,
+          children: [{
+            path: "/",
+            name: "Auid",
+            component: Auid,
 
+          }, {
+            path: "Examine",
+            name: "Examine",
+            component: Examine,
+          }]
+        },
+        //标的上架
+        {
+          path: '/BidFrame',
+          name: 'BidFrame',
+          component: BidFrame,
+          children: [{
+              path: '/',
+              name: 'BidFrameHome',
+              component: BidFrameHome,
+            },
+            {
+              path: 'Maintain',
+              name: 'Maintain',
+              component: Maintain,
+            }
+          ]
+        },
+        //充值记录页面路由
+        {
+          path: '/RechargeRecord',
+          name: 'RechargeRecord',
+          component: RechargeRecord,
+        },
+        //提现记录页面路由
+        {
+          path: '/WithdrawRecord',
+          name: 'WithdrawRecord',
+          component: WithdrawRecord,
+        },
+        //提现审核页面路由
+        {
+          path: '/WithdrawReview',
+          component: WithdrawReview,
+          children: [{
+              path: '',
+              name: 'Withdraw',
+              component: Withdraw,
+            },
+            { // 提现审核详情子路由
+              path: 'Reviewdetails',
+              name: 'Reviewdetails',
+              component: Reviewdetails,
+            }
+          ]
+        },
+        //进行中标的管理路由
+        {
+          path: '/TenderingManage',
+          name: 'TenderingManage',
+          component: TenderingManage,
+        },
+        //满标复审路由
+        {
+          path: '/TenderFullReview',
+          // name: 'TenderFullReview',
+          component: TenderFullReview,
+          children: [{
+            path: '/',
+            name: 'TenderFullReviewHome',
+            component: TenderFullReviewHome,
+          }]
+        },
+        //引入会员管理/新增借款用户
+        {
+          path: '/AddUser',
+          name: 'AddUser',
+          component: AddUser,
+        },
+        //引入会员管理/借款用户管理
+        {
+          path: '/BorrowUser',
+          name: 'BorrowUser',
+          component: BorrowUser,
+          children: [{
+            path: 'BorrowInfor',
+            name: 'BorrowInfor',
+            // component: BorrowInfor,
+          }]
+        },
+
+        //引入会员管理/投资用户管理+子路由修改用户管理
+
+        {
+          path: '/InvUser',
+          // name: 'InvUser',
+          component: InvUser,
+          children: [{
+              path: '',
+              name: 'InvUserChildren1',
+              component: InvUserChildren1,
+            }, {
+              path: '/inv_update',
+              name: 'inv_update',
+              component: inv_update,
+            },
+            {
+              path: '/inv_pwd',
+              name: 'inv_pwd',
+              component: inv_pwd
+
+            }
+          ]
+        },
+
+
+        //引入用户资金
+        {
+          path: '/UserCapital',
+          name: "UserCapital",
+          component: UserCapital
+        },
+
+        //引入资金日志
+        {
+          path: '/CapitalJournal',
+          name: "CapitalJournal",
+          component: CapitalJournal
+        },
+        //引入平台资金
+        {
+          path: '/Platformfunds',
+          name: "Platformfunds",
+          component: Platformfunds
         }
       ]
     },
-
-
-    //引入用户资金
     {
-      path: '/UserCapital',
-      name: "UserCapital",
-      component: UserCapital
-    },
-
-    //引入资金日志
-    {
-      path: '/CapitalJournal',
-      name: "CapitalJournal",
-      component: CapitalJournal
-    },
-    //引入平台资金
-    {
-      path: '/Platformfunds',
-      name: "Platformfunds",
-      component: Platformfunds
+      path: 'Login',
+      name: 'Login',
+      component: Login,
     }
   ]
 })
