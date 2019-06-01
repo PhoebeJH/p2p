@@ -1,14 +1,16 @@
 <template>
-  <el-button :type="btnType" @click="fun">{{btnText}}</el-button>
+  <el-button :type="btnType" :class="iconClass" @click="fun">{{btnText}}</el-button>
 </template>
 
 <script>
     export default {
         name: "Button",
-      props:["btnType","btnText","funName"],
+      props:["btnType","btnText","funName","iconClass"],
       methods:{
         fun(){
+          if(this.funName != undefined){
             this.$emit(this.funName);
+          }
         }
       },
       data(){

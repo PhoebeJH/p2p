@@ -31,6 +31,12 @@ const TenderingManage = () => import('@/components/LoanManage/TenderingManage.vu
 const TenderFullReview = () => import('@/components/LoanManage/TenderFullReview.vue');
 const TenderFullReviewHome = () => import('@/components/LoanManage/TenderFullReviewChildren/TenderFullReviewHome.vue');
 const TenderFullReviewRedo = () => import('@/components/LoanManage/TenderFullReviewChildren/TenderFullReviewRedo.vue');
+//所有借款标组件
+const TenderAll = () => import('@/components/LoanManage/TenderAll.vue');
+//投资记录组件
+const InvestRecord = () => import('@/components/LoanManage/InvestRecord.vue');
+//借款标分类组件
+const TenderCategory = () => import('@/components/LoanManage/TenderCategory.vue');
 //引入会员管理/新增借款用户
 const AddUser = () => import('@/components/Member/AddUser.vue');
 //引入会员管理/借款用户管理子
@@ -169,6 +175,24 @@ export default new Router({
         }
       ]
     },
+    //所有借款标路由
+    {
+      path: '/TenderAll',
+      name: 'TenderAll',
+      component: TenderAll,
+    },
+    //投资记录路由
+    {
+      path: '/InvestRecord',
+      name: 'InvestRecord',
+      component: InvestRecord,
+    },
+    //借款标分类路由
+    {
+      path: '/TenderCategory',
+      name: 'TenderCategory',
+      component: TenderCategory,
+    },
     //引入会员管理/新增借款用户
     {
       path: '/AddUser',
@@ -184,7 +208,7 @@ export default new Router({
       children: [{
         path: 'BorrowInfor',
         name: 'BorrowInfor',
-        component: BorrowInfor,
+        // component: BorrowInfor,
       }]
     },
 

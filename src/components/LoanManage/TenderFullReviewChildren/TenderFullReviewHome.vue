@@ -1,11 +1,11 @@
 <template>
   <div id="review-home">
-    <h1>满标复审</h1>
+    <h1 style="margin-bottom: 20px;">满标复审</h1>
 
     <div class="searchWrap">
       <div>
         <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select">
-          <el-select v-model="searchSel" slot="prepend" placeholder="请选择">
+          <el-select v-model="searchSel" slot="prepend" placeholder="请选择" @change="searchSelectChange">
             <el-option
               v-for="item in searchOpt"
               :key="item.value"
@@ -21,6 +21,8 @@
     <el-table
       :data="tableData"
       style="width: 100%"
+      stripe
+      :cell-style="{border:'none'}"
       :header-cell-style="{color:'#333',backgroundColor:'#EBEEF5'}"
     >
       <el-table-column
@@ -116,29 +118,35 @@
       },
       created(){
           this.tableDataOrigin = this.tableData;
+
       },
       methods: {
         handleClick(row) {
           console.log(row);
         },
         executeSearch(){
-          if(this.searchSel == "" || this.searchText == ""){
-            return this.$message('请选择分类或输入搜索内容！');
-          }else if(this.searchSel == 1){ //搜索借款方
+          if(this.searchSel == 0){
+            this.tableData = this.tableDataOrigin;
+          }else if(this.searchSel == 1 && this.searchText != ""){ //搜索借款方
             this.tableData = this.tableDataOrigin.filter(item => {
               return item.name.includes(this.searchText);
             })
-          }else if(this.searchSel == 2){ //搜索借款方手机
+          }else if(this.searchSel == 2 && this.searchText != ""){ //搜索借款方手机
 
+          }else{
+            return this.$message('请输入搜索内容！');
           }
-
+        },
+        searchSelectChange(){
+          if(this.searchSel == 0) this.executeSearch();
         }
       },
       data() {
         return {
           searchText:"",
-          searchSel:"",
+          searchSel:0,
           searchOpt: [
+            { value: 0, label: "全部" },
             { value: 1, label: "借款方" },
             { value: 2, label: "借款人手机" },
           ],
