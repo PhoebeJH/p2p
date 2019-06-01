@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+
+const Login = () => import('@/components/Login/Login.vue');
+const Loged = () => import('@/components/Loged.vue');
 const Home = () => import('@/components/Home/Home.vue');
 //引入新增借款组件
 const NewLoans = () => import('@/components/LoanManage/NewLoans.vue');
@@ -45,9 +48,9 @@ const BorrowUser = () => import('@/components/Member/BorrowUser.vue');
 const InvUser = () => import('@/components/Member/InvUser.vue');
 
 //引入会员新增用户资料主要
-const BorrowUserHome = () =>import('@/components/Member/BorrowUserHome.vue')
+const BorrowUserHome = () => import('@/components/Member/BorrowUserHome.vue')
 //引入会员新增用户资料子
-const BorrowUserChild = () =>import('@/components/Member/child_member/BorrowUserChild.vue')
+const BorrowUserChild = () => import('@/components/Member/child_member/BorrowUserChild.vue')
 
 //引入会员新增用户资料
 const Borrowuser = () => import('@/components/Member/BorrowUser.vue')
@@ -73,30 +76,95 @@ Vue.use(Router);
 
 export default new Router({
   mode: "history",
-  routes: [{
-      path: '',
-      name: 'Home',
-      component: Home
-    },
-    //新增借款页面路由
+  routes: [
     {
-      path: '/NewLoans',
-      name: 'NewLoans',
-      component: NewLoans
+      path: '/',
+      redirect: '/Home',
+      name: 'Loged',
+      component: Loged,
+      children: [
+        {
+          path: '/Home',
+          name: 'Home',
+          component: Home,
+        },
+        //新增借款页面路由
+        {
+          path: '/NewLoans',
+          name: 'NewLoans',
+          component: NewLoans
+        },
+        //新标维护页面路由
+        {
+          path: '/NewStence',
+          name: 'NewStence',
+          component: NewStence
+        },
+        //借款审核页面路由
+
+        //进行中标的管理路由
+        {
+          path: '/TenderingManage',
+          name: 'TenderingManage',
+          component: TenderingManage,
+        },
+        //满标复审路由
+        {
+          path: '/TenderFullReview',
+          // name: 'TenderFullReview',
+          component: TenderFullReview,
+          children: [{
+            path: '/',
+            name: 'TenderFullReviewHome',
+            component: TenderFullReviewHome,
+          }]
+        },
+        //所有借款标路由
+        {
+          path: '/TenderAll',
+          name: 'TenderAll',
+          component: TenderAll,
+        },
+        //投资记录路由
+        {
+          path: '/InvestRecord',
+          name: 'InvestRecord',
+          component: InvestRecord,
+        },
+        //借款标分类路由
+        {
+          path: '/TenderCategory',
+          name: 'TenderCategory',
+          component: TenderCategory,
+        },
+      ]
     },
-    //新标维护页面路由
+
+    //引入会员管理/新增借款用户
     {
-      path: '/NewStence',
-      name: 'NewStence',
-      component: NewStence
+      path: '/AddUser',
+      name: 'AddUser',
+      component: AddUser,
     },
-    //借款审核页面路由
+    //引入会员管理/借款用户管理
+    {
+      path: '/BorrowUser',
+      name: 'BorrowUser',
+      component: BorrowUser,
+
+      children: [{
+        path: 'BorrowInfor',
+        name: 'BorrowInfor',
+        // component: BorrowInfor,
+      }]
+    },
     {
       path: '/LoanAuid',
       name: 'LoanAuid',
+      redirect: '/Auid',
       component: LoanAuid,
       children: [{
-        path: "/",
+        path: "/Auid",
         name: "Auid",
         component: Auid,
 
@@ -109,13 +177,14 @@ export default new Router({
     //标的上架
     {
       path: '/BidFrame',
+      redirect: '/BidFrameHome',
       name: 'BidFrame',
       component: BidFrame,
       children: [{
-          path: '/',
-          name: 'BidFrameHome',
-          component: BidFrameHome,
-        },
+        path: '/BidFrameHome',
+        name: 'BidFrameHome',
+        component: BidFrameHome,
+      },
         {
           path: 'Maintain',
           name: 'Maintain',
@@ -140,10 +209,10 @@ export default new Router({
       path: '/WithdrawReview',
       component: WithdrawReview,
       children: [{
-          path: '',
-          name: 'Withdraw',
-          component: Withdraw,
-        },
+        path: '',
+        name: 'Withdraw',
+        component: Withdraw,
+      },
         { // 提现审核详情子路由
           path: 'Reviewdetails',
           name: 'Reviewdetails',
@@ -151,60 +220,17 @@ export default new Router({
         }
       ]
     },
-    //进行中标的管理路由
-    {
-      path: '/TenderingManage',
-      name: 'TenderingManage',
-      component: TenderingManage,
-    },
-    //满标复审路由
-    {
-      path: '/TenderFullReview',
-      // name: 'TenderFullReview',
-      component: TenderFullReview,
-      children:[
-        {
-          path: '/',
-          name: 'TenderFullReviewHome',
-          component: TenderFullReviewHome,
-        },
-        {
-          path: 'TenderFullReviewRedo',
-          name: 'TenderFullReviewRedo',
-          component: TenderFullReviewRedo,
-        }
-      ]
-    },
-    //所有借款标路由
-    {
-      path: '/TenderAll',
-      name: 'TenderAll',
-      component: TenderAll,
-    },
-    //投资记录路由
-    {
-      path: '/InvestRecord',
-      name: 'InvestRecord',
-      component: InvestRecord,
-    },
-    //借款标分类路由
-    {
-      path: '/TenderCategory',
-      name: 'TenderCategory',
-      component: TenderCategory,
-    },
     //引入会员管理/新增借款用户
     {
       path: '/AddUser',
       name: 'AddUser',
       component: AddUser,
     },
-    //引入会员管理/借款用户管理
+    //引git入会员管理/借款用户管理
     {
       path: '/BorrowUser',
       name: 'BorrowUser',
       component: BorrowUser,
-
       children: [{
         path: 'BorrowInfor',
         name: 'BorrowInfor',
@@ -219,14 +245,14 @@ export default new Router({
       // name: 'InvUser',
       component: InvUser,
       children: [{
-          path: '',
-          name: 'InvUserChildren1',
-          component: InvUserChildren1,
-        }, {
-          path: '/inv_update',
-          name: 'inv_update',
-          component: inv_update,
-        },
+        path: '',
+        name: 'InvUserChildren1',
+        component: InvUserChildren1,
+      }, {
+        path: '/inv_update',
+        name: 'inv_update',
+        component: inv_update,
+      },
         {
           path: '/inv_pwd',
           name: 'inv_pwd',
@@ -255,6 +281,12 @@ export default new Router({
       path: '/Platformfunds',
       name: "Platformfunds",
       component: Platformfunds
+    },
+
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Login,
     }
   ]
 })

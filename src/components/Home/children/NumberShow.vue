@@ -19,8 +19,8 @@ export default {
     },
     props:{
         title:String,
-        number:String,
-        newNumber:String,
+        number:Number,
+        newNumber:Number,
         iconName:String
     },
     data () {
@@ -29,7 +29,7 @@ export default {
         }
     },
     created() {
-      console.log(this.$props);
+    //   console.log(this.$props);
         
     },
 }

@@ -1,14 +1,13 @@
 <template>
-    <div class="Search">
-        <input type="text" name="" id="" placeholder="业务搜索">
-        <span class="search"></span>
+    <div class="Login">
+        <h1>Login</h1>
     </div>
 </template>
 
 <script>
 
 export default {
-    name: 'Search',
+    name: 'Loged',
     components:{
     },
 
@@ -22,5 +21,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    @import "./../../../assets/css/home/search.css";
 </style>

@@ -1,5 +1,5 @@
 .NeedDo {
-  width: 100%;
+  margin: auto;
   height: 160px;
   display: flex;
   border-radius: 10px;
@@ -58,7 +58,7 @@
   border-right: 0 solid #EBEEF5;
 }
 .NeedDo ul li:hover {
-  background-color: #006d75;
+  background-color: #00474f;
 }
 .NeedDo ul li p {
   font-size: 18px;
@@ -67,4 +67,10 @@
   margin: 10px 0;
   height: 30px;
   font-size: 26px;
+}
+.NeedDo ul li:nth-of-type(2n+1) {
+  background-color: #006d75;
+}
+.NeedDo ul li:nth-of-type(2n+1):hover {
+  background-color: #00474f;
 }

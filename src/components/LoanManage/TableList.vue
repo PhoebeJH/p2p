@@ -8,44 +8,33 @@
       style="width: 100%"
     >
       <el-table-column
-        v-for="(item,index) in tableData[0]"
+        v-for="(item,index) in tableHeadData"
         :key="index"
         v-if="index == 0"
         fixed
-        :label="item">
-          <template slot-scope="scope">
-            <span>{{scope.row[index]}}</span>
-          </template>
-      </el-table-column>
-      <!--<el-table-column v-else-if="index == tableHeadData.length-1"
+        prop
+        :label="item"
+      ></el-table-column>
+      <el-table-column
+        v-else-if="index == tableHeadData.length-1"
         fixed="right"
         :label="item"
-        width="100">
-        &lt;!&ndash;<template slot-scope="scope">
+        width="100"
+      >
+        <!--<template slot-scope="scope">
           <el-button @click="handleClick(scope.row)" type="text" size="small"><router-link to="/">修改</router-link></el-button>
           <el-divider direction="vertical"></el-divider>
           <el-button type="text" size="small">下架</el-button>
-        </template>&ndash;&gt;
+        </template>-->
         <template slot-scope="scope">
-          <span class="opts" v-for="(item2,index2) in item.optionData" v-if="index2 == optionData.length-1">
-            <el-button @click="item2.action" type="text" size="small">{{item2.name}}</el-button>
-          </span>
-          <span class="opts" v-else>
-            <el-button @click="item2.action" type="text" size="small">{{item2.name}}</el-button>
-            <el-divider direction="vertical"></el-divider>
-          </span>
+          <el-button @click="handleClick(scope.row)" type="text" size="small">
+            <router-link to="/">修改</router-link>
+          </el-button>
+          <el-divider direction="vertical"></el-divider>
+          <el-button type="text" size="small">下架</el-button>
         </template>
-      </el-table-column>-->
-      <el-table-column
-        v-else
-        :label="item"
-        show-overflow-tooltip
-        width="230"
-      >
-          <template slot-scope="scope">
-            <span>{{scope.row[index]}}</span>
-          </template>
       </el-table-column>
+      <el-table-column v-else prop :label="item"></el-table-column>
     </el-table>
     <!--分页-->
     <Pagination></Pagination>
@@ -53,54 +42,53 @@
 </template>
 
 <script>
-  import Pagination from './Pagination/Pagination';
+import Pagination from "./Pagination/Pagination";
 
-  export default {
-    name: "TableList",
-    props:[
-      "tableData",
-      "tableHeadData",
-      "optionData"
-    ],
-    data() {
-      return {
-        searchOpt: [
-          { value: 1, label: "借款方" },
-          { value: 2, label: "借款人手机" },
-        ]
-      }
-    },
-    components:{
-      Pagination
-    },
-    methods: {
-      handleClick(row) {
-        console.log(row);
-      }
+export default {
+  name: "TableList",
+  props: ["tableData", "tableHeadData", "optionData"],
+  data() {
+    return {
+      input5: "",
+      searchSel: "",
+      modeSel: "",
+      searchOpt: [
+        { value: 1, label: "借款方" },
+        { value: 2, label: "借款人手机" }
+      ]
+    };
+  },
+  components: {
+    Pagination
+  },
+  methods: {
+    handleClick(row) {
+      console.log(row);
     }
   }
+};
 </script>
 
 <style scoped>
-  .wrapper{
-    width: 100%;
-    padding-top: 30px;
-  }
-  .wrapper-content{
-    width: 90%;
-    margin: 0 auto;
-  }
-  .searchWrap{
-    display: flex;
-    margin-bottom: 30px;
-  }
-  .searchWrap>div{
-    flex-basis: 30%;
-  }
-  .searchWrap >>> .el-select .el-input {
-    width: 130px;
-  }
-  .searchWrap >>> .input-with-select .el-input-group__prepend {
-    background-color: #fff;
-  }
+.wrapper {
+  width: 100%;
+  padding-top: 30px;
+}
+.wrapper-content {
+  width: 90%;
+  margin: 0 auto;
+}
+.searchWrap {
+  display: flex;
+  margin-bottom: 30px;
+}
+.searchWrap > div {
+  flex-basis: 30%;
+}
+.searchWrap >>> .el-select .el-input {
+  width: 130px;
+}
+.searchWrap >>> .input-with-select .el-input-group__prepend {
+  background-color: #fff;
+}
 </style>

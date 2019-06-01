@@ -1,6 +1,6 @@
 <template>
   <div id="MaintainWrap">
-    <div class="tilte">
+    <div class="title">
       <h2>上架维护</h2>
     </div>
     <div class="content">
@@ -183,7 +183,7 @@
 
       <!-- 项目介绍 -->
       <div class="from5">
-        <div class="title">
+        <div class="title1">
           <p>项目介绍</p>
         </div>
         <div class="text1">
@@ -192,7 +192,7 @@
       </div>
       <!--  -->
       <div class="from6">
-        <div class="title">
+        <div class="title1">
           <p>风控措施</p>
         </div>
         <div class="text1">
@@ -293,9 +293,16 @@ export default {
 .el-icon-arrow-down {
   font-size: 14px;
 }
-.tilte1 {
-  /* padding-top:20px; */
-  margin-top: 20px;
+/* TopNav */
+.title{
+  width: 100%;
+  height: 40px;
+  background-color: #006d75;
+}
+h2{
+  color: #fff;
+  margin-left:10px;
+  line-height: 40px;
 }
 /* 下拉 */
 h4 {
