@@ -20,7 +20,7 @@
   }
   .el-pagination{
     position: absolute;
-    bottom: -100%;
+    bottom: -60px;
     right: -10px;
   }
 </style>

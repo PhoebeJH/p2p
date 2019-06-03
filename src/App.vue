@@ -172,4 +172,11 @@ body {
   color: #fff;
   font-size: 17px;
 }
+
+.logIcon::before{
+  font-family: iconfont;
+  content: '\e641';
+  color: #fff;
+  font-size: 17px;
+}
 </style>

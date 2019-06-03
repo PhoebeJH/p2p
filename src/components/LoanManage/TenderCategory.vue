@@ -141,8 +141,8 @@
     margin: 50px auto 0;
   }
   #tender-category-home >>> .pagination-dom{
-    right: 0;
-    bottom: -15%;
+    /*right: 0;
+    bottom: -15%;*/
   }
   #tender-category-home .add-btn{
     margin-bottom: 30px;

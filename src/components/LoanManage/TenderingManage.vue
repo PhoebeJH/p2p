@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="wrapper-content">
       <div class="title">
-        <h2>招标管理</h2>
+        <h1 style="margin-bottom: 20px;">招标管理</h1>
       </div>
       <div class="searchWrap">
         <div>
@@ -96,9 +96,10 @@ export default {
         }
       ],
       input5: "",
-      searchSel: "",
+      searchSel: 0,
       modeSel: "",
       searchOpt: [
+        { value: 0, label: "全部" },
         { value: 1, label: "借款方" },
         { value: 2, label: "借款人手机" }
       ]
@@ -118,23 +119,21 @@ export default {
 <style scoped>
 .wrapper {
   width: 100%;
-  padding-top: 30px;
-}
-.wrapper-content {
-  width: 90%;
-  margin: 0 auto;
+  margin-top: 50px;
 }
 .searchWrap {
   display: flex;
   margin-bottom: 30px;
 }
-.searchWrap > div {
-  flex-basis: 30%;
-}
 .searchWrap >>> .el-select .el-input {
-  width: 130px;
+  width: 120px;
 }
 .searchWrap >>> .input-with-select .el-input-group__prepend {
   background-color: #fff;
+}
+.wrapper >>> .el-pagination{
+  /*right: 0;
+  bottom: -15%;*/
+  bottom: -10px;
 }
 </style>

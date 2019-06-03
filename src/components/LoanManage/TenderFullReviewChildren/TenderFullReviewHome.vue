@@ -196,9 +196,24 @@
 
 #review-home{
   position: relative;
+  margin: 50px auto 0;
 }
-#review-home >>> .pagination-dom{
-    right: 0;
-    bottom: -15%;
+.searchWrap {
+  display: flex;
+  margin-bottom: 30px;
+}
+.searchWrap > div {
+  flex-basis: 30%;
+}
+.searchWrap >>> .el-select .el-input {
+  width: 130px;
+}
+.searchWrap >>> .input-with-select .el-input-group__prepend {
+  background-color: #fff;
+}
+#review-home >>> .el-pagination{
+  /*right: 0;
+  bottom: -15%;*/
+  bottom: -60px;
 }
 </style>

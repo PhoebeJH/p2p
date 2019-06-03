@@ -1,14 +1,16 @@
 <template>
     <div class="Login">
-        <h1>Login</h1>
+        <div class="bgColor"></div>
+        <LoginBox/>
     </div>
 </template>
 
 <script>
-
+import LoginBox from './Children/LoginBox';
 export default {
-    name: 'Loged',
+    name: 'Login',
     components:{
+        LoginBox
     },
 
     data () {
@@ -21,4 +23,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    @import './../../assets/css/login/Login.css';
 </style>

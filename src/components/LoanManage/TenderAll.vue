@@ -220,8 +220,8 @@
     margin: 50px auto 0;
   }
   #all-wrap >>> .pagination-dom{
-    right: 0;
-    bottom: -15%;
+    /*right: 0;
+    bottom: -15%;*/
   }
   #all-wrap >>> .searchWrap{
     display: flex;
