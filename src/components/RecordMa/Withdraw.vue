@@ -61,7 +61,13 @@
     </div>
 
     <!-- 分页 -->
-    <Pagination :total="total" :pagesize="pagesize" :currentPage="currentPage" :current_change="current_change" :handleSizeChange="handleSizeChange" />
+    <Pagination
+      :total="total"
+      :pagesize="pagesize"
+      :currentPage="currentPage"
+      :current_change="current_change"
+      :handleSizeChange="handleSizeChange"
+    />
   </div>
 </template>
 
@@ -112,14 +118,17 @@ export default {
       searchOpt: [
         { value: 1, label: "提现单号" },
         { value: 2, label: "用户手机" }
-      ],
+      ]
     };
   },
-  
- methods: {
-    handleClick(row) {
-      console.log(row);
+
+  methods: {
+    handleClick: function(row) {
+      window.sessionStorage.setItem("rows", JSON.stringify(row));
+      console.log(this.$router);
+      this.$router.push("/WithdrawReview/Reviewdetails");
     },
+    
     exportExcel() {
       /* generate workbook object from table */
       var wb = XLSX.utils.table_to_book(
@@ -143,6 +152,7 @@ export default {
       }
       return wbout;
     },
+
     current_change: function(currentPage) {
       this.currentPage = currentPage;
     },
@@ -169,12 +179,9 @@ export default {
   margin: 0 auto;
   padding: 0;
   position: relative;
-  /* border: 1px solid red; */
-  /* width: 85%; */
 }
 #review_app > #nav {
   width: 100%;
-  /* border: 1px solid rebeccapurple; */
 }
 </style>
 
