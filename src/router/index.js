@@ -72,7 +72,10 @@ const inv_update = () => import('@/components/Member/child_member/inv_update.vue
 const inv_pwd = () => import('@/components/Member/child_member/inv_pwd.vue');
 
 // Platformfunds
-
+// 引入还款管理
+const RepaymentManagement = () => import('@/components/Repayment/RepaymentManagement');
+// 引入还款记录
+const RepaymentHistory = () => import('@/components/Repayment/RepaymentHistory');
 Vue.use(Router);
 
 export default new Router({
@@ -282,6 +285,16 @@ export default new Router({
           path: '/Platformfunds',
           name: "Platformfunds",
           component: Platformfunds
+        },
+        // 还款管理路由
+        {
+          path: '/RepaymentManagement',
+          component:RepaymentManagement,
+        },
+        // 还款记录路由
+        {
+          path: '/RepaymentHistory',
+          component:RepaymentHistory,
         }
       ]
     },
